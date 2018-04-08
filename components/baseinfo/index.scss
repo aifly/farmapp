@@ -1,0 +1,165 @@
+﻿@import "../css/base.scss";
+ 
+
+ $bgColor:#45c75d;
+.symbin-baseinfo-main-ui{
+	background: $bgColor;
+
+	.symbin-main-title{
+		@include pos(r);
+		z-index: 2;
+		width: 700px;
+		@include displayBox(horizontal);
+		margin: 20px auto 0;
+		&>div{
+			margin: 0 10px;
+			@include pos(r);
+		}
+		color:#fff;
+
+		.symbin-id{
+			@include pos(a);
+			right: 0;
+			font-weight: bold;
+			font-size: 44px;
+			width: 230px;
+			margin-top: -4px;
+			//text-align: center;
+		}
+		.symbin-baseinfo-date{
+			font-size: 26px;
+			@include pos(a);
+		}
+		.symbin-birthday,.symbin-dieday{
+
+		}
+	}
+	.symbin-grass{
+		@include pos(a);
+		top: 100px;
+		z-index: 1;
+	}
+
+	.symbin-baseinfo-main{
+
+		min-height: 700px;
+		@include pos(r);
+		top: -20px;
+		z-index: 2;
+
+		color:#604b19;
+		width: 700px;
+
+		border:1px solid transparent;
+
+		margin: 0 auto;
+
+		&:before{
+			content:'';
+			@include pos(a);
+			width: 100%;
+			height: 90%;
+			bottom: 0;
+			background: #fcfbe4;
+			z-index: -1;
+			@include br(10px);
+
+		}
+
+		.symbin-baseinfo-tag{
+			@include pos(a);
+			width: 100px;
+			left: -10px;
+			top: 60px;
+			span{
+				@include pos(a);
+				top: 0;
+				color:#fff;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				top: 5px;
+			}
+		}
+
+
+
+		.symbin-allstep{
+			width: 620px;
+			padding-top: 120px;
+			margin: 0 auto;
+
+			h1{
+				text-indent: 2em;
+				font-size: 30px;
+				font-weight: normal;
+			}
+
+			&>div{
+				font-weight: bold;
+				text-align: center;
+				@include pos(r);
+				top: 20px;
+				height: 80px;
+				line-height: 80px;
+				color:#f6c309;
+				font-size: 60px;
+				@include br(40px);
+				&:before{
+					content:'';
+					@include pos(a);
+					@include br(40px);
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					z-index: -1;
+					background:-webkit-linear-gradient(top, #fbf9ca,#fef39d);
+					box-shadow: 0 -2px 10px rgba(0,0,0,.2);
+				}
+			}
+
+
+		}
+
+
+		.symbin-c-info{
+
+			width: 620px;
+			margin: 40px auto 0;
+
+			text-align: center;
+
+			@include displayBox(horizontal);
+			&>div{
+				-webkit-box-flex:1;
+				font-size: 24px;
+				font-weight: bold;
+				span{
+					font-size: 36px;
+				}
+				&:nth-of-type(2){
+					@include pos(r);
+					&:before,&:after{
+						content:'';
+						@include pos(a);
+						left: 0;
+						top: 0;
+						width: 1px;
+						height: 100%;
+						@include  fly-v-gradient-line();
+					}
+					&:after{
+						right: 0;
+						left: auto;
+					}
+				}
+				&>div:nth-of-type(2){
+					font-weight: normal;
+					color:#c7c6ba;
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+}
