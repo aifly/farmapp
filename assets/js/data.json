@@ -10,7 +10,7 @@
 	"steps":[
 		{
 			"date":"2018-01-01",
-			"step":5000,
+			"step":12231,
 			"temperature":25,
 			"humidity":42,
 			"status":0
@@ -19,113 +19,225 @@
 			"date":"2018-01-02",
 			"step":6011,
 			"temperature":24,
-			"humidity":52
+			"humidity":52,
+			"status":1
 		},{
 			"date":"2018-01-03",
 			"step":3300,
 			"temperature":25,
-			"humidity":44
+			"humidity":44,
+			"status":1
 		},{
 			"date":"2018-01-04",
 			"step":7500,
 			"temperature":26,
-			"humidity":45
+			"humidity":45,
+			"status":1
 		},{
 			"date":"2018-01-05",
 			"step":5700,
 			"temperature":24,
-			"humidity":42
+			"humidity":42,
+			"status":0
 		},{
 			"date":"2018-01-06",
 			"step":6500,
 			"temperature":25,
-			"humidity":56
+			"humidity":56,
+			"status":1
 		},{
 			"date":"2018-01-07",
 			"step":8050,
 			"temperature":23,
-			"humidity":63
+			"humidity":53,
+			"status":1
 		},{
 			"date":"2018-01-08",
 			"step":6000,
 			"temperature":24,
-			"humidity":40
+			"humidity":40,
+			"status":1
 		},{
 			"date":"2018-01-09",
 			"step":5900,
 			"temperature":26,
-			"humidity":35
+			"humidity":35,
+			"status":1
 		},{
 			"date":"2018-01-10",
 			"step":4600,
 			"temperature":27,
-			"humidity":40
+			"humidity":40,
+			"status":1
 		},{
 			"date":"2018-01-11",
 			"step":7120,
 			"temperature":26,
-			"humidity":42
+			"humidity":42,
+			"status":1
 		},
 		{
 			"date":"2018-01-12",
 			"step":7610,
 			"temperature":24,
-			"humidity":45
+			"humidity":45,
+			"status":1
 		},{
 			"date":"2018-01-13",
-			"step":6200,
+			"step":6700,
 			"temperature":25,
-			"humidity":60
+			"humidity":60,
+			"status":1
 		},{
 			"date":"2018-01-01",
-			"step":6120,
+			"step":7120,
 			"temperature":26,
-			"humidity":50
+			"humidity":50,
+			"status":1
 		},{
 			"date":"2018-01-14",
 			"step":6700,
 			"temperature":20,
-			"humidity":42
+			"humidity":42,
+			"status":1
 		},{
 			"date":"2018-01-01",
 			"step":6325,
 			"temperature":24,
-			"humidity":42
+			"humidity":42,
+			"status":1
 		},{
 			"date":"2018-01-15",
 			"step":6570,
 			"temperature":25,
-			"humidity":40
+			"humidity":40,
+			"status":1
 		},{
 			"date":"2018-01-16",
 			"step":7150,
 			"temperature":26,
-			"humidity":40
+			"humidity":40,
+			"status":1
 		},{
 			"date":"2018-01-17",
 			"step":7925,
 			"temperature":24,
-			"humidity":45
+			"humidity":45,
+			"status":1
 		},{
 			"date":"2018-01-18",
 			"step":6354,
 			"temperature":25,
-			"humidity":40
+			"humidity":40,
+			"status":1
 		},{
 			"date":"2018-01-19",
 			"step":7586,
 			"temperature":26,
-			"humidity":52
+			"humidity":52,
+			"status":1
 		},{
 			"date":"2018-01-20",
 			"step":7854,
 			"temperature":23,
-			"humidity":60
+			"humidity":60,
+			"status":1
 		},{
 			"date":"2018-01-21",
 			"step":6524,
 			"temperature":22,
-			"humidity":46
+			"humidity":46,
+			"status":1
+		},{
+			"date":"2018-01-22",
+			"step":8522,
+			"temperature":15,
+			"humidity":46,
+			"status":1
+		},{
+			"date":"2018-01-23",
+			"step":6356,
+			"temperature":25,
+			"humidity":60,
+			"status":1
+		},{
+			"date":"2018-01-24",
+			"step":6342,
+			"temperature":22,
+			"humidity":45,
+			"status":1
+		},{
+			"date":"2018-01-25",
+			"step":7522,
+			"temperature":15,
+			"humidity":46,
+			"status":1
+		},{
+			"date":"2018-01-26",
+			"step":8175,
+			"temperature":25,
+			"humidity":42,
+			"status":1
+		},{
+			"date":"2018-01-27",
+			"step":6223,
+			"temperature":25,
+			"humidity":36,
+			"status":1
+		},{
+			"date":"2018-01-28",
+			"step":8522,
+			"temperature":25,
+			"humidity":41,
+			"status":1
+		},{
+			"date":"2018-01-29",
+			"step":8522,
+			"temperature":15,
+			"humidity":46,
+			"status":1
+		},{
+			"date":"2018-01-30",
+			"step":8122,
+			"temperature":25,
+			"humidity":51,
+			"status":1
+		},{
+			"date":"2018-01-31",
+			"step":8215,
+			"temperature":20,
+			"humidity":46,
+			"status":1
+		},{
+			"date":"2018-02-01",
+			"step":8543,
+			"temperature":13,
+			"humidity":40,
+			"status":1
+		},{
+			"date":"2018-02-02",
+			"step":7522,
+			"temperature":18,
+			"humidity":42,
+			"status":1
+		},{
+			"date":"2018-02-03",
+			"step":7521,
+			"temperature":19,
+			"humidity":41,
+			"status":1
+		},{
+			"date":"2018-02-04",
+			"step":1651,
+			"temperature":20,
+			"humidity":45,
+			"status":1
+		},{
+			"date":"2018-02-05",
+			"step":6458,
+			"temperature":30,
+			"humidity":42,
+			"status":1
 		}
 	],
 	"lifepic":[

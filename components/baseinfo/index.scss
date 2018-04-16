@@ -1,9 +1,20 @@
 ﻿@import "../css/base.scss";
  
-
+$viewW:750px;
  $bgColor:#45c75d;
 .symbin-baseinfo-main-ui{
 	background: $bgColor;
+
+
+	.symbin-baseinfo-wrap{
+		overflow: hidden;
+		width: $viewW;
+		@include pos(r);
+		&>div{
+			background: $bgColor;
+			padding-bottom: 30px;
+		}
+	}
 
 	.symbin-main-title{
 		@include pos(r);
@@ -160,6 +171,167 @@
 					margin-top: 20px;
 				}
 			}
+		}
+	}
+
+
+	.symbin-baseinfo-chart{
+		height: 740px;
+		width:620px;
+		margin: 30px auto;
+		@include pos(r);
+		&:before{
+			content:'';
+			@include pos(a);
+			width: 100%;
+			height:80px;
+			background:-webkit-linear-gradient(top, rgba(67,198,91,.22),#fcfbe4);
+		}
+
+		.symbin-chart-tags{
+			@include pos(a);
+			top: 60px;
+			&>div{
+				width: 150px;
+				text-align: right;
+				@include pos(r);
+				color:#ccc;
+				&:before{
+					content: "";
+					width: 50px;
+					top: 15px;
+					border:2px dashed #3eb1f3;
+					@include pos(a);
+					left: 0;
+
+				}
+
+				&:nth-of-type(2){
+					&:before{
+						border:2px solid #f6c109;
+					}					
+				}
+				&:nth-of-type(3){
+					&:before{
+						height: 10px;
+						background: $bgColor;
+						border:2px solid $bgColor;
+					}
+				}
+			}
+		}
+
+		.symbin-baseinfo-date{
+			width: 100%;
+			padding-top: 120px;
+			text-align: center;
+		}
+
+		.symbin-baseinfo-step{
+			width: 300px;
+			height: 80px;
+			line-height: 80px;
+			text-align: center;
+			color:#f6c309;
+			font-size: 50px;
+			@include br(40px);
+			margin: 20px auto;
+			@include pos(r);
+			&:before{
+				content:'';
+				@include pos(a);
+				@include br(40px);
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				background:-webkit-linear-gradient(top, #fbf9ca,#fef39d);
+				box-shadow: 0 -2px 10px rgba(0,0,0,.2);
+			}
+			span{
+				font-size: 30px;
+				color:#ddd;
+				@include pos(a);
+				right: 10px;
+			}
+			label{
+				color:#604b19;
+				@include pos(a);
+				left: 100%;
+				font-size: 28px;
+				width: 200px;
+				&:before{
+					content:'约';
+					@include pos(a);
+					left: 10px;
+
+					color:#ddd;
+				}
+				em{
+					margin-left: 20px;
+					font-style: normal;
+					font-family: Georgia;
+					font-size: 36px;
+				}
+			}
+
+		}
+
+		.symbin-chart{
+			
+			margin-top: 20px;
+			box-sizing:border-box;
+			@include pos(r);
+			width: 620px;
+			height: 400px;
+			
+			overflow: hidden;
+
+			&>.symbin-line{
+				z-index: 0;
+				@include pos(a);
+				width: 80px;
+				text-align: center;
+				left: 50%;
+				margin-left: -30px;
+				img{
+					width: 40px;
+				}
+			}
+		}
+
+		canvas{
+			@include pos(a);
+			z-index: 1;
+			bottom: 0;
+			//box-shadow: 0 0 10px #000;
+			
+		}
+	}
+
+
+	.symbin-temp-humidity{
+		@include displayBox(horizontal);
+		-webkit-box-align:end;
+		&>div{
+			margin: 0 30px;
+			&:nth-of-type(1){
+				color:#f6c109
+			}
+			&:nth-of-type(2){
+				color:#2baaf0;
+			}
+			&>span{
+				&:nth-of-type(1){color:#999;}
+				&:nth-of-type(2){
+					font-weight: bold;
+				}
+			}
+		}
+		img{
+			width: 30px;
+			vertical-align: bottom;
 		}
 	}
 }
