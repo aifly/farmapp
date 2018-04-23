@@ -56,7 +56,7 @@
 							<div>重量</div>
 						</div>
 					</div>
-					<div class="symbin-baseinfo-chart">
+					<div class="symbin-baseinfo-chart" :class='{"hide":!showCharts}'>
 						<div class="symbin-chart-tags">
 							<div>湿度</div>
 							<div>温度</div>
@@ -94,9 +94,34 @@
 							</div>
 
 						</div>
-
 						
 					</div>
+
+					<div class="symbin-open" v-tap='[toggleCharts]'>
+						{{showCharts?'收起':'展开'}}
+					</div>
+
+					<div class="symbin-life-pic-title">
+						<img :src="imgs.lifePic" />
+						<span>更多</span>
+					</div>
+
+					<div class="symbin-life-pic-list">
+						<div v-for='(pic,i) in baseInfo.lifepic' v-if='i<2' :style='{background: "url("+pic.url+") no-repeat center center",backgroundSize:"cover"}'>
+							<img :src='pic.url'/>
+						</div>
+					</div>
+
+					<div class="symbin-address">
+						<div>
+							<div>所属地</div>
+							<div>{{baseInfo.dependency}}</div>
+						</div>
+						<div class="symbin-qrcode" v-if='baseInfo.qrcode'>
+							<img :src="baseInfo.qrcode">
+						</div>
+					</div>
+
 				</div>
 
 			</div>
@@ -122,9 +147,10 @@
 			return{
 				imgs:window.imgs,
 				viewH:document.documentElement.clientHeight,
-				stepIndex:12,
+				stepIndex:0,
 				transX:0,
 				translateX:0,
+				showCharts:true,
 				baseInfo:{
 
 				}
@@ -136,6 +162,13 @@
 		
 		methods:{
 
+			toggleCharts(){
+				this.showCharts = !this.showCharts;
+				setTimeout(()=>{
+					this.scroll.refresh();
+				},700);
+			},
+
 			loadInfoById(id){
 				var s = this;
 				symbinUtil.ajax({
@@ -143,10 +176,18 @@
 					type:'get',
 					fn(data){
 						var allCount =  0;
+						var steps = [];
+						
+						if(data.steps.length<14){
+							s.translateX =  620 / 2;
+						}
 						data.steps.map((s,i)=>{
 							allCount+=s.step
+							steps.push(s.step);
 						})
+
 						s.baseInfo = data;
+						s.baseInfo.maxStep = Math.max.apply(Array,steps);
 						s.baseInfo.allCount = allCount;
 
 						s.initCanvas();
@@ -269,7 +310,7 @@
 				*/
 				var context = canvas.getContext('2d');
 				
-				var maxStep = 15000,
+				var maxStep = this.baseInfo.maxStep ,
 					height = canvas.height;
 
 				this.context = context;
@@ -294,11 +335,13 @@
 
 				context.fillStyle = '#45c75d';
 				this.baseInfo.steps.forEach((step,i)=>{
+
+					var h = step.step/maxStep*height/2;
 					var s = new Step({
 						context,
-						x:i*20+4*i,
-						y:height*(1-step.step/maxStep),
-						height:step.step/maxStep*height,
+						x:i*20+4*i+this.translateX,
+						y:height*(1-step.step/maxStep)+h,
+						height:h
 					});
 					s.minX =i*20+4*i - minX;
 					s.maxX = i*20+4*i + maxX;
@@ -309,9 +352,10 @@
 				
 
 			},
-			drawHumidity(){
+			drawHumidity(){//绘制湿度
 
 				var {context,maxWidth } = this;
+				maxWidth =  maxWidth - 10;
 				context.strokeStyle = '#3eb1f3';
 
 				context.save();
@@ -328,43 +372,42 @@
 
 				
 				context.lineTo(maxWidth,(1-this.baseInfo.steps[this.baseInfo.steps.length-1].humidity/maxHumidity)*height);
-				context.lineTo(maxWidth,height);
+				/*context.lineTo(maxWidth,height);
 				context.lineTo(0,height);
-				context.closePath();
-
-
-				context.stroke();
+				context.closePath();*/
 				context.restore();
+				context.stroke();
 				
 			},
 			drawTemperature(){
+
 				
 				var {context,maxWidth } = this;
+				maxWidth =  maxWidth - 10;
 				context.strokeStyle = '#f6c109';
 
 				context.save();
-				context.translate(this.translateX,0);
-
+				//context.translate(this.translateX,0);
 
 
 				this.context.beginPath();
 				var maxTemperature = 42;
 				var height = context.canvas.height;
-
-
+				
 				this.baseInfo.steps.forEach((step,i)=>{
-					context[i===0?'moveTo':'lineTo'](i*24+10,(1-step.temperature/maxTemperature) * height);
+					
+					context[i===0?'moveTo':'lineTo'](i*24+10+this.translateX,(1-step.temperature/maxTemperature) * height/2);
 				});
 
-				var grd = context.createLinearGradient(0,0,0,height);
-				grd.addColorStop(0,"#f6c109");
+				var grd = context.createLinearGradient(0,0,0,height/1.2);
+				grd.addColorStop(0,"rgba(246,193,9,.1)");
 				grd.addColorStop(1,"white");
-				context.lineTo(maxWidth,(1-this.baseInfo.steps[this.baseInfo.steps.length-1].temperature/maxTemperature)*height);
-				context.lineTo(maxWidth,height);
-				context.lineTo(0,height);
+				context.lineTo(maxWidth+this.translateX,(1-this.baseInfo.steps[this.baseInfo.steps.length-1].temperature/maxTemperature)*height);
+				context.lineTo(maxWidth+this.translateX,height);
+				context.lineTo(this.translateX,height);
 				context.closePath();
 
-				context.fillStyle =grd;
+				context.fillStyle = grd;
 				context.fill();
 
 				context.stroke();
@@ -405,14 +448,19 @@
 
 				this.translateX = this.steps[0].x;
 				
+				this.lastX = this.transX;
 
-				this.lastX = e.pageX;
-
-				return false
+				this.touchend(e);
  
 			},
 			touchend(e){
-				console.log(this.translateX,this.steps[0].x )
+				var height = this.context.canvas.height;
+				
+				this.context.clearRect(0,0,365*24,height);
+				this.drawTemperature();
+				this.steps.forEach((step,i)=>{
+					step.render();
+				});
 			}
 			
 
@@ -427,8 +475,8 @@
 
 			setTimeout(()=>{
 				this.scroll.refresh();
-				this.scroll.scrollTo(0,-600,1)
-			},1000)
+				this.scroll.scrollTo(0,-1400,1)
+			},500)
  			
 		}
 	}

@@ -241,10 +241,15 @@
 		}
 	],
 	"lifepic":[
-
+		{
+			"url":"./assets/images/c-1.jpg"
+		},
+		{
+			"url":"./assets/images/c-2.jpg"
+		}
 	],
 	"dependency":"湖北省某某市星星农场",
-	"qrcode":""
+	"qrcode":"./assets/images/qrcode.jpg"
 
 
 

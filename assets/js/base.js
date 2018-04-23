@@ -6,8 +6,9 @@ var imgs = {
 	cInfo:'./assets/images/c-info.png',
 	cTag:'./assets/images/c-tag.png',
 	infoBg:'./assets/images/info-bg.png',
-	line:'./assets/images/line.png'
-
+	line:'./assets/images/line.png',
+	lifePic:'./assets/images/life-pic.png',
+	
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'
