@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Obserable from './components/lib/obserable';
 import BaseInfo from './components/baseinfo/index';
+import Home from './components/home/index';
 import FError from './components/ferror/index';
 
 import VueRouter from 'vue-router'
@@ -18,7 +19,7 @@ const router = new VueRouter({
   routes: [
     {path: '*', name: 'error', component: FError },
     { path: '/baseinfo/:id', name: 'baseinfo', component: BaseInfo, props: true },
-    { path: '/:id', name: 'baseInfo', component: BaseInfo, props: true },
+    { path: '/', name: 'Home', component: Home, props: true },
   ]
 });
 
@@ -31,7 +32,7 @@ new Vue({
 	},
 	el: '#app',
 	template: `<div id="app1">
-      <BaseInfo></BaseInfo>
+       <router-view></router-view>
     </div>`,
 	methods: {
 	},

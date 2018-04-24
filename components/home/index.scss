@@ -1,0 +1,29 @@
+﻿@import "../css/base.scss";
+ 
+
+$baseColor: #fcffb4;
+$viewW: 750px;
+$color: #be0000;
+
+.symbin-home-ui {
+	
+	.symbin-ad{
+		width: $viewW;
+		height: 326px;
+		overflow: hidden;
+
+		ul{
+			@include displayBox(horizontal);
+			height: 100%;
+			li{
+				width: $viewW;
+				height: 100%;
+				a{
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+}
