@@ -4,6 +4,7 @@ var port = 4032;
 var config = {
     entry: {
         'index': "./index.js",
+        'scan': "./scan.js",
         ///endor: ['react','react-dom','iscroll','jquery']
     },
     output: {

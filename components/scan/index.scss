@@ -1,0 +1,138 @@
+﻿@import "../css/base.scss";
+ 
+
+$baseColor: #fcffb4;
+$viewW: 750px;
+$color: #be0000;
+
+.symbin-scan-ui {
+	overflow: hidden;
+	@include displayBox(vertical);
+	&:before{
+		content:'';
+		@include pos(a);
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		margin-top: 120px;
+		background: -webkit-linear-gradient(left top, #3dde5a , #45c75d);
+	}
+
+	.symbin-scan-search-C{
+		width: 100%;
+		@include pos(r);
+		z-index: 10;
+		background: #3dbc54;
+		height: 120px;
+		@include displayBox(horizontal);
+		&>div{
+			&:nth-of-type(1){
+				width: 600px;
+				input{
+					width: 96%;
+					height: 60px;
+					@include br(10px);
+					font-size: 30px;
+					padding-left: 20px;
+					box-sizing:border-box;
+				}
+			}
+			&:nth-of-type(2){
+				background: #fffcd0;
+				padding:9px 20px;
+				color:#80714d;
+				@include br(10px);
+			}
+		}
+	}
+
+	.symbin-scan-main{
+		-webkit-box-flex:1;
+		width: 100%;
+		@include pos(r);
+		@include displayBox(vertical);
+
+		&>div{
+			&:nth-of-type(1){
+				-webkit-box-flex:2;
+				@include displayBox(vertical);
+			}
+		}
+	}
+	
+	.symbin-logo{
+		@include pos(r);
+		z-index: 12;
+		width: 140px;
+		margin: 0px auto 50px;
+
+	}
+
+	.symbin-text{
+		color:#fff;
+		@include pos(r);
+		z-index: 12;
+		text-align: center;
+		&>div{
+			&:nth-of-type(1){
+				font-weight: bold;
+				margin-bottom: 20px;
+			}
+		}
+	}
+	.symbin-scan-C{
+		@include pos(r);
+		z-index: 12;
+		width: 100%;
+		-webkit-box-flex:3;
+		.symbin-scan-btn{
+			width: 200px;
+			margin: 60px auto;
+			@include pos(r);
+		}
+		span{
+			background: #fff6a6;
+			@include br();
+			z-index: -1;
+			@include animation(flash 2s ease-in infinite);
+
+			&:nth-of-type(2){
+				@include animation(flash 2s .7s ease-in infinite);				
+			}
+			&:nth-of-type(2){
+				@include animation(flash 2s 1.4s ease-in infinite);				
+			}
+
+		}
+
+		.symbin-copyright{
+			@include pos(a);
+			width: 100%;
+			text-align: center;
+			bottom: 20px;
+		}
+		.symbin-help{
+			width: 54px;
+			height: 54px;
+			text-align: center;
+			@include pos(a);
+			right: 40px;
+			bottom: 20px;
+		}
+	}
+
+	.symbin-canvas{
+		@include pos(a);
+		z-index: 10;
+		left: 0;
+		bottom: 0;
+		box-sizing:border-box;
+	}
+}
+
+@-webkit-keyframes flash{
+	to{
+		@include transform(scale(2.4));
+		opacity: 0;
+	}
+}

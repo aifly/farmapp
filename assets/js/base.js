@@ -7,6 +7,9 @@ var imgs = {
 	cTag:'./assets/images/c-tag.png',
 	infoBg:'./assets/images/info-bg.png',
 	line:'./assets/images/line.png',
+	logo:'./assets/images/logo.png',
+	help:'./assets/images/help.png',
+	scanBtn:'./assets/images/scan-btn.png',
 	lifePic:'./assets/images/life-pic.png',
 	
 }
