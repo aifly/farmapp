@@ -8,14 +8,16 @@
   height: 100%;
   position: absolute;
   left: 0;
-  top: 0; }
+  top: 0;
+}
 
 .zmiti-text-overflow {
   overflow: hidden;
   white-space: nowrap;
   word-break: break-all;
   text-overflow: ellipsis;
-  -webkit-text-overflow: ellipsis; }
+  -webkit-text-overflow: ellipsis;
+}
 
 .zmiti-play {
   width: .8rem;
@@ -24,37 +26,111 @@
   position: fixed;
   z-index: 1000;
   right: .5rem;
-  top: .5rem; }
-  .zmiti-play.rotate {
-    -webkit-animation: rotate 5s linear infinite;
-    animation: rotate 5s linear infinite; }
+  top: .5rem;
+}
+
+.zmiti-play.rotate {
+  -webkit-animation: rotate 5s linear infinite;
+  animation: rotate 5s linear infinite;
+}
 
 .symbin-left {
-  float: left !important; }
+  float: left !important;
+}
 
 .symbin-right {
-  float: right !important; }
+  float: right !important;
+}
 
 @-webkit-keyframes rotate {
   to {
     -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+    transform: rotate(360deg);
+  }
+}
+
 .symbin-home-ui .symbin-ad {
   width: 750px;
   height: 326px;
-  overflow: hidden; }
-  .symbin-home-ui .symbin-ad ul {
-    display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -webkit-box-orient: horizontal;
-    height: 100%; }
-    .symbin-home-ui .symbin-ad ul li {
-      width: 750px;
-      height: 100%; }
-      .symbin-home-ui .symbin-ad ul li a {
-        display: block;
-        width: 100%;
-        height: 100%; }
+  overflow: hidden;
+  position: relative;
+}
 
-/*# sourceMappingURL=index.css.map */
+.symbin-home-ui .symbin-ad ul {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  height: 100%;
+}
+
+.symbin-home-ui .symbin-ad ul li {
+  width: 750px;
+  height: 100%;
+}
+
+.symbin-home-ui .symbin-ad ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.symbin-home-ui .symbin-ad .zmiti-ad-page {
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.symbin-home-ui .symbin-ad .zmiti-ad-page.left {
+  -webkit-transform: translate3d(-750px, 0, 0);
+  transform: translate3d(-750px, 0, 0);
+  z-index: 9;
+}
+
+.symbin-home-ui .symbin-ad .zmiti-ad-page.left1 {
+  -webkit-transform: translate3d(-750px, 0, 0);
+  transform: translate3d(-750px, 0, 0);
+}
+
+.symbin-home-ui .symbin-ad .zmiti-ad-page.right {
+  -webkit-transform: translate3d(750px, 0, 0);
+  transform: translate3d(750px, 0, 0);
+  z-index: 9;
+}
+
+.symbin-home-ui .symbin-ad .zmiti-ad-page.right1 {
+  -webkit-transform: translate3d(750px, 0, 0);
+  transform: translate3d(750px, 0, 0);
+}
+
+.symbin-home-ui .symbin-ad .zmiti-ad-page.active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.symbin-home-ui .symbin-ad canvas {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+.symbin-home-ui .symbin-ad .symbin-notice {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+  z-index: 21;
+  color: #fff;
+  font-size: 22px;
+  color: #fff;
+}
+
+.symbin-home-ui .symbin-ad .symbin-notice img {
+  width: 40px;
+  vertical-align: bottom;
+}

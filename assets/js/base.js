@@ -9,6 +9,7 @@ var imgs = {
 	line:'./assets/images/line.png',
 	logo:'./assets/images/logo.png',
 	help:'./assets/images/help.png',
+	notice:'./assets/images/notice.png',
 	scanBtn:'./assets/images/scan-btn.png',
 	lifePic:'./assets/images/life-pic.png',
 	

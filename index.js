@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 import './components/css/index.css';
 import vueTap from 'vue-js-tap';
 Vue.use(vueTap);
+
 Vue.use(VueRouter)
 
 
