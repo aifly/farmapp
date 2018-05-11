@@ -1,22 +1,15 @@
 <template>
 	<div class="symbin-home-ui">
-		<div class="symbin-ad" >
-			<ul v-if='false' :style='{width:adList.length*viewW+"px",WebkitTransform:"translate3d("+-index*viewW+"px,0,0)"}'>
-				<li v-for='ad in adList' :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover' }">
-					<a :href="ad.href"></a>
-				</li>
-			</ul>
-			
-			<div  :key='ad.url+new Date().getTime()' v-for='ad in adList'  :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover' }" class="lt-full zmiti-ad-page" :class="ad.className">
+		<div class="symbin-ad" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend = 'startTimer'>
+			<div  :key='ad.key' v-for='ad in adList'  :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}"  class="lt-full zmiti-ad-page" :class="ad.className">
 				<a :href="ad.href"></a>	
-				<span style='color:red'>{{ad.url}}</span>
 			</div>
 
 			<canvas ref='canvas' :width='viewW' height="60"></canvas>
 			<div class="symbin-notice">
 				<img :src="imgs.notice">
-				<span>
-					公告
+				<span style='color:#ecff1c'>
+					公告:
 				</span>
 				<span>{{notice}}</span>
 			</div>
@@ -27,6 +20,7 @@
 
 <script>
 	import './index.css';
+	import symbinUtil from '../lib/util';
 	export default {
 		props:['obserable'],
 		name:'zmitiindex',
@@ -34,24 +28,12 @@
 			return{
 				imgs,
 				index:0,
+				isSlider:true, 
 				viewW:window.innerWidth,
 				notice:"元宵送鸡蛋,新用户在元宵节内可免费领取",
 				currentIndex:0,
 				adList:[
-					{
-						url:'./assets/images/c-1.jpg',
-						href:'#',
-						className:'active '
-					},
-					{
-						url:'./assets/images/c-2.jpg',
-						href:'#',
-						className:'right'
-					},{
-						url:'./assets/images/c-3.jpg',
-						href:'#',
-						className:'left'
-					}
+					 
 				]	
 			}
 		},
@@ -78,7 +60,16 @@
 
 
 			},
-			 swipeLeft(){
+			endTimer(){
+				this.isSlider = false;
+				clearTimeout(this.sliderTimer);
+			},
+			startTimer(){
+				this.sliderTimer = setTimeout(() => {
+					this.isSlider = true;
+				}, 1000);
+			},
+			swipeLeft(){
 				var s = this;
 				if(s.currentIndex<=-1){
 					return;
@@ -103,13 +94,7 @@
 			initLeft: function() {
 				var s = this;
 				s.currentIndex = (s.currentIndex + 1) % s.adList.length;
-				/*this.bgStyle = {
-					background:'url('+this.adList[this.currentIndex].url+') no-repeat center center / cover',
-					backgroundSize:'cover'
-				}
-				console.log(this.bgStyle)*/
-				//s.loadMusic(s.adList[s.currentIndex].audio);
-				//this.iNow = s.currentIndex;
+			 
 				var classList = [
 					'left1 ',
 					'left ',
@@ -125,25 +110,15 @@
 					//(adList[currentIndex - 2] || adList[adList.length - 2])['className'] = classList[0];
 				})
 				classList = [
-					'left',
+					'left1 ',
 					'left ',
 					'active ',
 					'right ',
-					'right '
+					'right1 '
 				]
-
-				if(!this.isLeft ){
-			 		classList = [
-						'left ',
-						'left ',
-						'active ',
-						'right',
-						'right '
-					]	
-			 	}
 				
 				adList.forEach(function(list, i) {
-					adList[i].className = classList[4];
+					//adList[i].className = classList[4];
 					(adList[currentIndex + 1] || adList[0])['className'] = classList[3];
 					(adList[currentIndex + 2] || adList[1])['className'] = classList[4];
 					(adList[currentIndex - 1] || adList[adList.length - 1])['className'] = classList[1];
@@ -177,35 +152,77 @@
 					'left1 ',
 					'left ',
 					'active ',
-					'right ',
+					'right transition',
 					'right1 '
 				]
-				if(this.isLeft ){
-			 		classList = [
-						'left1 ',
-						'left ',
-						'active ',
-						'right ',
-						'right1 '
-					]	
-			 	}
+				 
 				adList.forEach(function(list, i) {
 					adList[i].className = classList[0];
 					(adList[currentIndex + 1] || adList[0])['className'] = classList[3];
-					(adList[currentIndex - 1] || adList[adList.length - 1])['className'] = classList[1];
+					
+					(adList[currentIndex - 1] || adList[adList.length - 1])['className'] = classList[0];
 				})
-
 				adList[currentIndex].className = classList[2];
-				this.isLeft = false;
+
+			},
+			requestNotice(){//
+				var s = this;
+				symbinUtil.ajax({
+					url:window.config.baseUrl+'/user/getnotice/',
+					data:{
+
+					},
+					fn(data){
+						if(data.getret === 0 ){
+							s.notice = data.list[0].title;
+						}
+					}
+				})
+			},
+			requestAd(){
+				var s = this;
+				symbinUtil.ajax({
+					url:window.config.baseUrl +  '/user/getadver/',
+					data:{
+						num:5
+					},
+					fn(data){
+						console.log(data);
+						if(data.getret === 0){
+							s.adList.length = 0;
+							data.list.forEach((ad,i)=>{
+								var className = 'active';
+								if(i>0){
+									className = 'right'
+								}
+								if(i=== data.list.length -1){
+									className = 'left';
+								}
+								s.adList.push({
+									key:i,
+									url:ad.adimageurl,
+									href:ad.adlink,
+									className
+								})
+							})
+						}
+					}
+				})
 			}
 		},
 		mounted(){
-			 this.initCanvas();
-			 var i = 0;
+			window._this = this;
+			this.initCanvas();
+			
+			this.requestAd();
+			this.requestNotice();
+
+			
 			this.timer = setInterval(()=>{
-				if(i===0){
+				if(this.isSlider){
 					this.initLeft();
 				}
+
 			},3000);
 		}
 	}
