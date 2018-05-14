@@ -4,6 +4,7 @@ import BaseInfo from './components/baseinfo/index';
 import Home from './components/home/index';
 import Login from './components/login/index';
 import FError from './components/ferror/index';
+import Scan from './components/scan/index';
 
 import VueRouter from 'vue-router'
 import './components/css/index.css';
@@ -24,6 +25,7 @@ const router = new VueRouter({
     { path: '/baseinfo/:id', name: 'baseinfo', component: BaseInfo, props: true },
     { path: '/', name: 'Home', component: Home, props: true },
     { path: '/login', name: 'Login', component: Login, props: true },
+    { path: '/scan', name: 'Scan', component: Scan, props: true },
   ]
 });
 

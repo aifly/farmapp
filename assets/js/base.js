@@ -12,7 +12,10 @@ var imgs = {
 	notice:'./assets/images/notice.png',
 	scanBtn:'./assets/images/scan-btn.png',
 	lifePic:'./assets/images/life-pic.png',
-	
+	ncIcon:'./assets/images/nc-icon.png',
+	jsIcon:'./assets/images/js-icon.png',
+	danganIcon:'./assets/images/dangan-icon.png',
+	yqIcon:'./assets/images/yq-icon.png'
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

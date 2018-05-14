@@ -6,4 +6,71 @@ $color: #be0000;
 
 .symbin-login-ui {
    background: #45c75c;
+   @include  displayBox(vertical);
+
+   &>div{
+       width: 640px;
+
+       .symbin-logo{
+            height: 30vh;
+            text-align: center;
+            img{
+                width: 270px;
+            }
+       }
+       .symbin-login-form{
+           &>div{
+               width: 100%;
+               height: 80px;
+               line-height: 100px;
+               color:#fff;
+               border-bottom: 1px solid #31b248;
+               input{
+                   background:transparent;
+                   height: 60px;
+                   width: 300px;
+                   color:#fff;
+                   outline: none;
+                   border:none;
+                   font-size:30px;
+                   margin-left: 20px;
+                   &::-webkit-input-placeholder{
+                      color:#129229;
+                   }
+               }
+               input[type='checkbox']{
+                   font-size:30px;
+                   width: 30px;
+                   vertical-align: middle;
+               }
+           }
+
+           .symbin-tip{
+               border:none;
+               text-align: center;
+               font-size:26px;
+               color:#127924;
+           }
+
+           .symbin-login-btn{
+               border: none;
+               width: 100%;
+               height: 80px;
+               line-height: 80px;
+               text-align: center;
+               background:#fff;
+               color:#129229;
+               margin: 50px auto;
+               @include br(40px);
+            }
+            .symbin-agree{
+                text-align: center;
+                font-size:26px;
+                border: none;
+                a{
+                    color:#fff551
+                }
+            }
+       }
+   }
 }
