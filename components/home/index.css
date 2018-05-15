@@ -50,12 +50,21 @@
 }
 
 .symbin-home-ui {
+  height: 100vh;
+  overflow: hidden;
   background: #f5f5f5;
   min-height: 100vh;
 }
 
 .symbin-home-ui a {
   color: inherit;
+}
+
+.symbin-home-ui > section {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
 }
 
 .symbin-home-ui .symbin-ad {
@@ -155,12 +164,14 @@
 }
 
 .symbin-home-ui .symbin-nav {
+  padding-bottom: 40px;
   background: #fff;
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
   -webkit-box-orient: horizontal;
   font-size: 24px;
+  color: #604b19;
 }
 
 .symbin-home-ui .symbin-nav > div {
@@ -173,4 +184,129 @@
   width: 90px;
   display: block;
   margin: 0 auto;
+}
+
+.symbin-home-ui .symbin-js-C {
+  margin-top: 20px;
+  width: 750px;
+  background: #fff;
+}
+
+.symbin-home-ui .symbin-js-C > header {
+  width: 100%;
+  height: 70px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: justify;
+  font-size: 24px;
+}
+
+.symbin-home-ui .symbin-js-C > header > div {
+  padding: 0 40px;
+  position: relative;
+  color: #604b19;
+}
+
+.symbin-home-ui .symbin-js-C > header > div:nth-of-type(1) {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.symbin-home-ui .symbin-js-C > header > div:nth-of-type(1):before {
+  left: 20px;
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 38px;
+  background: #31b248;
+  border-radius: 3px;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list {
+  width: 750px;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list ul {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  text-align: center;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li {
+  width: 324px;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0 0 10px 0;
+  position: relative;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-headimgurl {
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  border-radius: 50%;
+  background: #000;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-headimgurl:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.5), 0 0 0 17px rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-farmername {
+  margin-top: 80px;
+  font-size: 26px;
+  color: #8b7d59;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-goodsname {
+  margin: 20px 0;
+  color: #604b19;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-price {
+  color: #7a6533;
+}
+
+.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-price span {
+  color: #ff9c01;
+}
+
+.symbin-home-ui .symbin-index-bottom {
+  position: relative;
+  z-index: 11;
+}
+
+.symbin-home-ui .symbin-tip, .symbin-home-ui .symbin-tip-top {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  text-align: center;
+  color: #ccc;
+  font-size: 26px;
+}
+
+.symbin-home-ui .symbin-tip-top {
+  top: 0;
+  bottom: 0;
 }

@@ -1,51 +1,94 @@
 <template>
 	<div class="symbin-home-ui">
-		<div class="symbin-ad" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend='startTimer'>
-			<div :key='ad.key' v-for='ad in adList' :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}" class="lt-full zmiti-ad-page" :class="ad.className">
-				<a :href="ad.href"></a>
-			</div>
-	
-			<canvas ref='canvas' :width='viewW' height="60"></canvas>
-			<div class="symbin-notice">
-				<img :src="imgs.notice">
-				<span style='color:#ecff1c'>
-								公告:
-							</span>
-				<span>{{notice}}</span>
-			</div>
+		<div class="symbin-tip-top">
+			别再滑啦，不会刷新滴 :(
 		</div>
+		<section  ref='page'>
+			<div>
+				<div class="symbin-ad" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend='startTimer'>
+					<div :key='ad.key' v-for='ad in adList' :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}" class="lt-full zmiti-ad-page" :class="ad.className">
+						<a :href="ad.href"></a>
+					</div>
 	
-		<div class="symbin-nav">
-			<div>
-				<img :src="imgs.ncIcon" alt="">
-				<span>去农场</span>
+					<canvas ref='canvas' :width='viewW' height="60"></canvas>
+					<div class="symbin-notice">
+						<img :src="imgs.notice">
+						<span style='color:#ecff1c'>
+										公告:
+									</span>
+						<span>{{notice}}</span>
+					</div>
+				</div>
+	
+				<div class="symbin-nav">
+					<div>
+						<img :src="imgs.ncIcon" alt="">
+						<span>去农场</span>
+					</div>
+					<div>
+						<router-link to="scan">
+							<img :src="imgs.jsIcon" alt="">
+							<span>去集市</span>
+						</router-link>
+	
+					</div>
+					<div>
+						<router-link to="scan">
+							<img :src="imgs.danganIcon" alt="">
+							<span>档案</span>
+						</router-link>
+	
+					</div>
+					<div>
+						<img :src="imgs.yqIcon" alt="">
+						<span>邀请好友</span>
+					</div>
+				</div>
+	
+				<div class="symbin-js-C">
+					<header>
+						<div class="symbin-js-title">集市精选</div>
+						<div>查看全部</div>
+					</header>
+					<div class="symbin-js-list" ref='jslist'>
+						<ul :style="{width:jsList.length*(324+20)+'px'}">
+							<li v-for="js in jsList" :key="js.key">
+								<div class='symbin-src'>
+									<img :src="js.src" alt="">
+								</div>
+								<div class="symbin-headimgurl">
+									<img :src="js.headimgurl" alt="">
+								</div>
+								<div class="symbin-farmername">
+									-{{js.farmer}}-
+								</div>
+								<div class='symbin-goodsname'>
+									{{js.goodsName}}
+								</div>
+								<div class="symbin-price">
+									¥ <span>{{js.price}}</span> 元
+								</div>
+							</li>
+						</ul>
+					</div>
+	
+				</div>
+				<div class="symbin-index-bottom">
+					<img :src="imgs.indexBottom" alt="">
+				</div>
 			</div>
-			<div>
-				<router-link to="scan">
-					<img :src="imgs.jsIcon" alt="">
-					<span>去集市</span>
-				</router-link>
-				
-			</div>
-			<div>
-				<router-link to="scan">
-					<img :src="imgs.danganIcon" alt="">
-					<span>档案</span>
-				</router-link>
-			
-			</div>
-			<div>
-				<img :src="imgs.yqIcon" alt="">
-				<span>邀请好友</span>
-			</div>
+	
+		</section>
+		<div class="symbin-tip">
+			别扯了，就到这好么？
 		</div>
-	
 	</div>
 </template>
 
 <script>
 	import './index.css';
 	import symbinUtil from '../lib/util';
+	import IScroll from 'iscroll';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -58,6 +101,9 @@
 				notice: "元宵送鸡蛋,新用户在元宵节内可免费领取",
 				currentIndex: 0,
 				adList: [
+	
+				],
+				jsList: [ //集市列表
 	
 				]
 			}
@@ -113,8 +159,6 @@
 				}
 				this.initRight();
 			},
-	
-	
 			initLeft: function() {
 				var s = this;
 				s.currentIndex = (s.currentIndex + 1) % s.adList.length;
@@ -242,6 +286,36 @@
 						}
 					}
 				})
+			},
+			requestJishi() { //获取集市列表
+				var s = this;
+				symbinUtil.ajax({
+					url: "/components/home/jishi.json",
+					type: 'get',
+					data: {},
+					success(data) {
+	
+						if (data.getret === 0) {
+							data.list.forEach((ls, i) => {
+								ls.key = i;
+							});
+							s.jsList = data.list;
+							s.jsScroll = new IScroll(s.$refs['jslist'], {
+								scrollX: true,
+								scrollY: false
+							});
+	
+							s.mainScroll = new IScroll(s.$refs['page'],{
+								preventDefault:false
+							});
+	
+							setTimeout(() => {
+								s.jsScroll.refresh();
+								s.mainScroll.refresh();
+							}, 100);
+						}
+					}
+				})
 			}
 		},
 		mounted() {
@@ -250,6 +324,7 @@
 	
 			this.requestAd();
 			this.requestNotice();
+			this.requestJishi()
 	
 	
 			this.timer = setInterval(() => {

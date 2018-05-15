@@ -94,7 +94,8 @@
 
 			},
 			login(){
-				var {mobile,code} = this;
+				var {mobile,code,toast} = this;
+				var s = this;
 				if (!this.mobile || !this.isPoneAvailable()) {
 					this.toast('请输入正确的手机号');
 					return;
@@ -115,7 +116,15 @@
 						usertype:1
 					},
 					success(data){
-						console.log(data);
+						if(data.getret === 0){
+							toast(data.getmsg);
+							window.localStorage.setItem('access_token',data.access_token);
+							window.localStorage.setItem('mobile',mobile);
+							s.$router.push('/')
+						}
+						else{
+							toast('登录失败');
+						}
 					}
 				})
 			},

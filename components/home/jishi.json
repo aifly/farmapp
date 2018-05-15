@@ -1,0 +1,55 @@
+{
+    "getret":0,
+    "getmsg":"",
+    "list":[
+        {
+            "src":"./assets/images/js-1.jpg",
+            "headimgurl":"./assets/images/logo.png",
+            "farmer":"星星农场主",
+            "price":"5.00",
+            "goodsName":"鸡蛋"
+        }, {
+            "src": "./assets/images/js-2.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }, {
+            "src": "./assets/images/js-1.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }, {
+            "src": "./assets/images/js-2.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }, {
+            "src": "./assets/images/js-1.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }, {
+            "src": "./assets/images/js-2.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }, {
+            "src": "./assets/images/js-1.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }, {
+            "src": "./assets/images/js-2.jpg",
+            "headimgurl": "./assets/images/logo.png",
+            "farmer": "星星农场主",
+            "price": "5.00",
+            "goodsName": "鸡蛋"
+        }
+    ]
+}
