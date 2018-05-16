@@ -75,6 +75,34 @@
 				</div>
 				<div class="symbin-index-bottom">
 					<img :src="imgs.indexBottom" alt="">
+					<div class="symbin-index-chiken-C">
+						<div class="symbin-index-stage">
+							<img :src='imgs.cStage' class="symbin-c-stage" />
+							<img :src="imgs.add" alt="" class="symbin-c-add">
+							<div class="symbin-progress">
+								<div>幼儿期</div>
+								<div>成长期</div>
+								<div>产蛋期</div>
+							</div>
+						</div>
+						<div class="symbin-money-C">
+							<img :src="imgs.moneyBg" alt="">
+						</div>
+						<div class="symbin-operator">
+							<div>
+								<img :src="imgs.newGuide" alt="">
+								<span>新手指南</span>
+							</div>
+							<div>
+								<img :src="imgs.raise" alt="">
+								<span>饲养</span>
+							</div>
+							<div>
+								<img :src="imgs.sale" alt="">
+								<span>出售</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 	
@@ -311,7 +339,9 @@
 	
 							setTimeout(() => {
 								s.jsScroll.refresh();
+								s.mainScroll.scrollTo(0,-700,1);
 								s.mainScroll.refresh();
+								
 							}, 100);
 						}
 					}
