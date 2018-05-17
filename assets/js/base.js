@@ -9,6 +9,7 @@ var imgs = {
 	line:'./assets/images/line.png',
 	logo:'./assets/images/logo.png',
 	help:'./assets/images/help.png',
+	help1:'./assets/images/help1.png',
 	notice:'./assets/images/notice.png',
 	scanBtn:'./assets/images/scan-btn.png',
 	lifePic:'./assets/images/life-pic.png',
@@ -22,7 +23,14 @@ var imgs = {
 	newGuide: './assets/images/new_guide.png',
 	raise:'./assets/images/raise.png',
 	sale:'./assets/images/sale.png',
-	moneyBg:'./assets/images/money-bg.png'
+	moneyBg:'./assets/images/money-bg.png',
+	cIcon:'./assets/images/c-icon.png',
+	eggIcon:'./assets/images/egg-icon.png',
+	msg:'./assets/images/msg.png',
+	connect:'./assets/images/connect.png',
+	user:'./assets/images/user.png',
+	pedometer:'./assets/images/pedometer.jpg',
+	ped:'./assets/images/ped.jpg',
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

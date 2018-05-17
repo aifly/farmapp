@@ -5,6 +5,12 @@
 		</div>
 		<section  ref='page'>
 			<div>
+				<div class="symbin-user">
+					<img :src="imgs.user" alt="">
+				</div>
+				<div class="symbin-msg">
+					<img :src="imgs.msg" alt="">
+				</div>
 				<div class="symbin-ad" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend='startTimer'>
 					<div :key='ad.key' v-for='ad in adList' :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}" class="lt-full zmiti-ad-page" :class="ad.className">
 						<a :href="ad.href"></a>
@@ -87,6 +93,20 @@
 						</div>
 						<div class="symbin-money-C">
 							<img :src="imgs.moneyBg" alt="">
+							<div>
+								<div>
+									<div>资产报告</div>
+									<div>5000.00元<span>(预估)</span></div>
+								</div>
+								<div>
+									<div>
+										<img :src='imgs.cIcon' /> <label>鸡</label> <label class="symbin-num">100</label>只
+									</div>
+									<div>
+										<img style="width:30px;" :src='imgs.eggIcon' /> <label>鸡蛋</label> <label  class="symbin-num">100</label>个
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="symbin-operator">
 							<div>
@@ -117,6 +137,7 @@
 	import './index.css';
 	import symbinUtil from '../lib/util';
 	import IScroll from 'iscroll';
+	import $ from 'jquery';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -263,6 +284,7 @@
 			},
 			requestNotice() { //
 				var s = this;
+				
 				symbinUtil.ajax({
 					url: window.config.baseUrl + '/user/getnotice/',
 					data: {
@@ -317,13 +339,8 @@
 			},
 			requestJishi() { //获取集市列表
 				var s = this;
-				symbinUtil.ajax({
-					url: "/components/home/jishi.json",
-					type: 'get',
-					data: {},
-					success(data) {
-	
-						if (data.getret === 0) {
+				$.getJSON('/components/home/jishi.json',(data)=>{
+					if (data.getret === 0) {
 							data.list.forEach((ls, i) => {
 								ls.key = i;
 							});
@@ -339,13 +356,21 @@
 	
 							setTimeout(() => {
 								s.jsScroll.refresh();
-								s.mainScroll.scrollTo(0,-700,1);
+								//s.mainScroll.scrollTo(0,-700,1);
 								s.mainScroll.refresh();
 								
 							}, 100);
 						}
-					}
 				})
+				/* symbinUtil.ajax({
+					url: "/components/home/jishi.json",
+					type: 'get',
+					data: {},
+					success(data) {
+	
+						
+					}
+				}) */
 			}
 		},
 		mounted() {
