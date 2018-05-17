@@ -304,7 +304,7 @@ $color: #be0000;
                         @include pos(a);
                         bottom: 60px;
                         z-index: 1;
-                        @include transform(translate3d(0, 0, 1px));
+                       // @include transform(translate3d(0, 0, 1px));
                     }
 
                     img.symbin-c-add {

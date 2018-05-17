@@ -359,7 +359,7 @@
 								//s.mainScroll.scrollTo(0,-700,1);
 								s.mainScroll.refresh();
 								
-							}, 100);
+							}, 1000);
 						}
 				})
 				/* symbinUtil.ajax({

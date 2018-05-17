@@ -339,8 +339,6 @@
   position: absolute;
   bottom: 60px;
   z-index: 1;
-  -webkit-transform: translate3d(0, 0, 1px);
-  transform: translate3d(0, 0, 1px);
 }
 
 .symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage img.symbin-c-add {
