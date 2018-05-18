@@ -23972,13 +23972,13 @@
 	// 						<span>输入您的鸡场信息系统将会给出合理的购买建议</span>
 	// 					</div>
 	// 					<div class="symbin-form-item">
-	// 						鸡舍数量<input v-model="chikenHouseNum" type="number">
+	// 						鸡舍数量<input ref='house' v-model="chikenHouseNum" type="number">
 	// 					</div>
 	// 					<div class="symbin-form-item">
-	// 						鸡的数量<input v-model='pedNum' type="number">
+	// 						鸡的数量<input ref='number' v-model='pedNum' type="number">
 	// 					</div>
 	// 					<div class="symbin-form-item">
-	// 						鸡舍平米数<input v-model="chikenHouseArea" type="number" placeholder="按最大鸡舍面积填写">
+	// 						鸡舍平米数<input ref='area' v-model="chikenHouseArea" type="number" placeholder="按最大鸡舍面积填写">
 	// 					</div>
 	// 				</section>
 	//
@@ -24089,6 +24089,9 @@
 				this.showCollectInfo = true;
 			},
 			add: function add(index) {
+				this.$refs['house'].blur();
+				this.$refs['number'].blur();
+				this.$refs['area'].blur();
 				if (index === 0) {
 					//计步器
 					this.buyPedNum++;
@@ -24097,7 +24100,9 @@
 				}
 			},
 			reduce: function reduce(index) {
-
+				this.$refs['house'].blur();
+				this.$refs['number'].blur();
+				this.$refs['area'].blur();
 				if (index === 0) {
 					//计步器
 
@@ -24184,7 +24189,7 @@
 /* 56 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n\t<div class=\"symbin-pedometer-main-ui lt-full\">\n\t\t<div ref='page'>\n\t\t\t<section>\n\t\t\t\t<div>\n\t\t\t\t\t<img :src=\"imgs.pedometer\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class='symbin-btn' v-tap='[buy]'>去购买</div>\n\t\t\t</section>\n\t\t</div>\n\t\n\t\t<div class=\"symbin-order-C lt-full\" ref='order' v-show='showOrderDetail'>\n\t\t\t<div>\n\t\t\t\t<img :src=\"imgs.ped\" alt=\"\">\n\t\t\t\t<div class=\"symbin-ped-title\">\n\t\t\t\t\t<h2>鸡用计步器</h2>\n\t\t\t\t\t<div>鸡用计步器需要和采集器搭配使用</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<section class=\"symbin-farmer-info\">\n\t\t\t\t\t<div class=\"symbin-farmer-tip\">\n\t\t\t\t\t\t您的鸡场信息\n\t\t\t\t\t\t<span>输入您的鸡场信息系统将会给出合理的购买建议</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡舍数量<input v-model=\"chikenHouseNum\" type=\"number\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡的数量<input v-model='pedNum' type=\"number\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡舍平米数<input v-model=\"chikenHouseArea\" type=\"number\" placeholder=\"按最大鸡舍面积填写\">\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\n\t\t\t\t<section class=\"symbin-order-detail\">\n\t\t\t\t\t<h2>选择购买数量</h2>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>计步器</div>\n\t\t\t\t\t\t<div class=\"symbin-price\">￥<span>{{pedPrice}}</span></div>\n\t\t\t\t\t\t<div class=\"symbin-num\">建议数量{{pedNum}}</div>\n\t\t\t\t\t\t<div class=\"symbin-buy-num\">\n\t\t\t\t\t\t\t<div class=\"symbin-reduce\"  v-tap='[reduce,0]'></div>\n\t\t\t\t\t\t\t<div>{{buyPedNum}}</div>\n\t\t\t\t\t\t\t<div class=\"symbin-add\"  v-tap='[add,0]'></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>采集器</div>\n\t\t\t\t\t\t<div class=\"symbin-price\">￥<span>{{collectPrice}}</span></div>\n\t\t\t\t\t\t<div class=\"symbin-num\">建议数量{{chikenHouseNum}}</div>\n\t\t\t\t\t\t<div class=\"symbin-buy-num\">\n\t\t\t\t\t\t\t<div class=\"symbin-reduce\" v-tap='[reduce,1]'></div>\n\t\t\t\t\t\t\t<div>{{buyCollectNum}}</div>\n\t\t\t\t\t\t\t<div class=\"symbin-add\"  v-tap='[add,1]'></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\n\t\t\t\t<section class=\"symbin-collect\" v-tap='[openCollectInfo]'>\n\t\t\t\t\t<img :src='imgs.help1' />采集器作用\n\t\t\t\t</section>\n\n\t\t\t\t<section class='symbin-connect'>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.connect\" alt=\"\">\n\t\t\t\t\t\t马上联系\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span>立即购买 </span>\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\t\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"lt-full symbin-collect-help\" v-if='showCollectInfo' v-tap='[closeCollectInfo]'>\n\t\t\t<div class=\"symbin-collect-mask\">\n\t\t\t\t<h2>\n\t\t\t\t\t<span>?</span>\n\t\t\t\t\t<label for=\"\">采集器作用</label>\n\t\t\t\t</h2>\n\t\t\t\t<div>\n\t\t\t\t\t采集器是用来收集步器的数据并且上传到云端的一个设备。\n\t\t\t\t</div>\n\t\t\t\t<section>朕知道了</section>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n";
+	module.exports = "\n\t<div class=\"symbin-pedometer-main-ui lt-full\">\n\t\t<div ref='page'>\n\t\t\t<section>\n\t\t\t\t<div>\n\t\t\t\t\t<img :src=\"imgs.pedometer\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class='symbin-btn' v-tap='[buy]'>去购买</div>\n\t\t\t</section>\n\t\t</div>\n\t\n\t\t<div class=\"symbin-order-C lt-full\" ref='order' v-show='showOrderDetail'>\n\t\t\t<div>\n\t\t\t\t<img :src=\"imgs.ped\" alt=\"\">\n\t\t\t\t<div class=\"symbin-ped-title\">\n\t\t\t\t\t<h2>鸡用计步器</h2>\n\t\t\t\t\t<div>鸡用计步器需要和采集器搭配使用</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<section class=\"symbin-farmer-info\">\n\t\t\t\t\t<div class=\"symbin-farmer-tip\">\n\t\t\t\t\t\t您的鸡场信息\n\t\t\t\t\t\t<span>输入您的鸡场信息系统将会给出合理的购买建议</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡舍数量<input ref='house' v-model=\"chikenHouseNum\" type=\"number\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡的数量<input ref='number' v-model='pedNum' type=\"number\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡舍平米数<input ref='area' v-model=\"chikenHouseArea\" type=\"number\" placeholder=\"按最大鸡舍面积填写\">\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\n\t\t\t\t<section class=\"symbin-order-detail\">\n\t\t\t\t\t<h2>选择购买数量</h2>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>计步器</div>\n\t\t\t\t\t\t<div class=\"symbin-price\">￥<span>{{pedPrice}}</span></div>\n\t\t\t\t\t\t<div class=\"symbin-num\">建议数量{{pedNum}}</div>\n\t\t\t\t\t\t<div class=\"symbin-buy-num\">\n\t\t\t\t\t\t\t<div class=\"symbin-reduce\"  v-tap='[reduce,0]'></div>\n\t\t\t\t\t\t\t<div>{{buyPedNum}}</div>\n\t\t\t\t\t\t\t<div class=\"symbin-add\"  v-tap='[add,0]'></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>采集器</div>\n\t\t\t\t\t\t<div class=\"symbin-price\">￥<span>{{collectPrice}}</span></div>\n\t\t\t\t\t\t<div class=\"symbin-num\">建议数量{{chikenHouseNum}}</div>\n\t\t\t\t\t\t<div class=\"symbin-buy-num\">\n\t\t\t\t\t\t\t<div class=\"symbin-reduce\" v-tap='[reduce,1]'></div>\n\t\t\t\t\t\t\t<div>{{buyCollectNum}}</div>\n\t\t\t\t\t\t\t<div class=\"symbin-add\"  v-tap='[add,1]'></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\n\t\t\t\t<section class=\"symbin-collect\" v-tap='[openCollectInfo]'>\n\t\t\t\t\t<img :src='imgs.help1' />采集器作用\n\t\t\t\t</section>\n\n\t\t\t\t<section class='symbin-connect'>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.connect\" alt=\"\">\n\t\t\t\t\t\t马上联系\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span>立即购买 </span>\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\t\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"lt-full symbin-collect-help\" v-if='showCollectInfo' v-tap='[closeCollectInfo]'>\n\t\t\t<div class=\"symbin-collect-mask\">\n\t\t\t\t<h2>\n\t\t\t\t\t<span>?</span>\n\t\t\t\t\t<label for=\"\">采集器作用</label>\n\t\t\t\t</h2>\n\t\t\t\t<div>\n\t\t\t\t\t采集器是用来收集步器的数据并且上传到云端的一个设备。\n\t\t\t\t</div>\n\t\t\t\t<section>朕知道了</section>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n";
 
 /***/ })
 /******/ ]);

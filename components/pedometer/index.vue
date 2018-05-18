@@ -23,13 +23,13 @@
 						<span>输入您的鸡场信息系统将会给出合理的购买建议</span>
 					</div>
 					<div class="symbin-form-item">
-						鸡舍数量<input v-model="chikenHouseNum" type="number">
+						鸡舍数量<input ref='house' v-model="chikenHouseNum" type="number">
 					</div>
 					<div class="symbin-form-item">
-						鸡的数量<input v-model='pedNum' type="number">
+						鸡的数量<input ref='number' v-model='pedNum' type="number">
 					</div>
 					<div class="symbin-form-item">
-						鸡舍平米数<input v-model="chikenHouseArea" type="number" placeholder="按最大鸡舍面积填写">
+						鸡舍平米数<input ref='area' v-model="chikenHouseArea" type="number" placeholder="按最大鸡舍面积填写">
 					</div>
 				</section>
 
@@ -126,6 +126,9 @@
 				this.showCollectInfo = true;
 			},
 			add(index){
+				this.$refs['house'].blur();
+				this.$refs['number'].blur();
+				this.$refs['area'].blur();
 				if(index === 0){//计步器
 					this.buyPedNum++;
 				}else{
@@ -133,7 +136,9 @@
 				}
 			},
 			reduce(index){
-				
+				this.$refs['house'].blur();
+				this.$refs['number'].blur();
+				this.$refs['area'].blur();
 				if(index === 0){//计步器
 					
 					this.buyPedNum--;
