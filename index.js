@@ -5,6 +5,7 @@ import Home from './components/home/index';
 import Login from './components/login/index';
 import FError from './components/ferror/index';
 import Scan from './components/scan/index';
+import Game from './components/game/index';
 
 import VueRouter from 'vue-router'
 import './components/css/index.css';
@@ -26,6 +27,7 @@ const router = new VueRouter({
     { path: '/', name: 'Home', component: Home, props: true },
     { path: '/login', name: 'Login', component: Login, props: true },
     { path: '/scan', name: 'Scan', component: Scan, props: true },
+    { path: '/game', name: 'Game', component: Game, props: true },
   ]
 });
 

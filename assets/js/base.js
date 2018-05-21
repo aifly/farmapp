@@ -31,6 +31,13 @@ var imgs = {
 	user:'./assets/images/user.png',
 	pedometer:'./assets/images/pedometer.jpg',
 	ped:'./assets/images/ped.jpg',
+	gameStage:'./assets/images/game-stage.png',
+	gameBg:'./assets/images/game-bg.jpg',
+	msgIco:'./assets/images/msg-ico.png',
+	settingIco:'./assets/images/setting-ico.png',
+	friendIco: './assets/images/friend-ico.png',
+	homeIco:'./assets/images/home-ico.png',
+	shopIco:'./assets/images/shop-ico.png',
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

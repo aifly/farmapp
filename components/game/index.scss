@@ -1,0 +1,23 @@
+﻿@import "../css/base.scss";
+
+$baseColor: #fcffb4;
+$viewW: 750px;
+$color: #be0000;
+
+.symbin-game-ui{
+    .symbin-game-nav{
+        width:95px;
+        @include pos(a);
+        right: 20px;
+        top: 20px;
+        &>div{
+            margin: 10px 0;
+        }
+    }
+
+    .symbin-game-stage{
+        @include pos(a);
+        top:40vh;
+        
+    }
+}
