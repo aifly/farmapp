@@ -38,6 +38,14 @@ var imgs = {
 	friendIco: './assets/images/friend-ico.png',
 	homeIco:'./assets/images/home-ico.png',
 	shopIco:'./assets/images/shop-ico.png',
+
+	shopClose:'./assets/images/shop-close.png',
+	shopBtnBg:'./assets/images/shop-btn-bg.png',
+	shopSure:'./assets/images/shop-sure.png',
+	shopCancel:'./assets/images/shop-cancel.png',
+	shopTitle: './assets/images/shop-title.png',
+	shopHen:'./assets/images/shop-hen.png',
+	shopChick: './assets/images/shop-chick.png'
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

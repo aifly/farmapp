@@ -130,6 +130,28 @@
 		<div class="symbin-tip">
 			别扯了，就到这好么？
 		</div>
+
+		<div class='symbin-shop-C lt-full'>
+			<div>
+				<h2>
+					<img :src="imgs.shopTitle" alt="">
+					<span>
+						<img :src="imgs.shopClose" alt="">
+					</span>
+				</h2>
+				<h1 style="height:120px"></h1>
+				<div class='symbin-shop-content'>
+					<aside></aside>
+					<aside>
+						<div class="symbin-product-detail">
+
+						</div>
+						<div>1</div>
+						<div>2</div>
+					</aside>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
