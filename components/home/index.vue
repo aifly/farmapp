@@ -146,7 +146,17 @@
 						<div class="symbin-product-detail">
 
 						</div>
-						<div>1</div>
+						<div class="symbin-product-counter">
+							<div>
+								<img :src="imgs.shopBtnBg" alt="">
+							</div>
+							<div>
+								1
+							</div>
+							<div>
+								<img :src="imgs.shopBtnBg" alt="">
+							</div>
+						</div>
 						<div>2</div>
 					</aside>
 				</div>
