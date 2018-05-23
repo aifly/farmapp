@@ -1,0 +1,184 @@
+﻿@import "../../css/base.scss";
+
+$baseColor: #fcffb4;
+$viewW: 750px;
+$color: #be0000;
+ .symbin-shop-main-ui {
+     z-index: 10;
+     background: rgba(0, 0, 0, 0.5);
+     @include displayBox(horizontal);
+     &>div {
+         width: 720px;
+     }
+     h2 {
+         @include pos(a);
+         span {
+             @include pos(a);
+             right: 80px;
+             top: 20px;
+         }
+     }
+     .symbin-shop-content {
+         width: 100%;
+         height: 600px;
+         background: #fee5b0;
+         width: 680px;
+         margin: 30px auto;
+         @include displayBox(horizontal);
+         &>aside {
+             height: 510px;
+             margin: 60px 10px;
+             @include br(10px);
+             overflow: hidden;
+             &:nth-of-type(1) {
+                 border: 1px solid #dfbb60;
+                 width: 180px;
+                 background: #492d0d;
+             }
+             &:nth-of-type(2) {
+                 width: 420px;
+                 @include pos(r);
+                 @include displayBox(vertical);
+                 .symbin-product-detail {
+                     -webkit-box-flex: 1;
+                     background: #ecc68c;
+                     overflow: hidden;
+                     width: 100%;
+                     @include pos(r);
+                     &:before {
+                         content: '';
+                         @include pos(a);
+                         width: 140%;
+                         height: 220px;
+                         background: #a77234;
+                         @include br;
+                         left: -20%;
+                         bottom: -100px;
+                     }
+                     .symbin-product {
+                         @include pos(a);
+                         z-index: 10;
+                         width: 120px;
+                         bottom: 40px;
+                         left: 50%;
+                         @include transform(translate3d(-50%, 0, 0));
+                     }
+                     &>h3,
+                     &>.symbin-product-info {
+                         margin: 20px 20px 0 20px;
+                         color: #672b0d;
+                     }
+                     &>.symbin-product-info {
+                         font-size: 24px;
+                         color: #feeecc;
+                         margin: 0 20px;
+                     }
+                     .symbin-store {
+                         width: 90%;
+                         left: 5%;
+                         height: 60px;
+                         @include pos(a);
+                         bottom: 0;
+                         @include displayBox(horizontal);
+                         -webkit-box-pack: justify;
+                         color: #f1bb52;
+                     }
+                 }
+                 &>div {
+                     height: 60px;
+                 }
+                 .symbin-product-counter {
+                     @include displayBox(horizontal);
+                     height: 100px;
+                     width: 100%;
+                     &>div {
+                         &:nth-of-type(1),
+                         &:nth-of-type(3) {
+                             @include pos(r);
+                             &:before,
+                             &:after {
+                                 content: "";
+                                 @include pos(a);
+                                 width: 40%;
+                                 left: 30%;
+                                 height: 2px;
+                                 background: #fff;
+                                 top: 50%;
+                             }
+                         }
+                         &:nth-of-type(3) {
+                             &:after {
+                                 @include transform(rotate(90deg));
+                             }
+                         }
+                         &:nth-of-type(1) {
+                             &:after {
+                                 display: none;
+                             }
+                         }
+                         &:nth-of-type(2) {
+                             width: 120px;
+                             @include br(10px);
+                             text-align: center;
+                             background: #51320e;
+                             color: #f1bb52;
+                             height: 50px;
+                             line-height: 50px;
+                             margin: 0 20px;
+                         }
+                     }
+                 }
+                 .symbin-all-price {
+                     background: #e7cf9d;
+                     width: 100%;
+                     line-height: 60px;
+                     text-align: right;
+                     color: #b29a69;
+                     font-weight: bold;
+                     span {
+                         margin-right: 10px;
+                         color: #672b0d;
+                     }
+                 }
+             }
+         }
+
+         ul{
+
+             li{
+                 background:#b49059;
+                 height: 170px;
+                 width: 170px;
+                 margin: 10px auto;
+                 @include br(10px);
+                 .symbin-shop-product{
+                     width: 96%;
+                     height: 120px;
+                     @include pos(r);
+                     top: 4px;
+                     background:#a2804b;
+                     @include br(10px);
+                     margin: 3px auto;
+                     @include displayBox(horizontal);
+                     img{
+                         width: 100px;
+                         display: block;
+                    }
+                 }
+
+                 .symbin-shop-breedname{
+                     color:#fee5b0;
+                     font-size:26px;
+                     margin: 8px 4px;
+                 }
+             }
+         }
+     }
+
+     .symbin-shop-btns{
+         @include displayBox(horizontal);
+         -webkit-box-pack:justify;
+         width: 80%;
+         margin: 0 auto;
+     }
+ }

@@ -18,18 +18,20 @@ $color: #be0000;
         z-index: 10;
     }
 
-
     .symbin-user,
-    .symbin-msg{
+    .symbin-msg {
         @include pos(a);
+
         z-index: 100;
-        $size:30px;
+
+        $size: 30px;
+
         left: $size;
         top: $size;
     }
 
-    .symbin-msg{
-        left:auto;
+    .symbin-msg {
+        left: auto;
         right: 30px;
     }
 
@@ -302,9 +304,10 @@ $color: #be0000;
                 &.symbin-index-stage {
                     img.symbin-c-stage {
                         @include pos(a);
+
                         bottom: 60px;
-                        z-index: 1;
-                       // @include transform(translate3d(0, 0, 1px));
+                        z-index: 1; // @include transform(translate3d(0, 0, 1px));
+                   
                     }
 
                     img.symbin-c-add {
@@ -339,12 +342,11 @@ $color: #be0000;
                             -webkit-box-flex: 1;
                             text-align: center;
                             margin-top: 140px;
-                            &:nth-of-type(2){
-                                -webkit-box-flex:2;
-                            }
-                        }
 
-                        //@include transform(rotateX(60deg));
+                            &:nth-of-type(2) {
+                                -webkit-box-flex: 2;
+                            }
+                        } //@include transform(rotateX(60deg));
                    
                     }
                 }
@@ -352,48 +354,55 @@ $color: #be0000;
                 &.symbin-money-C {
                     margin: 20px 0;
 
-                    &>img {
+                    & > img {
                         @include pos(a);
+
                         bottom: 0;
                     }
-                    &>div{
+
+                    & > div {
                         width: 100%;
                         height: 170px;
+
                         @include pos(a);
+
                         bottom: 6px;
-                        &>div{
+
+                        & > div {
                             height: 85px;
+
                             @include displayBox(horizontal);
+
                             line-height: 95px;
-                            font-size:28px;
-                           
-                            &:nth-of-type(2){
-                                
-                                img{
+                            font-size: 28px;
+
+                            &:nth-of-type(2) {
+                                img {
                                     width: 36px;
-                                    vertical-align:middle;
+                                    vertical-align: middle;
                                 }
                             }
 
-                            &>div{
-                                $numColor:#e57100;
-                                 .symbin-num {
-                                     color:$numColor;
-                                     font-size:36px;
-                                 }
-                                -webkit-box-flex:1;
+                            & > div {
+                                $numColor: #e57100;
+
+                                .symbin-num {
+                                    color: $numColor;
+                                    font-size: 36px;
+                                }
+
+                                -webkit-box-flex: 1;
                                 text-align: center;
-                                color:#604b19;
-                                font-size:34px;
-                                &:nth-of-type(2){
-                                    color:#604b19;
-                                    //color:$numColor;
-                                    label{
-                                        
-                                    }
-                                    span{
-                                        font-size:26px;
-                                        color:#9e652d;
+                                color: #604b19;
+                                font-size: 34px;
+
+                                &:nth-of-type(2) {
+                                    color: #604b19; //color:$numColor;
+                                    label {}
+
+                                    span {
+                                        font-size: 26px;
+                                        color: #9e652d;
                                     }
                                 }
                             }
@@ -449,118 +458,189 @@ $color: #be0000;
         bottom: 0;
     }
 
-
-    .symbin-shop-C{
+    .symbin-shop-C {
         z-index: 10;
-        background:rgba(0,0,0,.5);
+        background: rgba(0, 0, 0, 0.5);
+
         @include displayBox(horizontal);
 
-        &>div{
+        & > div {
             width: 720px;
-
         }
-        h2{
+
+        h2 {
             @include pos(a);
-            
-            span{
+
+            span {
                 @include pos(a);
+
                 right: 80px;
                 top: 20px;
             }
         }
-        .symbin-shop-content{
+
+        .symbin-shop-content {
             width: 100%;
             height: 600px;
-            background:#fee5b0;
+            background: #fee5b0;
             width: 680px;
             margin: 30px auto;
 
             @include displayBox(horizontal);
-            &>aside{
 
+            & > aside {
                 height: 510px;
                 margin: 60px 10px;
+
                 @include br(10px);
+
                 overflow: hidden;
-                &:nth-of-type(1){
-                    border:1px solid #dfbb60;
+
+                &:nth-of-type(1) {
+                    border: 1px solid #dfbb60;
                     width: 180px;
-                    background:#492d0d;
+                    background: #492d0d;
                 }
 
-                &:nth-of-type(2){
+                &:nth-of-type(2) {
                     width: 420px;
-                    
+
                     @include pos(r);
                     @include displayBox(vertical);
 
-                    .symbin-product-detail{
-                        -webkit-box-flex:1;
-                        background:#ecc68c;
+                    .symbin-product-detail {
+                        -webkit-box-flex: 1;
+                        background: #ecc68c;
                         overflow: hidden;
                         width: 100%;
-                        border:1px solid red;
+
                         @include pos(r);
+
                         &:before {
                             content: '';
+
                             @include pos(a);
+
                             width: 140%;
                             height: 220px;
                             background: #a77234;
-                            @include br();
+
+                            @include br;
+
                             left: -20%;
                             bottom: -100px;
                         }
-                        
+
+                        .symbin-product {
+                            @include pos(a);
+
+                            z-index: 10;
+                            width: 120px;
+                            bottom: 40px;
+                            left: 50%;
+
+                            @include transform(translate3d(-50%, 0, 0));
+                        }
+
+                        & > h3,
+                        & > .symbin-product-info {
+                            margin: 20px 20px 0 20px;
+                            color: #672b0d;
+                        }
+
+                        & > .symbin-product-info {
+                            font-size: 24px;
+                            color: #feeecc;
+                            margin: 0 20px;
+                        }
+
+                        .symbin-store {
+                            width: 90%;
+                            left: 5%;
+                            height: 60px;
+
+                            @include pos(a);
+
+                            bottom: 0;
+
+                            @include displayBox(horizontal);
+
+                            -webkit-box-pack: justify;
+                            color: #f1bb52;
+                        }
                     }
-                    &>div{
+
+                    & > div {
                         height: 60px;
                     }
 
-                    .symbin-product-counter{
+                    .symbin-product-counter {
                         @include displayBox(horizontal);
+
                         height: 100px;
                         width: 100%;
-                        &>div{
+
+                        & > div {
                             &:nth-of-type(1),
                             &:nth-of-type(3) {
                                 @include pos(r);
-                                &:before,&:after{
-                                    content:"";
+
+                                &:before,
+                                &:after {
+                                    content: "";
+
                                     @include pos(a);
+
                                     width: 40%;
                                     left: 30%;
                                     height: 2px;
-                                    background:#fff;
-                                    top:50%;
+                                    background: #fff;
+                                    top: 50%;
                                 }
                             }
+
                             &:nth-of-type(3) {
-                                &:after{
+                                &:after {
                                     @include transform(rotate(90deg));
                                 }
                             }
-                            &:nth-of-type(1){
-                                &:after{
-                                    display: none
+
+                            &:nth-of-type(1) {
+                                &:after {
+                                    display: none;
                                 }
                             }
-                            &:nth-of-type(2){
+
+                            &:nth-of-type(2) {
                                 width: 120px;
+
                                 @include br(10px);
+
                                 text-align: center;
-                                background:#51320e;
-                                color:#f1bb52;
+                                background: #51320e;
+                                color: #f1bb52;
                                 height: 50px;
                                 line-height: 50px;
                                 margin: 0 20px;
                             }
                         }
                     }
-                    
+
+                    .symbin-all-price {
+                        background: #e7cf9d;
+                        width: 100%;
+                        line-height: 60px;
+                        text-align: right;
+                        color: #b29a69;
+                        font-weight: bold;
+
+                        span {
+                            margin-right: 10px;
+                            color: #672b0d;
+                        }
+                    }
                 }
             }
-
         }
     }
 }

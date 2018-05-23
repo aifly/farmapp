@@ -536,7 +536,6 @@
   background: #ecc68c;
   overflow: hidden;
   width: 100%;
-  border: 1px solid red;
   position: relative;
 }
 
@@ -549,6 +548,42 @@
   border-radius: 50%;
   left: -20%;
   bottom: -100px;
+}
+
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail .symbin-product {
+  position: absolute;
+  z-index: 10;
+  width: 120px;
+  bottom: 40px;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+}
+
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > h3,
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > .symbin-product-info {
+  margin: 20px 20px 0 20px;
+  color: #672b0d;
+}
+
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > .symbin-product-info {
+  font-size: 24px;
+  color: #feeecc;
+  margin: 0 20px;
+}
+
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail .symbin-store {
+  width: 90%;
+  left: 5%;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: justify;
+  color: #f1bb52;
 }
 
 .symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) > div {
@@ -596,4 +631,18 @@
   height: 50px;
   line-height: 50px;
   margin: 0 20px;
+}
+
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-all-price {
+  background: #e7cf9d;
+  width: 100%;
+  line-height: 60px;
+  text-align: right;
+  color: #b29a69;
+  font-weight: bold;
+}
+
+.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-all-price span {
+  margin-right: 10px;
+  color: #672b0d;
 }

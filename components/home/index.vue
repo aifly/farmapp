@@ -130,38 +130,7 @@
 		<div class="symbin-tip">
 			别扯了，就到这好么？
 		</div>
-
-		<div class='symbin-shop-C lt-full'>
-			<div>
-				<h2>
-					<img :src="imgs.shopTitle" alt="">
-					<span>
-						<img :src="imgs.shopClose" alt="">
-					</span>
-				</h2>
-				<h1 style="height:120px"></h1>
-				<div class='symbin-shop-content'>
-					<aside></aside>
-					<aside>
-						<div class="symbin-product-detail">
-
-						</div>
-						<div class="symbin-product-counter">
-							<div>
-								<img :src="imgs.shopBtnBg" alt="">
-							</div>
-							<div>
-								1
-							</div>
-							<div>
-								<img :src="imgs.shopBtnBg" alt="">
-							</div>
-						</div>
-						<div>2</div>
-					</aside>
-				</div>
-			</div>
-		</div>
+		<Shop></Shop>
 	</div>
 </template>
 
@@ -170,6 +139,7 @@
 	import symbinUtil from '../lib/util';
 	import IScroll from 'iscroll';
 	import $ from 'jquery';
+	import Shop from '../commom/shop/index';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -181,15 +151,20 @@
 				viewW: window.innerWidth,
 				notice: "元宵送鸡蛋,新用户在元宵节内可免费领取",
 				currentIndex: 0,
+				allPrice:0,
+				buyCount:1,
 				adList: [
 	
 				],
 				jsList: [ //集市列表
 	
-				]
+				],
+				seedinglist:[]
 			}
 		},
-		components: {},
+		components: {
+			Shop
+		},
 	
 		methods: {
 			initCanvas() {
@@ -210,6 +185,20 @@
 				context.fill();
 	
 	
+			},
+			updateCount(flag){
+				var s = this;
+				if(flag){
+					this.buyCount++;
+				}
+				else{
+					this.buyCount--;
+				}
+				if(this.buyCount<=1){
+					this.buyCount = 1;
+				}
+
+				s.allPrice = s.seedinglist[s.index].price * s.buyCount;
 			},
 			endTimer() {
 				this.isSlider = false;
@@ -403,6 +392,24 @@
 						
 					}
 				}) */
+			},
+			requestSeeding(){
+				var s = this;
+				symbinUtil.ajax({
+					url:window.config.baseUrl +'/user/getseedinglist/',
+					data:{},
+					success(data){
+						if(data.getret === 0){
+							s.seedinglist = data.list;
+							s.allPrice = s.seedinglist[s.index].price * s.buyCount;
+							s.seedinglist.forEach((seed,i)=>{
+								if(!seed.src){
+									seed.src = s.imgs.demo
+								}
+							});
+						}
+					}
+				})
 			}
 		},
 		mounted() {
@@ -411,7 +418,8 @@
 	
 			this.requestAd();
 			this.requestNotice();
-			this.requestJishi()
+			this.requestJishi();
+			this.requestSeeding();
 	
 	
 			this.timer = setInterval(() => {
