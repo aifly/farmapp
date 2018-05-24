@@ -19,6 +19,7 @@
 			<img :src="imgs.gameStage" alt="">
 		</div>
 		<Toast :msg="toastMsg"></Toast>
+		<Setting></Setting>
 	</div>
 </template>
 
@@ -26,6 +27,7 @@
 	import './index.css';
 	import symbinUtil from '../lib/util';
 	import Toast from '../toast/toast';
+	import Setting from '../commom/setting/index';
 	export default {
 		props: ['obserable'],
 		data() {
@@ -36,7 +38,8 @@
 			}
 		},
 		components: {
-			Toast
+			Toast,
+			Setting
 		},
 	
 		methods: {

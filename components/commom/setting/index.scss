@@ -1,0 +1,96 @@
+﻿@import "../../css/base.scss";
+
+$baseColor: #fcffb4;
+$viewW: 750px;
+$color: #be0000;
+
+.symbin-setting-ui {
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+
+    @include displayBox(vertical);
+
+    .symbin-setting-main-content {
+        width: 600px;
+
+        @include pos(r);
+
+        h2 {
+            @include pos(a);
+			span{
+				@include pos(a);
+				right: 20px;
+				top: 26px;
+            }
+            width: 100%;
+            z-index: 10;
+            left: 50%;
+            @include transform(translate3d(-50%,0,0));
+        }
+
+        .symbin-setting-main{
+            width: 96%;
+            //margin-left: 1%;
+            height: 540px;
+            background:#d4ab6d;
+            border:2px solid #b98a4c;
+            @include pos(r);
+            top: 80px;
+            @include br(10px);
+
+            .symbin-setting-C{
+                color:#672b0d;
+                font-weight: bold;
+
+                width: 90%;
+                height: 80%;
+                background:#fee5b0;
+                @include pos(r);
+                left: 5%;
+                top: 15%;
+                @include br(20px);
+                border:3px solid #b98a4c;
+                box-sizing:border-box;
+                @include displayBox(vertical);
+
+                &>div{
+                    &:nth-of-type(2){
+                        margin: 80px 0;
+                    }
+                    .symbin-auto-feed{
+                        height: 100%;
+                        line-height: 50px;;
+                        color:#0c630c;
+                       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7dcd63), color-stop(100%, #42b248));
+                       @include br(20px);
+                       @include displayBox(horizontal);
+                       -webkit-box-pack: justify;
+                       &>div{
+                           margin:0 10px;
+                       }
+                    }
+                    //border:1px solid red;
+                    width: 80%;
+
+                    @include displayBox(horizontal);
+
+                    &>div{
+                        
+                        width: 45%;
+                        height: 50px;
+                        //border:1px solid red;
+                    }
+                }
+            }
+        }
+
+       
+    }
+
+    .symbin-setting-send {
+        @include displayBox(horizontal);
+
+        margin: 20px;
+    }
+}

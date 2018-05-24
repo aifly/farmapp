@@ -45,7 +45,12 @@ var imgs = {
 	shopCancel:'./assets/images/shop-cancel.png',
 	shopTitle: './assets/images/shop-title.png',
 	shopHen:'./assets/images/shop-hen.png',
-	shopChick: './assets/images/shop-chick.png'
+	shopChick: './assets/images/shop-chick.png',
+
+	repertoryTitle: './assets/images/repertory-title.png',
+	repertorySend: './assets/images/repertory-send.png',
+
+	settingTitle:'./assets/images/setting-title.png'
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

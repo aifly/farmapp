@@ -1,0 +1,56 @@
+{
+    "getret":0,
+    "getmsg":"",
+    "list":[
+        {
+            "img":"./assets/images/repertory-egg.png",
+            "name":"鸡蛋",
+            "stock":"30",
+            "unit":"个",
+            "type":1,
+            "id":"1"
+        },{
+            "img": "./assets/images/repertory-egg.png",
+            "name": "鸡蛋",
+            "stock": "30",
+            "unit": "个",
+            "type": 1,
+            "id": "1"
+        },{
+            "img": "./assets/images/shop-hen.png",
+            "name": "母鸡",
+            "stock": "300",
+            "unit": "个",
+            "type": 1,
+            "id": "1"
+        },{
+            "img": "./assets/images/repertory-egg.png",
+            "name": "鸡蛋",
+            "stock": "30",
+            "unit": "个",
+            "type": 1,
+            "id": "1"
+        },{
+            "img": "./assets/images/shop-hen.png",
+            "name": "母鸡",
+            "stock": "30",
+            "unit": "只",
+            "type": 1,
+            "id": "1"
+        },{
+            "img": "./assets/images/repertory-egg.png",
+            "name": "鸡蛋",
+            "stock": "30",
+            "unit": "个",
+            "type": 1,
+            "id": "1"
+        },{
+            "img": "./assets/images/repertory-egg.png",
+            "name": "鸡蛋",
+            "stock": "30",
+            "unit": "个",
+            "type": 1,
+            "id": "1"
+        }
+    ]
+}

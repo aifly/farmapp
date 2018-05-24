@@ -1,0 +1,190 @@
+/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {
+    background-color: #fff;
+    border-color: #bf1616;
+    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);
+}*/
+.lt-full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.zmiti-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+
+.zmiti-play {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1000;
+  right: .5rem;
+  top: .5rem;
+}
+
+.zmiti-play.rotate {
+  -webkit-animation: rotate 5s linear infinite;
+  animation: rotate 5s linear infinite;
+}
+
+.symbin-left {
+  float: left !important;
+}
+
+.symbin-right {
+  float: right !important;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.symbin-repertory-ui {
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: vertical;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content {
+  width: 700px;
+  position: relative;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content h2 {
+  position: absolute;
+  z-index: 10;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content h2 span {
+  position: absolute;
+  right: 20px;
+  top: 26px;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main {
+  width: 94%;
+  height: 70vh;
+  margin: 50px auto 0;
+  background: #fee5b0;
+  position: relative;
+  border-radius: 20px;
+  border: 3px solid #d1a563;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main .symbin-repertory-list-C {
+  width: 90%;
+  position: absolute;
+  left: 5%;
+  top: 130px;
+  background: #492d0d;
+  height: 80%;
+  border-radius: 20px;
+  border: 3px solid #d4ab6d;
+  overflow: hidden;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main ul {
+  float: left;
+  padding: 20px 0;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li {
+  width: 180px;
+  float: left;
+  height: 240px;
+  background: #fee5b0;
+  border-radius: 10px;
+  position: relative;
+  font-size: 26px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: vertical;
+  margin-left: 13px;
+  margin-top: 13px;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(2) {
+  margin: 10px 0;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3) {
+  width: 80%;
+  color: #ffe267;
+  background: #a77234;
+  padding: 4px 0;
+  border-radius: 20px;
+  text-indent: 20px;
+  position: relative;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3).active:after {
+  background: #49d10c;
+  text-align: center;
+  text-indent: 0;
+  line-height: 40px;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3).active:before {
+  content: "";
+  width: 22px;
+  height: 12px;
+  border: 4px solid #fff;
+  position: absolute;
+  right: 6px;
+  top: 10px;
+  z-index: 10;
+  border-top: none;
+  border-right: none;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3):after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #672b0d;
+  position: absolute;
+  right: -4px;
+  top: 0;
+  border: 3px solid #fee5b0;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 1px #d4ab6d;
+}
+
+.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li img {
+  width: 100px;
+}
+
+.symbin-repertory-ui .symbin-repertory-send {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  margin: 20px;
+}
