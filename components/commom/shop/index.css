@@ -230,6 +230,18 @@
   border-radius: 10px;
 }
 
+.symbin-shop-main-ui .symbin-shop-content ul li.active {
+  background: #fee5b0;
+}
+
+.symbin-shop-main-ui .symbin-shop-content ul li.active .symbin-shop-product {
+  background: #ecc68c;
+}
+
+.symbin-shop-main-ui .symbin-shop-content ul li.active .symbin-shop-breedname {
+  color: #672b0d;
+}
+
 .symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product {
   width: 96%;
   height: 120px;
@@ -244,8 +256,23 @@
   -webkit-box-orient: horizontal;
 }
 
-.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product img {
+.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product > div {
+  border: 4px solid #fff;
+  background: #fcc01a;
   width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+}
+
+.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product img {
+  width: 110px;
+  margin-left: 20px;
+  margin-top: 10px;
   display: block;
 }
 

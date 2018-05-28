@@ -11,25 +11,27 @@
 			<div class='symbin-shop-content'>
 				<aside>
 					<ul>
-						<li v-for='seeding in seedinglist'>
+						<li :class="{'active':i === index}" v-tap='[toggleSeeding,i]' v-for='(goods,i) in goodsList' :key="i">
 							<div class="symbin-shop-product">
-								<img :src="imgs.shopHen" alt="">
+								<div>
+									<img :src="goods.imagepath" alt="">
+								</div>
 							</div>
-							<div class="symbin-shop-breedname">{{seeding.breedname}}</div>
+							<div class="symbin-shop-breedname">{{goods.goodsname}}</div>
 						</li>
 					</ul>
 				</aside>
 				<aside>
-					<div class="symbin-product-detail">
-						<h3>母鸡</h3>
-						<div class="symbin-product-info">土鸡，家禽的一种。有别于笼养的肉鸡。</div>
-						<div class="symbin-product" v-if='seedinglist[index]'>
-							<img :src='seedinglist[index].src' alt="">
+					<div class="symbin-product-detail" v-if='goodsList[index]'>
+						<h3>{{ goodsList[index].goodsname}}</h3>
+						<div class="symbin-product-info">{{goodsList[index].goodsdesc}}</div>
+						<div class="symbin-product" v-if='goodsList[index]'>
+							<img :src='goodsList[index].imagepath' alt="">
 						</div>
 	
 						<div class='symbin-store'>
-							<div>库存：{{seedinglist[index]?seedinglist[index].stocknumber:0}}</div>
-							<div>￥{{seedinglist[index]?seedinglist[index].price:0}}</div>
+							<div>库存：{{goodsList[index]?goodsList[index].goodsnumber:0}}</div>
+							<div>￥{{goodsList[index]?goodsList[index].goodsprice:0}}</div>
 						</div>
 					</div>
 					<div class="symbin-product-counter">
@@ -72,12 +74,18 @@
 				allPrice: 0,
 				buyCount: 1,
 				show:true,
-				seedinglist: []
+				goodsList: []
 			}
 		},
 		components: {},
 	
 		methods: {
+
+			toggleSeeding(index){
+				var s = this;
+				s.index = index;
+				s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+			},
 	
 			updateCount(flag) {
 				var s = this;
@@ -90,22 +98,23 @@
 					this.buyCount = 1;
 				}
 	
-				s.allPrice = s.seedinglist[s.index].price * s.buyCount;
+				s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
 			},
 			closeShop(){
 				this.show = false;
 			},
-			requestSeeding() {
+			requestGoodsList(){
 				var s = this;
 				symbinUtil.ajax({
-					url: window.config.baseUrl + '/user/getseedinglist/',
-					data: {},
-					success(data) {
-						if (data.getret === 0) {
-							s.seedinglist = data.list;
-							s.allPrice = s.seedinglist[s.index].price * s.buyCount;
-							s.seedinglist.forEach((seed, i) => {
-								if (!seed.src) {
+					url:window.config.baseUrl +'/user/getgoodslist/',
+					data:{},
+					success(data){
+						console.log(data);
+						if(data.getret === 0){
+							s.goodsList = data.list;
+							s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+							s.goodsList.forEach((seed,i)=>{
+								if(!seed.src){
 									seed.src = s.imgs.demo
 								}
 							});
@@ -115,7 +124,7 @@
 			}
 		},
 		mounted() {
-			this.requestSeeding();
+			this.requestGoodsList();
 			var {obserable} = Vue;
 
 			obserable.on('showShop',(data)=>{

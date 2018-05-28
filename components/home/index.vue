@@ -159,7 +159,7 @@
 				jsList: [ //集市列表
 	
 				],
-				seedinglist:[]
+				goodsList:[]
 			}
 		},
 		components: {
@@ -198,7 +198,7 @@
 					this.buyCount = 1;
 				}
 
-				s.allPrice = s.seedinglist[s.index].price * s.buyCount;
+				s.allPrice = s.goodsList[s.index].price * s.buyCount;
 			},
 			endTimer() {
 				this.isSlider = false;
@@ -393,16 +393,17 @@
 					}
 				}) */
 			},
-			requestSeeding(){
+			requestGoodsList(){
 				var s = this;
 				symbinUtil.ajax({
-					url:window.config.baseUrl +'/user/getseedinglist/',
+					url:window.config.baseUrl +'/user/getgoodslist/',
 					data:{},
 					success(data){
+						console.log(data);
 						if(data.getret === 0){
-							s.seedinglist = data.list;
-							s.allPrice = s.seedinglist[s.index].price * s.buyCount;
-							s.seedinglist.forEach((seed,i)=>{
+							s.goodsList = data.list;
+							s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+							s.goodsList.forEach((seed,i)=>{
 								if(!seed.src){
 									seed.src = s.imgs.demo
 								}
@@ -419,7 +420,7 @@
 			this.requestAd();
 			this.requestNotice();
 			this.requestJishi();
-			this.requestSeeding();
+			//this.requestGoodsList();
 	
 	
 			this.timer = setInterval(() => {
