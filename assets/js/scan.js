@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52,9 +53,9 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	__webpack_require__(48);
+	__webpack_require__(68);
 
-	var _componentsScanIndex = __webpack_require__(42);
+	var _componentsScanIndex = __webpack_require__(47);
 
 	var _componentsScanIndex2 = _interopRequireDefault(_componentsScanIndex);
 
@@ -70,7 +71,7 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _vueJsTap = __webpack_require__(51);
+	var _vueJsTap = __webpack_require__(71);
 
 	var _vueJsTap2 = _interopRequireDefault(_vueJsTap);
 
@@ -135,7 +136,8 @@
 	});
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -10940,7 +10942,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2).setImmediate))
 
 /***/ }),
-/* 2 */
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var apply = Function.prototype.apply;
@@ -10999,7 +11002,8 @@
 
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11192,7 +11196,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(4)))
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 	// shim for using process in browser
@@ -11382,7 +11387,8 @@
 
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -11446,11 +11452,8 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
+
+/***/ 10:
 /***/ (function(module, exports) {
 
 	/*
@@ -11506,7 +11509,8 @@
 
 
 /***/ }),
-/* 11 */
+
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -11758,12 +11762,8 @@
 
 
 /***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11840,7 +11840,8 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 18 */
+
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -21660,35 +21661,13 @@
 
 
 /***/ }),
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */
+
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(43)
-	__vue_template__ = __webpack_require__(46)
+	__vue_script__ = __webpack_require__(48)
+	__vue_template__ = __webpack_require__(51)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -21705,7 +21684,8 @@
 	})()}
 
 /***/ }),
-/* 43 */
+
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
@@ -21756,7 +21736,7 @@
 		value: true
 	});
 
-	__webpack_require__(44);
+	__webpack_require__(49);
 
 	exports['default'] = {
 		props: ['obserable'],
@@ -21799,13 +21779,14 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 44 */
+
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(45);
+	var content = __webpack_require__(50);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -21825,7 +21806,8 @@
 	}
 
 /***/ }),
-/* 45 */
+
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -21839,20 +21821,21 @@
 
 
 /***/ }),
-/* 46 */
+
+/***/ 51:
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<div class=\"symbin-scan-ui lt-full\">\n\t\t<div class=\"symbin-scan-search-C\">\n\t\t\t<div><input type=\"text\" name=\"\" placeholder=\"请输入查询编码\" /></div>\n\t\t\t<div>查询</div>\n\t\t</div>\n\t\t<div class=\"symbin-scan-main\">\n\t\t\t<div>\n\t\t\t\t<div class=\"symbin-logo\">\n\t\t\t\t\t<img :src=\"imgs.logo\">\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-text\">\n\t\t\t\t\t<div>二维码查询</div>\n\t\t\t\t\t<div>请对准鸡脚环上的二维码进行识别</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\n\t\t\t<div class=\"symbin-scan-C\">\n\t\t\t\t<div class=\"symbin-scan-btn\">\n\t\t\t\t\t<img :src=\"imgs.scanBtn\">\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-copyright\">\n\t\t\t\t\t&copy; 小彬科技有限公司\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-help\">\n\t\t\t\t\t<img :src=\"imgs.help\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<canvas :width='viewW' height=\"250\" ref='canvas' class=\"symbin-canvas\"></canvas>\n\t</div>\n";
 
 /***/ }),
-/* 47 */,
-/* 48 */
+
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(49);
+	var content = __webpack_require__(69);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -21872,7 +21855,8 @@
 	}
 
 /***/ }),
-/* 49 */
+
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -21886,8 +21870,8 @@
 
 
 /***/ }),
-/* 50 */,
-/* 51 */
+
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -21983,4 +21967,5 @@
 
 
 /***/ })
-/******/ ]);
+
+/******/ });

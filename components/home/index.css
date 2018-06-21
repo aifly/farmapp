@@ -88,6 +88,10 @@
   position: relative;
 }
 
+.symbin-home-ui .symbin-ad .lt-full {
+  height: 98%;
+}
+
 .symbin-home-ui .symbin-ad ul {
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -179,6 +183,7 @@
 .symbin-home-ui .symbin-nav {
   padding-bottom: 40px;
   background: #fff;
+  padding-top: 10px;
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;

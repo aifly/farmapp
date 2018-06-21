@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52,9 +53,9 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	__webpack_require__(48);
+	__webpack_require__(68);
 
-	var _componentsPedometerIndex = __webpack_require__(52);
+	var _componentsPedometerIndex = __webpack_require__(72);
 
 	var _componentsPedometerIndex2 = _interopRequireDefault(_componentsPedometerIndex);
 
@@ -70,7 +71,7 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _vueJsTap = __webpack_require__(51);
+	var _vueJsTap = __webpack_require__(71);
 
 	var _vueJsTap2 = _interopRequireDefault(_vueJsTap);
 
@@ -135,7 +136,8 @@
 	});
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -10940,7 +10942,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2).setImmediate))
 
 /***/ }),
-/* 2 */
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var apply = Function.prototype.apply;
@@ -10999,7 +11002,8 @@
 
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11192,7 +11196,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(4)))
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 	// shim for using process in browser
@@ -11382,7 +11387,8 @@
 
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -11446,11 +11452,8 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
+
+/***/ 10:
 /***/ (function(module, exports) {
 
 	/*
@@ -11506,7 +11509,8 @@
 
 
 /***/ }),
-/* 11 */
+
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -11758,12 +11762,8 @@
 
 
 /***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11840,7 +11840,8 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 18 */
+
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -21660,7 +21661,8 @@
 
 
 /***/ }),
-/* 19 */
+
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -23757,41 +23759,14 @@
 
 
 /***/ }),
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */
+
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(49);
+	var content = __webpack_require__(69);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -23811,7 +23786,8 @@
 	}
 
 /***/ }),
-/* 49 */
+
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -23825,8 +23801,8 @@
 
 
 /***/ }),
-/* 50 */,
-/* 51 */
+
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -23922,12 +23898,13 @@
 
 
 /***/ }),
-/* 52 */
+
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(53)
-	__vue_template__ = __webpack_require__(56)
+	__vue_script__ = __webpack_require__(73)
+	__vue_template__ = __webpack_require__(76)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -23944,7 +23921,8 @@
 	})()}
 
 /***/ }),
-/* 53 */
+
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
@@ -24046,7 +24024,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(54);
+	__webpack_require__(74);
 
 	var _iscroll = __webpack_require__(19);
 
@@ -24146,13 +24124,14 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 54 */
+
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(55);
+	var content = __webpack_require__(75);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -24172,7 +24151,8 @@
 	}
 
 /***/ }),
-/* 55 */
+
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -24186,10 +24166,12 @@
 
 
 /***/ }),
-/* 56 */
+
+/***/ 76:
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<div class=\"symbin-pedometer-main-ui lt-full\">\n\t\t<div ref='page'>\n\t\t\t<section>\n\t\t\t\t<div>\n\t\t\t\t\t<img :src=\"imgs.pedometer\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class='symbin-btn' v-tap='[buy]'>去购买</div>\n\t\t\t</section>\n\t\t</div>\n\t\n\t\t<div class=\"symbin-order-C lt-full\" ref='order' v-show='showOrderDetail'>\n\t\t\t<div>\n\t\t\t\t<img :src=\"imgs.ped\" alt=\"\">\n\t\t\t\t<div class=\"symbin-ped-title\">\n\t\t\t\t\t<h2>鸡用计步器</h2>\n\t\t\t\t\t<div>鸡用计步器需要和采集器搭配使用</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<section class=\"symbin-farmer-info\">\n\t\t\t\t\t<div class=\"symbin-farmer-tip\">\n\t\t\t\t\t\t您的鸡场信息\n\t\t\t\t\t\t<span>输入您的鸡场信息系统将会给出合理的购买建议</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡舍数量<input ref='house' v-model=\"chikenHouseNum\" type=\"number\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡的数量<input ref='number' v-model='pedNum' type=\"number\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-form-item\">\n\t\t\t\t\t\t鸡舍平米数<input ref='area' v-model=\"chikenHouseArea\" type=\"number\" placeholder=\"按最大鸡舍面积填写\">\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\n\t\t\t\t<section class=\"symbin-order-detail\">\n\t\t\t\t\t<h2>选择购买数量</h2>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>计步器</div>\n\t\t\t\t\t\t<div class=\"symbin-price\">￥<span>{{pedPrice}}</span></div>\n\t\t\t\t\t\t<div class=\"symbin-num\">建议数量{{pedNum}}</div>\n\t\t\t\t\t\t<div class=\"symbin-buy-num\">\n\t\t\t\t\t\t\t<div class=\"symbin-reduce\"  v-tap='[reduce,0]'></div>\n\t\t\t\t\t\t\t<div>{{buyPedNum}}</div>\n\t\t\t\t\t\t\t<div class=\"symbin-add\"  v-tap='[add,0]'></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>采集器</div>\n\t\t\t\t\t\t<div class=\"symbin-price\">￥<span>{{collectPrice}}</span></div>\n\t\t\t\t\t\t<div class=\"symbin-num\">建议数量{{chikenHouseNum}}</div>\n\t\t\t\t\t\t<div class=\"symbin-buy-num\">\n\t\t\t\t\t\t\t<div class=\"symbin-reduce\" v-tap='[reduce,1]'></div>\n\t\t\t\t\t\t\t<div>{{buyCollectNum}}</div>\n\t\t\t\t\t\t\t<div class=\"symbin-add\"  v-tap='[add,1]'></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\n\t\t\t\t<section class=\"symbin-collect\" v-tap='[openCollectInfo]'>\n\t\t\t\t\t<img :src='imgs.help1' />采集器作用\n\t\t\t\t</section>\n\n\t\t\t\t<section class='symbin-connect'>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.connect\" alt=\"\">\n\t\t\t\t\t\t马上联系\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<span>立即购买 </span>\n\t\t\t\t\t</div>\n\t\t\t\t</section>\n\t\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"lt-full symbin-collect-help\" v-if='showCollectInfo' v-tap='[closeCollectInfo]'>\n\t\t\t<div class=\"symbin-collect-mask\">\n\t\t\t\t<h2>\n\t\t\t\t\t<span>?</span>\n\t\t\t\t\t<label for=\"\">采集器作用</label>\n\t\t\t\t</h2>\n\t\t\t\t<div>\n\t\t\t\t\t采集器是用来收集步器的数据并且上传到云端的一个设备。\n\t\t\t\t</div>\n\t\t\t\t<section>朕知道了</section>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n";
 
 /***/ })
-/******/ ]);
+
+/******/ });

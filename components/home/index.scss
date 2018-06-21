@@ -46,6 +46,10 @@ $color: #be0000;
         height: 326px;
         overflow: hidden;
 
+        .lt-full{
+            height: 98%;
+        }
+
         @include pos(r);
 
         ul {
@@ -142,6 +146,7 @@ $color: #be0000;
     .symbin-nav {
         padding-bottom: 40px;
         background: #fff;
+        padding-top: 10px;
 
         @include displayBox(horizontal);
 

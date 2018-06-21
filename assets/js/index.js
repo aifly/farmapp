@@ -64,27 +64,35 @@
 
 	var _componentsHomeIndex2 = _interopRequireDefault(_componentsHomeIndex);
 
-	var _componentsLoginIndex = __webpack_require__(27);
+	var _componentsLoginIndex = __webpack_require__(32);
 
 	var _componentsLoginIndex2 = _interopRequireDefault(_componentsLoginIndex);
 
-	var _componentsFerrorIndex = __webpack_require__(37);
+	var _componentsFerrorIndex = __webpack_require__(42);
 
 	var _componentsFerrorIndex2 = _interopRequireDefault(_componentsFerrorIndex);
 
-	var _componentsScanIndex = __webpack_require__(42);
+	var _componentsScanIndex = __webpack_require__(47);
 
 	var _componentsScanIndex2 = _interopRequireDefault(_componentsScanIndex);
 
-	var _vueRouter = __webpack_require__(47);
+	var _componentsGameIndex = __webpack_require__(52);
+
+	var _componentsGameIndex2 = _interopRequireDefault(_componentsGameIndex);
+
+	var _componentsRepertoryIndex = __webpack_require__(62);
+
+	var _componentsRepertoryIndex2 = _interopRequireDefault(_componentsRepertoryIndex);
+
+	var _vueRouter = __webpack_require__(67);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	__webpack_require__(48);
+	__webpack_require__(68);
 
-	__webpack_require__(50);
+	__webpack_require__(70);
 
-	var _vueJsTap = __webpack_require__(51);
+	var _vueJsTap = __webpack_require__(71);
 
 	var _vueJsTap2 = _interopRequireDefault(_vueJsTap);
 
@@ -97,7 +105,7 @@
 	_vue2['default'].obserable = obserable;
 	var router = new _vueRouter2['default']({
 
-		routes: [{ path: '*', name: 'error', component: _componentsFerrorIndex2['default'] }, { path: '/baseinfo/:id', name: 'baseinfo', component: _componentsBaseinfoIndex2['default'], props: true }, { path: '/', name: 'Home', component: _componentsHomeIndex2['default'], props: true }, { path: '/login', name: 'Login', component: _componentsLoginIndex2['default'], props: true }, { path: '/scan', name: 'Scan', component: _componentsScanIndex2['default'], props: true }]
+		routes: [{ path: '*', name: 'error', component: _componentsFerrorIndex2['default'] }, { path: '/baseinfo/:id', name: 'baseinfo', component: _componentsBaseinfoIndex2['default'], props: true }, { path: '/', name: 'Home', component: _componentsHomeIndex2['default'], props: true }, { path: '/login', name: 'Login', component: _componentsLoginIndex2['default'], props: true }, { path: '/scan', name: 'Scan', component: _componentsScanIndex2['default'], props: true }, { path: '/game', name: 'Game', component: _componentsGameIndex2['default'], props: true }, { path: '/repertory', name: 'repertory', component: _componentsRepertoryIndex2['default'], props: true }]
 	});
 
 	new _vue2['default']({
@@ -24367,7 +24375,7 @@
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(23)
-	__vue_template__ = __webpack_require__(26)
+	__vue_template__ = __webpack_require__(31)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -24519,6 +24527,7 @@
 	// 		<div class="symbin-tip">
 	// 			别扯了，就到这好么？
 	// 		</div>
+	// 		<Shop></Shop>
 	// 	</div>
 	// </template>
 	//
@@ -24545,6 +24554,10 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _commomShopIndex = __webpack_require__(26);
+
+	var _commomShopIndex2 = _interopRequireDefault(_commomShopIndex);
+
 	exports['default'] = {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -24556,13 +24569,18 @@
 				viewW: window.innerWidth,
 				notice: "元宵送鸡蛋,新用户在元宵节内可免费领取",
 				currentIndex: 0,
+				allPrice: 0,
+				buyCount: 1,
 				adList: [],
 				jsList: [//集市列表
 
-				]
+				],
+				goodsList: []
 			};
 		},
-		components: {},
+		components: {
+			Shop: _commomShopIndex2['default']
+		},
 
 		methods: {
 			initCanvas: function initCanvas() {
@@ -24581,6 +24599,19 @@
 				context.stroke();
 				context.fillStyle = '#fff';
 				context.fill();
+			},
+			updateCount: function updateCount(flag) {
+				var s = this;
+				if (flag) {
+					this.buyCount++;
+				} else {
+					this.buyCount--;
+				}
+				if (this.buyCount <= 1) {
+					this.buyCount = 1;
+				}
+
+				s.allPrice = s.goodsList[s.index].price * s.buyCount;
 			},
 			endTimer: function endTimer() {
 				this.isSlider = false;
@@ -24754,6 +24785,25 @@
 	   			
 	   	}
 	   }) */
+			},
+			requestGoodsList: function requestGoodsList() {
+				var s = this;
+				_libUtil2['default'].ajax({
+					url: window.config.baseUrl + '/user/getgoodslist/',
+					data: {},
+					success: function success(data) {
+						console.log(data);
+						if (data.getret === 0) {
+							s.goodsList = data.list;
+							s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+							s.goodsList.forEach(function (seed, i) {
+								if (!seed.src) {
+									seed.src = s.imgs.demo;
+								}
+							});
+						}
+					}
+				});
 			}
 		},
 		mounted: function mounted() {
@@ -24765,6 +24815,7 @@
 			this.requestAd();
 			this.requestNotice();
 			this.requestJishi();
+			//this.requestGoodsList();
 
 			this.timer = setInterval(function () {
 				if (_this2.isSlider) {
@@ -24813,24 +24864,255 @@
 
 
 	// module
-	exports.push([module.id, "/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {\r\n    background-color: #fff;\r\n    border-color: #bf1616;\r\n    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);\r\n}*/\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n.symbin-left {\n  float: left !important;\n}\n\n.symbin-right {\n  float: right !important;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.symbin-home-ui {\n  height: 100vh;\n  overflow: hidden;\n  background: #f5f5f5;\n  min-height: 100vh;\n}\n\n.symbin-home-ui a {\n  color: inherit;\n}\n\n.symbin-home-ui > section {\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  z-index: 10;\n}\n\n.symbin-home-ui .symbin-user,\n.symbin-home-ui .symbin-msg {\n  position: absolute;\n  z-index: 100;\n  left: 30px;\n  top: 30px;\n}\n\n.symbin-home-ui .symbin-msg {\n  left: auto;\n  right: 30px;\n}\n\n.symbin-home-ui .symbin-ad {\n  width: 750px;\n  background: #f5f5f5;\n  height: 326px;\n  overflow: hidden;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-ad ul {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 100%;\n}\n\n.symbin-home-ui .symbin-ad ul li {\n  width: 750px;\n  height: 100%;\n}\n\n.symbin-home-ui .symbin-ad ul li a {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page {\n  -webkit-transform: translate3d(0, 0, 0);\n  transform: translate3d(0, 0, 0);\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.left {\n  left: -750px;\n  -webkit-transition: 0.51s;\n  transition: 0.51s;\n  z-index: 9;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.left1 {\n  -webkit-transform: translate3d(-750px, 0, 0);\n  transform: translate3d(-750px, 0, 0);\n  opacity: 0;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.right {\n  -webkit-transform: translate3d(750px, 0, 0);\n  transform: translate3d(750px, 0, 0);\n  z-index: 9;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.transition {\n  -webkit-transition: 0.51s;\n  transition: 0.51s;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.right1 {\n  opacity: 0;\n  -webkit-transform: translate3d(750px, 0, 0);\n  transform: translate3d(750px, 0, 0);\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.active {\n  left: 0;\n  -webkit-transition: 0.51s;\n  transition: 0.51s;\n  z-index: 10;\n}\n\n.symbin-home-ui .symbin-ad canvas {\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  z-index: 20;\n}\n\n.symbin-home-ui .symbin-ad .symbin-notice {\n  text-align: center;\n  position: absolute;\n  left: 0;\n  width: 100%;\n  height: 80px;\n  bottom: 0;\n  z-index: 21;\n  color: #fff;\n  font-size: 22px;\n  color: #fff;\n}\n\n.symbin-home-ui .symbin-ad .symbin-notice img {\n  width: 40px;\n  vertical-align: bottom;\n}\n\n.symbin-home-ui .symbin-nav {\n  padding-bottom: 40px;\n  background: #fff;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  font-size: 24px;\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-nav > div {\n  -webkit-box-flex: 1;\n  box-flex: 1;\n  text-align: center;\n}\n\n.symbin-home-ui .symbin-nav > div img {\n  width: 90px;\n  display: block;\n  margin: 0 auto;\n}\n\n.symbin-home-ui .symbin-js-C {\n  margin-top: 20px;\n  width: 750px;\n  background: #fff;\n}\n\n.symbin-home-ui .symbin-js-C > header {\n  width: 100%;\n  height: 70px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  font-size: 24px;\n}\n\n.symbin-home-ui .symbin-js-C > header > div {\n  padding: 0 40px;\n  position: relative;\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-js-C > header > div:nth-of-type(1) {\n  font-size: 26px;\n  font-weight: bold;\n}\n\n.symbin-home-ui .symbin-js-C > header > div:nth-of-type(1):before {\n  left: 20px;\n  content: '';\n  position: absolute;\n  width: 6px;\n  height: 38px;\n  background: #31b248;\n  border-radius: 3px;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list {\n  width: 750px;\n  overflow: hidden;\n  padding-bottom: 20px;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list ul {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  text-align: center;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li {\n  width: 324px;\n  margin: 0 10px;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  border-radius: 10px;\n  overflow: hidden;\n  padding: 0 0 10px 0;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-headimgurl {\n  position: absolute;\n  width: 100px;\n  left: 50%;\n  margin-left: -50px;\n  margin-top: -50px;\n  border-radius: 50%;\n  background: #45c75c;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-headimgurl:before {\n  content: '';\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.5), 0 0 0 17px rgba(255, 255, 255, 0.2);\n  border-radius: 50%;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-farmername {\n  margin-top: 80px;\n  font-size: 26px;\n  color: #8b7d59;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-goodsname {\n  margin: 20px 0;\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-price {\n  color: #7a6533;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-price span {\n  color: #ff9c01;\n}\n\n.symbin-home-ui .symbin-index-bottom {\n  top: 20px;\n  position: relative;\n  z-index: 11;\n  background: #fff;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C {\n  width: 70%;\n  height: 68%;\n  position: absolute;\n  left: 15%;\n  top: 22%;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div {\n  width: 100%;\n  -webkit-box-flex: 2;\n  box-flex: 2;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage {\n  -webkit-transform-style: preserve-3d;\n  transform-style: preserve-3d;\n  perspective: 800px;\n  -webkit-perspective: 800px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage img.symbin-c-stage {\n  position: absolute;\n  bottom: 60px;\n  z-index: 1;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage img.symbin-c-add {\n  position: absolute;\n  width: 100px;\n  left: 50%;\n  top: 10px;\n  margin-left: -50px;\n  z-index: 2;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage .symbin-progress {\n  width: 100%;\n  left: 0%;\n  height: 120px;\n  bottom: 30px;\n  z-index: 2;\n  border-radius: 50%;\n  position: absolute;\n  border-bottom: 10px solid #8fd24f;\n  font-size: 24px;\n  color: #604b19;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage .symbin-progress > div {\n  -webkit-box-flex: 1;\n  text-align: center;\n  margin-top: 140px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage .symbin-progress > div:nth-of-type(2) {\n  -webkit-box-flex: 2;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C {\n  margin: 20px 0;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > img {\n  position: absolute;\n  bottom: 0;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div {\n  width: 100%;\n  height: 170px;\n  position: absolute;\n  bottom: 6px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div {\n  height: 85px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  line-height: 95px;\n  font-size: 28px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div:nth-of-type(2) img {\n  width: 36px;\n  vertical-align: middle;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div {\n  -webkit-box-flex: 1;\n  text-align: center;\n  color: #604b19;\n  font-size: 34px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div .symbin-num {\n  color: #e57100;\n  font-size: 36px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div:nth-of-type(2) {\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div:nth-of-type(2) span {\n  font-size: 26px;\n  color: #9e652d;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator {\n  -webkit-box-flex: 1;\n  box-flex: 1;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 0px;\n  font-size: 24px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator > div {\n  -webkit-box-flex: 1;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator > div img {\n  width: 70px;\n  margin: 0 auto;\n  display: block;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator > div span {\n  display: block;\n  text-align: center;\n  color: #fff;\n}\n\n.symbin-home-ui .symbin-tip,\n.symbin-home-ui .symbin-tip-top {\n  position: absolute;\n  width: 100%;\n  height: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 0;\n  text-align: center;\n  color: #ccc;\n  font-size: 26px;\n}\n\n.symbin-home-ui .symbin-tip-top {\n  top: 0;\n  bottom: 0;\n}\n", ""]);
+	exports.push([module.id, "/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {\r\n    background-color: #fff;\r\n    border-color: #bf1616;\r\n    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);\r\n}*/\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n.symbin-left {\n  float: left !important;\n}\n\n.symbin-right {\n  float: right !important;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.symbin-home-ui {\n  height: 100vh;\n  overflow: hidden;\n  background: #f5f5f5;\n  min-height: 100vh;\n}\n\n.symbin-home-ui a {\n  color: inherit;\n}\n\n.symbin-home-ui > section {\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  z-index: 10;\n}\n\n.symbin-home-ui .symbin-user,\n.symbin-home-ui .symbin-msg {\n  position: absolute;\n  z-index: 100;\n  left: 30px;\n  top: 30px;\n}\n\n.symbin-home-ui .symbin-msg {\n  left: auto;\n  right: 30px;\n}\n\n.symbin-home-ui .symbin-ad {\n  width: 750px;\n  background: #f5f5f5;\n  height: 326px;\n  overflow: hidden;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-ad .lt-full {\n  height: 98%;\n}\n\n.symbin-home-ui .symbin-ad ul {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 100%;\n}\n\n.symbin-home-ui .symbin-ad ul li {\n  width: 750px;\n  height: 100%;\n}\n\n.symbin-home-ui .symbin-ad ul li a {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page {\n  -webkit-transform: translate3d(0, 0, 0);\n  transform: translate3d(0, 0, 0);\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.left {\n  left: -750px;\n  -webkit-transition: 0.51s;\n  transition: 0.51s;\n  z-index: 9;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.left1 {\n  -webkit-transform: translate3d(-750px, 0, 0);\n  transform: translate3d(-750px, 0, 0);\n  opacity: 0;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.right {\n  -webkit-transform: translate3d(750px, 0, 0);\n  transform: translate3d(750px, 0, 0);\n  z-index: 9;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.transition {\n  -webkit-transition: 0.51s;\n  transition: 0.51s;\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.right1 {\n  opacity: 0;\n  -webkit-transform: translate3d(750px, 0, 0);\n  transform: translate3d(750px, 0, 0);\n}\n\n.symbin-home-ui .symbin-ad .zmiti-ad-page.active {\n  left: 0;\n  -webkit-transition: 0.51s;\n  transition: 0.51s;\n  z-index: 10;\n}\n\n.symbin-home-ui .symbin-ad canvas {\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  z-index: 20;\n}\n\n.symbin-home-ui .symbin-ad .symbin-notice {\n  text-align: center;\n  position: absolute;\n  left: 0;\n  width: 100%;\n  height: 80px;\n  bottom: 0;\n  z-index: 21;\n  color: #fff;\n  font-size: 22px;\n  color: #fff;\n}\n\n.symbin-home-ui .symbin-ad .symbin-notice img {\n  width: 40px;\n  vertical-align: bottom;\n}\n\n.symbin-home-ui .symbin-nav {\n  padding-bottom: 40px;\n  background: #fff;\n  padding-top: 10px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  font-size: 24px;\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-nav > div {\n  -webkit-box-flex: 1;\n  box-flex: 1;\n  text-align: center;\n}\n\n.symbin-home-ui .symbin-nav > div img {\n  width: 90px;\n  display: block;\n  margin: 0 auto;\n}\n\n.symbin-home-ui .symbin-js-C {\n  margin-top: 20px;\n  width: 750px;\n  background: #fff;\n}\n\n.symbin-home-ui .symbin-js-C > header {\n  width: 100%;\n  height: 70px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  font-size: 24px;\n}\n\n.symbin-home-ui .symbin-js-C > header > div {\n  padding: 0 40px;\n  position: relative;\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-js-C > header > div:nth-of-type(1) {\n  font-size: 26px;\n  font-weight: bold;\n}\n\n.symbin-home-ui .symbin-js-C > header > div:nth-of-type(1):before {\n  left: 20px;\n  content: '';\n  position: absolute;\n  width: 6px;\n  height: 38px;\n  background: #31b248;\n  border-radius: 3px;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list {\n  width: 750px;\n  overflow: hidden;\n  padding-bottom: 20px;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list ul {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  text-align: center;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li {\n  width: 324px;\n  margin: 0 10px;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  border-radius: 10px;\n  overflow: hidden;\n  padding: 0 0 10px 0;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-headimgurl {\n  position: absolute;\n  width: 100px;\n  left: 50%;\n  margin-left: -50px;\n  margin-top: -50px;\n  border-radius: 50%;\n  background: #45c75c;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-headimgurl:before {\n  content: '';\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.5), 0 0 0 17px rgba(255, 255, 255, 0.2);\n  border-radius: 50%;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-farmername {\n  margin-top: 80px;\n  font-size: 26px;\n  color: #8b7d59;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-goodsname {\n  margin: 20px 0;\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-price {\n  color: #7a6533;\n}\n\n.symbin-home-ui .symbin-js-C .symbin-js-list li .symbin-price span {\n  color: #ff9c01;\n}\n\n.symbin-home-ui .symbin-index-bottom {\n  top: 20px;\n  position: relative;\n  z-index: 11;\n  background: #fff;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C {\n  width: 70%;\n  height: 68%;\n  position: absolute;\n  left: 15%;\n  top: 22%;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div {\n  width: 100%;\n  -webkit-box-flex: 2;\n  box-flex: 2;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage {\n  -webkit-transform-style: preserve-3d;\n  transform-style: preserve-3d;\n  perspective: 800px;\n  -webkit-perspective: 800px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage img.symbin-c-stage {\n  position: absolute;\n  bottom: 60px;\n  z-index: 1;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage img.symbin-c-add {\n  position: absolute;\n  width: 100px;\n  left: 50%;\n  top: 10px;\n  margin-left: -50px;\n  z-index: 2;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage .symbin-progress {\n  width: 100%;\n  left: 0%;\n  height: 120px;\n  bottom: 30px;\n  z-index: 2;\n  border-radius: 50%;\n  position: absolute;\n  border-bottom: 10px solid #8fd24f;\n  font-size: 24px;\n  color: #604b19;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage .symbin-progress > div {\n  -webkit-box-flex: 1;\n  text-align: center;\n  margin-top: 140px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-index-stage .symbin-progress > div:nth-of-type(2) {\n  -webkit-box-flex: 2;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C {\n  margin: 20px 0;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > img {\n  position: absolute;\n  bottom: 0;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div {\n  width: 100%;\n  height: 170px;\n  position: absolute;\n  bottom: 6px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div {\n  height: 85px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  line-height: 95px;\n  font-size: 28px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div:nth-of-type(2) img {\n  width: 36px;\n  vertical-align: middle;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div {\n  -webkit-box-flex: 1;\n  text-align: center;\n  color: #604b19;\n  font-size: 34px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div .symbin-num {\n  color: #e57100;\n  font-size: 36px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div:nth-of-type(2) {\n  color: #604b19;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-money-C > div > div > div:nth-of-type(2) span {\n  font-size: 26px;\n  color: #9e652d;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator {\n  -webkit-box-flex: 1;\n  box-flex: 1;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 0px;\n  font-size: 24px;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator > div {\n  -webkit-box-flex: 1;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator > div img {\n  width: 70px;\n  margin: 0 auto;\n  display: block;\n}\n\n.symbin-home-ui .symbin-index-bottom .symbin-index-chiken-C > div.symbin-operator > div span {\n  display: block;\n  text-align: center;\n  color: #fff;\n}\n\n.symbin-home-ui .symbin-tip,\n.symbin-home-ui .symbin-tip-top {\n  position: absolute;\n  width: 100%;\n  height: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 0;\n  text-align: center;\n  color: #ccc;\n  font-size: 26px;\n}\n\n.symbin-home-ui .symbin-tip-top {\n  top: 0;\n  bottom: 0;\n}\n\n.symbin-home-ui .symbin-shop-C {\n  z-index: 10;\n  background: rgba(0, 0, 0, 0.5);\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-home-ui .symbin-shop-C > div {\n  width: 720px;\n}\n\n.symbin-home-ui .symbin-shop-C h2 {\n  position: absolute;\n}\n\n.symbin-home-ui .symbin-shop-C h2 span {\n  position: absolute;\n  right: 80px;\n  top: 20px;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content {\n  width: 100%;\n  height: 600px;\n  background: #fee5b0;\n  width: 680px;\n  margin: 30px auto;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside {\n  height: 510px;\n  margin: 60px 10px;\n  border-radius: 10px;\n  overflow: hidden;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(1) {\n  border: 1px solid #dfbb60;\n  width: 180px;\n  background: #492d0d;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) {\n  width: 420px;\n  position: relative;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail {\n  -webkit-box-flex: 1;\n  background: #ecc68c;\n  overflow: hidden;\n  width: 100%;\n  position: relative;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail:before {\n  content: '';\n  position: absolute;\n  width: 140%;\n  height: 220px;\n  background: #a77234;\n  border-radius: 50%;\n  left: -20%;\n  bottom: -100px;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail .symbin-product {\n  position: absolute;\n  z-index: 10;\n  width: 120px;\n  bottom: 40px;\n  left: 50%;\n  -webkit-transform: translate3d(-50%, 0, 0);\n  transform: translate3d(-50%, 0, 0);\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > h3,\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > .symbin-product-info {\n  margin: 20px 20px 0 20px;\n  color: #672b0d;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > .symbin-product-info {\n  font-size: 24px;\n  color: #feeecc;\n  margin: 0 20px;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail .symbin-store {\n  width: 90%;\n  left: 5%;\n  height: 60px;\n  position: absolute;\n  bottom: 0;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  color: #f1bb52;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) > div {\n  height: 60px;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 100px;\n  width: 100%;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1), .symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3) {\n  position: relative;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1):before, .symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1):after, .symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3):before, .symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3):after {\n  content: \"\";\n  position: absolute;\n  width: 40%;\n  left: 30%;\n  height: 2px;\n  background: #fff;\n  top: 50%;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3):after {\n  -webkit-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1):after {\n  display: none;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(2) {\n  width: 120px;\n  border-radius: 10px;\n  text-align: center;\n  background: #51320e;\n  color: #f1bb52;\n  height: 50px;\n  line-height: 50px;\n  margin: 0 20px;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-all-price {\n  background: #e7cf9d;\n  width: 100%;\n  line-height: 60px;\n  text-align: right;\n  color: #b29a69;\n  font-weight: bold;\n}\n\n.symbin-home-ui .symbin-shop-C .symbin-shop-content > aside:nth-of-type(2) .symbin-all-price span {\n  margin-right: 10px;\n  color: #672b0d;\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
 /* 26 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\t<div class=\"symbin-home-ui\">\n\t\t<div class=\"symbin-tip-top\">\n\t\t\t别再滑啦，不会刷新滴 :(\n\t\t</div>\n\t\t<section  ref='page'>\n\t\t\t<div>\n\t\t\t\t<div class=\"symbin-user\">\n\t\t\t\t\t<img :src=\"imgs.user\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-msg\">\n\t\t\t\t\t<img :src=\"imgs.msg\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-ad\" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend='startTimer'>\n\t\t\t\t\t<div :key='ad.key' v-for='ad in adList' :style=\"{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}\" class=\"lt-full zmiti-ad-page\" :class=\"ad.className\">\n\t\t\t\t\t\t<a :href=\"ad.href\"></a>\n\t\t\t\t\t</div>\n\t\n\t\t\t\t\t<canvas ref='canvas' :width='viewW' height=\"60\"></canvas>\n\t\t\t\t\t<div class=\"symbin-notice\">\n\t\t\t\t\t\t<img :src=\"imgs.notice\">\n\t\t\t\t\t\t<span style='color:#ecff1c'>\n\t\t\t\t\t\t\t\t\t\t公告:\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span>{{notice}}</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<div class=\"symbin-nav\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.ncIcon\" alt=\"\">\n\t\t\t\t\t\t<span>去农场</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<router-link to=\"scan\">\n\t\t\t\t\t\t\t<img :src=\"imgs.jsIcon\" alt=\"\">\n\t\t\t\t\t\t\t<span>去集市</span>\n\t\t\t\t\t\t</router-link>\n\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<router-link to=\"scan\">\n\t\t\t\t\t\t\t<img :src=\"imgs.danganIcon\" alt=\"\">\n\t\t\t\t\t\t\t<span>档案</span>\n\t\t\t\t\t\t</router-link>\n\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.yqIcon\" alt=\"\">\n\t\t\t\t\t\t<span>邀请好友</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<div class=\"symbin-js-C\">\n\t\t\t\t\t<header>\n\t\t\t\t\t\t<div class=\"symbin-js-title\">集市精选</div>\n\t\t\t\t\t\t<div>查看全部</div>\n\t\t\t\t\t</header>\n\t\t\t\t\t<div class=\"symbin-js-list\" ref='jslist'>\n\t\t\t\t\t\t<ul :style=\"{width:jsList.length*(324+20)+'px'}\">\n\t\t\t\t\t\t\t<li v-for=\"js in jsList\" :key=\"js.key\">\n\t\t\t\t\t\t\t\t<div class='symbin-src'>\n\t\t\t\t\t\t\t\t\t<img :src=\"js.src\" alt=\"\">\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"symbin-headimgurl\">\n\t\t\t\t\t\t\t\t\t<img :src=\"js.headimgurl\" alt=\"\">\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"symbin-farmername\">\n\t\t\t\t\t\t\t\t\t-{{js.farmer}}-\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class='symbin-goodsname'>\n\t\t\t\t\t\t\t\t\t{{js.goodsName}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"symbin-price\">\n\t\t\t\t\t\t\t\t\t¥ <span>{{js.price}}</span> 元\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-index-bottom\">\n\t\t\t\t\t<img :src=\"imgs.indexBottom\" alt=\"\">\n\t\t\t\t\t<div class=\"symbin-index-chiken-C\">\n\t\t\t\t\t\t<div class=\"symbin-index-stage\">\n\t\t\t\t\t\t\t<img :src='imgs.cStage' class=\"symbin-c-stage\" />\n\t\t\t\t\t\t\t<img :src=\"imgs.add\" alt=\"\" class=\"symbin-c-add\">\n\t\t\t\t\t\t\t<div class=\"symbin-progress\">\n\t\t\t\t\t\t\t\t<div>幼儿期</div>\n\t\t\t\t\t\t\t\t<div>成长期</div>\n\t\t\t\t\t\t\t\t<div>产蛋期</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"symbin-money-C\">\n\t\t\t\t\t\t\t<img :src=\"imgs.moneyBg\" alt=\"\">\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<div>资产报告</div>\n\t\t\t\t\t\t\t\t\t<div>5000.00元<span>(预估)</span></div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t\t<img :src='imgs.cIcon' /> <label>鸡</label> <label class=\"symbin-num\">100</label>只\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t\t<img style=\"width:30px;\" :src='imgs.eggIcon' /> <label>鸡蛋</label> <label  class=\"symbin-num\">100</label>个\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"symbin-operator\">\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"imgs.newGuide\" alt=\"\">\n\t\t\t\t\t\t\t\t<span>新手指南</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"imgs.raise\" alt=\"\">\n\t\t\t\t\t\t\t\t<span>饲养</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"imgs.sale\" alt=\"\">\n\t\t\t\t\t\t\t\t<span>出售</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\n\t\t</section>\n\t\t<div class=\"symbin-tip\">\n\t\t\t别扯了，就到这好么？\n\t\t</div>\n\t</div>\n";
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(27)
+	__vue_template__ = __webpack_require__(30)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "F:\\xuchang2018\\project\\farmapp\\components\\commom\\shop\\index.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	// <template>
+	// 	<div class='symbin-shop-main-ui lt-full' v-show='show'>
+	// 		<div>
+	// 			<h2>
+	// 				<img :src="imgs.shopTitle" alt="">
+	// 				<span v-tap='[closeShop]'>
+	// 					<img :src="imgs.shopClose" alt="">
+	// 				</span>
+	// 			</h2>
+	// 			<h1 style="height:120px"></h1>
+	// 			<div class='symbin-shop-content'>
+	// 				<aside>
+	// 					<ul>
+	// 						<li :class="{'active':i === index}" v-tap='[toggleSeeding,i]' v-for='(goods,i) in goodsList' :key="i">
+	// 							<div class="symbin-shop-product">
+	// 								<div>
+	// 									<img :src="goods.imagepath" alt="">
+	// 								</div>
+	// 							</div>
+	// 							<div class="symbin-shop-breedname">{{goods.goodsname}}</div>
+	// 						</li>
+	// 					</ul>
+	// 				</aside>
+	// 				<aside>
+	// 					<div class="symbin-product-detail" v-if='goodsList[index]'>
+	// 						<h3>{{ goodsList[index].goodsname}}</h3>
+	// 						<div class="symbin-product-info">{{goodsList[index].goodsdesc}}</div>
+	// 						<div class="symbin-product" v-if='goodsList[index]'>
+	// 							<img :src='goodsList[index].imagepath' alt="">
+	// 						</div>
+	//
+	// 						<div class='symbin-store'>
+	// 							<div>库存：{{goodsList[index]?goodsList[index].goodsnumber:0}}</div>
+	// 							<div>￥{{goodsList[index]?goodsList[index].goodsprice:0}}</div>
+	// 						</div>
+	// 					</div>
+	// 					<div class="symbin-product-counter">
+	// 						<div>
+	// 							<img :src="imgs.shopBtnBg" alt="" v-tap='[updateCount,0]'>
+	// 						</div>
+	// 						<div>
+	// 							{{buyCount}}
+	// 						</div>
+	// 						<div>
+	// 							<img :src="imgs.shopBtnBg" alt="" v-tap='[updateCount,1]'>
+	// 						</div>
+	// 					</div>
+	// 					<div class="symbin-all-price">
+	// 						总计 <span>￥ {{allPrice}}</span>
+	// 					</div>
+	// 				</aside>
+	// 			</div>
+	// 			<div class="symbin-shop-btns">
+	// 				<div v-tap='[closeShop]'><img :src="imgs.shopCancel" alt=""></div>
+	// 				<div><img :src="imgs.shopSure" alt=""></div>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	__webpack_require__(28);
+
+	var _libUtil = __webpack_require__(17);
+
+	var _libUtil2 = _interopRequireDefault(_libUtil);
+
+	var _iscroll = __webpack_require__(19);
+
+	var _iscroll2 = _interopRequireDefault(_iscroll);
+
+	var _vue = __webpack_require__(1);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	exports['default'] = {
+		props: ['obserable'],
+		name: 'zmitiindex',
+		data: function data() {
+			return {
+				imgs: imgs,
+				index: 0,
+				currentIndex: 0,
+				allPrice: 0,
+				buyCount: 1,
+				show: true,
+				goodsList: []
+			};
+		},
+		components: {},
+
+		methods: {
+
+			toggleSeeding: function toggleSeeding(index) {
+				var s = this;
+				s.index = index;
+				s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+			},
+
+			updateCount: function updateCount(flag) {
+				var s = this;
+				if (flag) {
+					this.buyCount++;
+				} else {
+					this.buyCount--;
+				}
+				if (this.buyCount <= 1) {
+					this.buyCount = 1;
+				}
+
+				s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+			},
+			closeShop: function closeShop() {
+				this.show = false;
+			},
+			requestGoodsList: function requestGoodsList() {
+				var s = this;
+				_libUtil2['default'].ajax({
+					url: window.config.baseUrl + '/user/getgoodslist/',
+					data: {},
+					success: function success(data) {
+						console.log(data);
+						if (data.getret === 0) {
+							s.goodsList = data.list;
+							s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+							s.goodsList.forEach(function (seed, i) {
+								if (!seed.src) {
+									seed.src = s.imgs.demo;
+								}
+							});
+						}
+					}
+				});
+			}
+		},
+		mounted: function mounted() {
+			var _this = this;
+
+			this.requestGoodsList();
+			var obserable = _vue2['default'].obserable;
+
+			obserable.on('showShop', function (data) {
+				_this.show = true;
+			});
+		}
+	};
+
+	// </script>
+	//
+	module.exports = exports['default'];
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(29);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(11)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(10)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {\r\n    background-color: #fff;\r\n    border-color: #bf1616;\r\n    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);\r\n}*/\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n.symbin-left {\n  float: left !important;\n}\n\n.symbin-right {\n  float: right !important;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.symbin-shop-main-ui {\n  z-index: 10;\n  background: rgba(0, 0, 0, 0.5);\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-shop-main-ui > div {\n  width: 720px;\n}\n\n.symbin-shop-main-ui h2 {\n  position: absolute;\n}\n\n.symbin-shop-main-ui h2 span {\n  position: absolute;\n  right: 80px;\n  top: 20px;\n}\n\n.symbin-shop-main-ui .symbin-shop-content {\n  width: 100%;\n  height: 600px;\n  background: #fee5b0;\n  width: 680px;\n  margin: 30px auto;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside {\n  height: 510px;\n  margin: 60px 10px;\n  border-radius: 10px;\n  overflow: hidden;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(1) {\n  border: 1px solid #dfbb60;\n  width: 180px;\n  background: #492d0d;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) {\n  width: 420px;\n  position: relative;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail {\n  -webkit-box-flex: 1;\n  background: #ecc68c;\n  overflow: hidden;\n  width: 100%;\n  position: relative;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail:before {\n  content: '';\n  position: absolute;\n  width: 140%;\n  height: 220px;\n  background: #a77234;\n  border-radius: 50%;\n  left: -20%;\n  bottom: -100px;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail .symbin-product {\n  position: absolute;\n  z-index: 10;\n  width: 120px;\n  bottom: 40px;\n  left: 50%;\n  -webkit-transform: translate3d(-50%, 0, 0);\n  transform: translate3d(-50%, 0, 0);\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > h3,\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > .symbin-product-info {\n  margin: 20px 20px 0 20px;\n  color: #672b0d;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail > .symbin-product-info {\n  font-size: 24px;\n  color: #feeecc;\n  margin: 0 20px;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-detail .symbin-store {\n  width: 90%;\n  left: 5%;\n  height: 60px;\n  position: absolute;\n  bottom: 0;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  color: #f1bb52;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) > div {\n  height: 60px;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  height: 100px;\n  width: 100%;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1), .symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3) {\n  position: relative;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1):before, .symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1):after, .symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3):before, .symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3):after {\n  content: \"\";\n  position: absolute;\n  width: 40%;\n  left: 30%;\n  height: 2px;\n  background: #fff;\n  top: 50%;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(3):after {\n  -webkit-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(1):after {\n  display: none;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-product-counter > div:nth-of-type(2) {\n  width: 120px;\n  border-radius: 10px;\n  text-align: center;\n  background: #51320e;\n  color: #f1bb52;\n  height: 50px;\n  line-height: 50px;\n  margin: 0 20px;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-all-price {\n  background: #e7cf9d;\n  width: 100%;\n  line-height: 60px;\n  text-align: right;\n  color: #b29a69;\n  font-weight: bold;\n}\n\n.symbin-shop-main-ui .symbin-shop-content > aside:nth-of-type(2) .symbin-all-price span {\n  margin-right: 10px;\n  color: #672b0d;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li {\n  background: #b49059;\n  height: 170px;\n  width: 170px;\n  margin: 10px auto;\n  border-radius: 10px;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li.active {\n  background: #fee5b0;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li.active .symbin-shop-product {\n  background: #ecc68c;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li.active .symbin-shop-breedname {\n  color: #672b0d;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product {\n  width: 96%;\n  height: 120px;\n  position: relative;\n  top: 4px;\n  background: #a2804b;\n  border-radius: 10px;\n  margin: 3px auto;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product > div {\n  border: 4px solid #fff;\n  background: #fcc01a;\n  width: 100px;\n  height: 100px;\n  overflow: hidden;\n  border-radius: 50%;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-product img {\n  width: 110px;\n  margin-left: 20px;\n  margin-top: 10px;\n  display: block;\n}\n\n.symbin-shop-main-ui .symbin-shop-content ul li .symbin-shop-breedname {\n  color: #fee5b0;\n  font-size: 26px;\n  margin: 8px 4px;\n}\n\n.symbin-shop-main-ui .symbin-shop-btns {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n  width: 80%;\n  margin: 0 auto;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n\t<div class='symbin-shop-main-ui lt-full' v-show='show'>\n\t\t<div>\n\t\t\t<h2>\n\t\t\t\t<img :src=\"imgs.shopTitle\" alt=\"\">\n\t\t\t\t<span v-tap='[closeShop]'>\n\t\t\t\t\t<img :src=\"imgs.shopClose\" alt=\"\">\n\t\t\t\t</span>\n\t\t\t</h2>\n\t\t\t<h1 style=\"height:120px\"></h1>\n\t\t\t<div class='symbin-shop-content'>\n\t\t\t\t<aside>\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li :class=\"{'active':i === index}\" v-tap='[toggleSeeding,i]' v-for='(goods,i) in goodsList' :key=\"i\">\n\t\t\t\t\t\t\t<div class=\"symbin-shop-product\">\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<img :src=\"goods.imagepath\" alt=\"\">\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"symbin-shop-breedname\">{{goods.goodsname}}</div>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</ul>\n\t\t\t\t</aside>\n\t\t\t\t<aside>\n\t\t\t\t\t<div class=\"symbin-product-detail\" v-if='goodsList[index]'>\n\t\t\t\t\t\t<h3>{{ goodsList[index].goodsname}}</h3>\n\t\t\t\t\t\t<div class=\"symbin-product-info\">{{goodsList[index].goodsdesc}}</div>\n\t\t\t\t\t\t<div class=\"symbin-product\" v-if='goodsList[index]'>\n\t\t\t\t\t\t\t<img :src='goodsList[index].imagepath' alt=\"\">\n\t\t\t\t\t\t</div>\n\t\n\t\t\t\t\t\t<div class='symbin-store'>\n\t\t\t\t\t\t\t<div>库存：{{goodsList[index]?goodsList[index].goodsnumber:0}}</div>\n\t\t\t\t\t\t\t<div>￥{{goodsList[index]?goodsList[index].goodsprice:0}}</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-product-counter\">\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<img :src=\"imgs.shopBtnBg\" alt=\"\" v-tap='[updateCount,0]'>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t{{buyCount}}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<img :src=\"imgs.shopBtnBg\" alt=\"\" v-tap='[updateCount,1]'>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"symbin-all-price\">\n\t\t\t\t\t\t总计 <span>￥ {{allPrice}}</span>\n\t\t\t\t\t</div>\n\t\t\t\t</aside>\n\t\t\t</div>\n\t\t\t<div class=\"symbin-shop-btns\">\n\t\t\t\t<div v-tap='[closeShop]'><img :src=\"imgs.shopCancel\" alt=\"\"></div>\n\t\t\t\t<div><img :src=\"imgs.shopSure\" alt=\"\"></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n";
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n\t<div class=\"symbin-home-ui\">\n\t\t<div class=\"symbin-tip-top\">\n\t\t\t别再滑啦，不会刷新滴 :(\n\t\t</div>\n\t\t<section  ref='page'>\n\t\t\t<div>\n\t\t\t\t<div class=\"symbin-user\">\n\t\t\t\t\t<img :src=\"imgs.user\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-msg\">\n\t\t\t\t\t<img :src=\"imgs.msg\" alt=\"\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-ad\" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend='startTimer'>\n\t\t\t\t\t<div :key='ad.key' v-for='ad in adList' :style=\"{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}\" class=\"lt-full zmiti-ad-page\" :class=\"ad.className\">\n\t\t\t\t\t\t<a :href=\"ad.href\"></a>\n\t\t\t\t\t</div>\n\t\n\t\t\t\t\t<canvas ref='canvas' :width='viewW' height=\"60\"></canvas>\n\t\t\t\t\t<div class=\"symbin-notice\">\n\t\t\t\t\t\t<img :src=\"imgs.notice\">\n\t\t\t\t\t\t<span style='color:#ecff1c'>\n\t\t\t\t\t\t\t\t\t\t公告:\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span>{{notice}}</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<div class=\"symbin-nav\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.ncIcon\" alt=\"\">\n\t\t\t\t\t\t<span>去农场</span>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<router-link to=\"scan\">\n\t\t\t\t\t\t\t<img :src=\"imgs.jsIcon\" alt=\"\">\n\t\t\t\t\t\t\t<span>去集市</span>\n\t\t\t\t\t\t</router-link>\n\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<router-link to=\"scan\">\n\t\t\t\t\t\t\t<img :src=\"imgs.danganIcon\" alt=\"\">\n\t\t\t\t\t\t\t<span>档案</span>\n\t\t\t\t\t\t</router-link>\n\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<img :src=\"imgs.yqIcon\" alt=\"\">\n\t\t\t\t\t\t<span>邀请好友</span>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\n\t\t\t\t<div class=\"symbin-js-C\">\n\t\t\t\t\t<header>\n\t\t\t\t\t\t<div class=\"symbin-js-title\">集市精选</div>\n\t\t\t\t\t\t<div>查看全部</div>\n\t\t\t\t\t</header>\n\t\t\t\t\t<div class=\"symbin-js-list\" ref='jslist'>\n\t\t\t\t\t\t<ul :style=\"{width:jsList.length*(324+20)+'px'}\">\n\t\t\t\t\t\t\t<li v-for=\"js in jsList\" :key=\"js.key\">\n\t\t\t\t\t\t\t\t<div class='symbin-src'>\n\t\t\t\t\t\t\t\t\t<img :src=\"js.src\" alt=\"\">\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"symbin-headimgurl\">\n\t\t\t\t\t\t\t\t\t<img :src=\"js.headimgurl\" alt=\"\">\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"symbin-farmername\">\n\t\t\t\t\t\t\t\t\t-{{js.farmer}}-\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class='symbin-goodsname'>\n\t\t\t\t\t\t\t\t\t{{js.goodsName}}\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"symbin-price\">\n\t\t\t\t\t\t\t\t\t¥ <span>{{js.price}}</span> 元\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-index-bottom\">\n\t\t\t\t\t<img :src=\"imgs.indexBottom\" alt=\"\">\n\t\t\t\t\t<div class=\"symbin-index-chiken-C\">\n\t\t\t\t\t\t<div class=\"symbin-index-stage\">\n\t\t\t\t\t\t\t<img :src='imgs.cStage' class=\"symbin-c-stage\" />\n\t\t\t\t\t\t\t<img :src=\"imgs.add\" alt=\"\" class=\"symbin-c-add\">\n\t\t\t\t\t\t\t<div class=\"symbin-progress\">\n\t\t\t\t\t\t\t\t<div>幼儿期</div>\n\t\t\t\t\t\t\t\t<div>成长期</div>\n\t\t\t\t\t\t\t\t<div>产蛋期</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"symbin-money-C\">\n\t\t\t\t\t\t\t<img :src=\"imgs.moneyBg\" alt=\"\">\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<div>资产报告</div>\n\t\t\t\t\t\t\t\t\t<div>5000.00元<span>(预估)</span></div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t\t<img :src='imgs.cIcon' /> <label>鸡</label> <label class=\"symbin-num\">100</label>只\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t\t\t<img style=\"width:30px;\" :src='imgs.eggIcon' /> <label>鸡蛋</label> <label  class=\"symbin-num\">100</label>个\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"symbin-operator\">\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"imgs.newGuide\" alt=\"\">\n\t\t\t\t\t\t\t\t<span>新手指南</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"imgs.raise\" alt=\"\">\n\t\t\t\t\t\t\t\t<span>饲养</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"imgs.sale\" alt=\"\">\n\t\t\t\t\t\t\t\t<span>出售</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\n\t\t</section>\n\t\t<div class=\"symbin-tip\">\n\t\t\t别扯了，就到这好么？\n\t\t</div>\n\t\t<Shop></Shop>\n\t</div>\n";
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(28)
-	__vue_template__ = __webpack_require__(36)
+	__vue_script__ = __webpack_require__(33)
+	__vue_template__ = __webpack_require__(41)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -24847,7 +25129,7 @@
 	})()}
 
 /***/ }),
-/* 28 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
@@ -24888,13 +25170,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(29);
+	__webpack_require__(34);
 
 	var _libUtil = __webpack_require__(17);
 
 	var _libUtil2 = _interopRequireDefault(_libUtil);
 
-	var _toastToast = __webpack_require__(31);
+	var _toastToast = __webpack_require__(36);
 
 	var _toastToast2 = _interopRequireDefault(_toastToast);
 
@@ -25018,13 +25300,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 29 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(30);
+	var content = __webpack_require__(35);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -25044,7 +25326,7 @@
 	}
 
 /***/ }),
-/* 30 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -25058,13 +25340,13 @@
 
 
 /***/ }),
-/* 31 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(32)
-	__vue_script__ = __webpack_require__(34)
-	__vue_template__ = __webpack_require__(35)
+	__webpack_require__(37)
+	__vue_script__ = __webpack_require__(39)
+	__vue_template__ = __webpack_require__(40)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -25081,13 +25363,13 @@
 	})()}
 
 /***/ }),
-/* 32 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(33);
+	var content = __webpack_require__(38);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -25107,7 +25389,7 @@
 	}
 
 /***/ }),
-/* 33 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -25121,7 +25403,7 @@
 
 
 /***/ }),
-/* 34 */
+/* 39 */
 /***/ (function(module, exports) {
 
 	// <template>
@@ -25166,24 +25448,24 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 35 */
+/* 40 */
 /***/ (function(module, exports) {
 
 	module.exports = "\r\n\t<div class=\"zmiti-toast-main-ui\" :class='{\"hide\":msg === \"\"}'>\r\n\t\t{{msg}}\r\n\t</div>\r\n";
 
 /***/ }),
-/* 36 */
+/* 41 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<div class=\"symbin-login-ui lt-full\">\n\t\t<div>\n\t\t\t<div class=\"symbin-logo\">\n\t\t\t\t<img :src=\"imgs.logo\" alt=\"\">\n\t\t\t</div>\n\t\t\t<div class=\"symbin-login-form\">\n\t\t\t\t<div>\n\t\t\t\t\t<span>手机号</span>\n\t\t\t\t\t<input v-model='mobile' type=\"text\" placeholder=\"请输入手机号\" />\n\t\t\t\t</div>\n\t\t\t\t<div>\n\t\t\t\t\t<span>验证码</span>\n\t\t\t\t\t<input v-model=\"code\" type=\"text\" placeholder=\"请输入验证码\" />\n\t\t\t\t\t<span v-tap='[getCode]'>{{isSend?seconds+'s后重新获取':'获取验证码'}}</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-tip\">\n\t\t\t\t\t未注册手机验证后自动登录\n\t\t\t\t</div>\n\t\t\t\t<div class=\"symbin-login-btn\" v-tap='[login]'>登录</div>\n\t\t\t\t<div class=\"symbin-agree\">\n\t\t\t\t\t<input v-model=\"isAgree\" id='agree' type='checkbox' /><label for=\"agree\">我看过并同意</label><a href=\"#\">《云耕农夫协议》</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<Toast :msg=\"toastMsg\"></Toast>\n\t</div>\n";
 
 /***/ }),
-/* 37 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(38)
-	__vue_template__ = __webpack_require__(41)
+	__vue_script__ = __webpack_require__(43)
+	__vue_template__ = __webpack_require__(46)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -25200,7 +25482,7 @@
 	})()}
 
 /***/ }),
-/* 38 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
@@ -25220,7 +25502,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(39);
+	__webpack_require__(44);
 
 	var _jquery = __webpack_require__(18);
 
@@ -25245,13 +25527,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 39 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(40);
+	var content = __webpack_require__(45);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -25271,7 +25553,7 @@
 	}
 
 /***/ }),
-/* 40 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -25285,18 +25567,18 @@
 
 
 /***/ }),
-/* 41 */
+/* 46 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<div class=\"zmiti-login-ui\">\n\n\t\t页面没找到\n\t\t\n\t</div>\n";
 
 /***/ }),
-/* 42 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(43)
-	__vue_template__ = __webpack_require__(46)
+	__vue_script__ = __webpack_require__(48)
+	__vue_template__ = __webpack_require__(51)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -25313,7 +25595,7 @@
 	})()}
 
 /***/ }),
-/* 43 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
@@ -25364,7 +25646,7 @@
 		value: true
 	});
 
-	__webpack_require__(44);
+	__webpack_require__(49);
 
 	exports['default'] = {
 		props: ['obserable'],
@@ -25407,13 +25689,13 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 44 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(45);
+	var content = __webpack_require__(50);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -25433,7 +25715,7 @@
 	}
 
 /***/ }),
-/* 45 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -25447,13 +25729,498 @@
 
 
 /***/ }),
-/* 46 */
+/* 51 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<div class=\"symbin-scan-ui lt-full\">\n\t\t<div class=\"symbin-scan-search-C\">\n\t\t\t<div><input type=\"text\" name=\"\" placeholder=\"请输入查询编码\" /></div>\n\t\t\t<div>查询</div>\n\t\t</div>\n\t\t<div class=\"symbin-scan-main\">\n\t\t\t<div>\n\t\t\t\t<div class=\"symbin-logo\">\n\t\t\t\t\t<img :src=\"imgs.logo\">\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-text\">\n\t\t\t\t\t<div>二维码查询</div>\n\t\t\t\t\t<div>请对准鸡脚环上的二维码进行识别</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\n\t\t\t<div class=\"symbin-scan-C\">\n\t\t\t\t<div class=\"symbin-scan-btn\">\n\t\t\t\t\t<img :src=\"imgs.scanBtn\">\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-copyright\">\n\t\t\t\t\t&copy; 小彬科技有限公司\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-help\">\n\t\t\t\t\t<img :src=\"imgs.help\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<canvas :width='viewW' height=\"250\" ref='canvas' class=\"symbin-canvas\"></canvas>\n\t</div>\n";
 
 /***/ }),
-/* 47 */
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(53)
+	__vue_template__ = __webpack_require__(61)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "F:\\xuchang2018\\project\\farmapp\\components\\game\\index.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// <template>
+	// 	<div class="symbin-game-ui lt-full" :style="{background:'url('+imgs.gameBg+') no-repeat center top',backgroundSize:'cover'}">
+	// 		<div class="symbin-game-nav">
+	// 			<div class="symbin-msg-ico">
+	// 				<img :src="imgs.msgIco" alt="">
+	// 			</div>
+	// 			<div class="symbin-shop-ico">
+	// 				<img :src="imgs.shopIco" alt="">
+	// 			</div>
+	// 			<div class="symbin-friend-ico">
+	// 				<img :src="imgs.friendIco" alt="">
+	// 			</div>
+	// 			<div class="symbin-setting-ico">
+	// 				<img :src="imgs.settingIco" alt="">
+	// 			</div>
+	// 		</div>
+	//
+	// 		<div class="symbin-game-stage">
+	// 			<img :src="imgs.gameStage" alt="">
+	// 		</div>
+	// 		<Toast :msg="toastMsg"></Toast>
+	// 		<Setting></Setting>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	__webpack_require__(54);
+
+	var _libUtil = __webpack_require__(17);
+
+	var _libUtil2 = _interopRequireDefault(_libUtil);
+
+	var _toastToast = __webpack_require__(36);
+
+	var _toastToast2 = _interopRequireDefault(_toastToast);
+
+	var _commomSettingIndex = __webpack_require__(56);
+
+	var _commomSettingIndex2 = _interopRequireDefault(_commomSettingIndex);
+
+	exports['default'] = {
+		props: ['obserable'],
+		data: function data() {
+			return {
+				imgs: imgs,
+				viewW: window.innerWidth,
+				toastMsg: ''
+			};
+		},
+		components: {
+			Toast: _toastToast2['default'],
+			Setting: _commomSettingIndex2['default']
+		},
+
+		methods: {
+			toast: function toast(msg) {
+				var _this = this;
+
+				var time = arguments.length <= 1 || arguments[1] === undefined ? 1500 : arguments[1];
+
+				this.toastMsg = msg;
+				setTimeout(function () {
+					_this.toastMsg = '';
+				}, time);
+			}
+		},
+		mounted: function mounted() {}
+	};
+
+	// </script>
+	//
+	module.exports = exports['default'];
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(55);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(11)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(10)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {\r\n    background-color: #fff;\r\n    border-color: #bf1616;\r\n    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);\r\n}*/\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n.symbin-left {\n  float: left !important;\n}\n\n.symbin-right {\n  float: right !important;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.symbin-game-ui .symbin-game-nav {\n  width: 95px;\n  position: absolute;\n  right: 20px;\n  top: 20px;\n}\n\n.symbin-game-ui .symbin-game-nav > div {\n  margin: 10px 0;\n}\n\n.symbin-game-ui .symbin-game-stage {\n  position: absolute;\n  top: 40vh;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(57)
+	__vue_template__ = __webpack_require__(60)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "F:\\xuchang2018\\project\\farmapp\\components\\commom\\setting\\index.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// <template>
+	// 	<div class="symbin-setting-ui lt-full" v-show='show'>
+	// 		<div class="symbin-setting-main-content">
+	// 			<h2>
+	// 				<img :src="imgs.settingTitle" alt="">
+	// 			</h2>
+	// 			<div class="symbin-setting-main">
+	// 				<div class="symbin-setting-C">
+	// 					<div>
+	// 						<div>自动喂食</div>
+	// 						<div>
+	// 							<div class="symbin-auto-feed">
+	// 								<div>开启</div>
+	// 								<div>关闭</div>
+	// 							</div>
+	// 						</div>
+	// 					</div>
+	// 					<div>
+	// 						<div>自动扣款</div>
+	// 						<div>自动扣款</div>
+	// 					</div>
+	// 					<div>
+	// 						<div>提醒通知</div>
+	// 						<div>提醒通知</div>
+	// 					</div>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	__webpack_require__(58);
+
+	exports['default'] = {
+		props: ['obserable'],
+		name: 'zmitiindex',
+		data: function data() {
+			return {
+				viewW: window.innerWidth,
+				imgs: window.imgs,
+				show: true,
+				settingList: []
+			};
+		},
+		components: {},
+
+		methods: {
+			closesetting: function closesetting() {
+				this.show = false;
+			},
+			toggleChecked: function toggleChecked(setting) {
+				setting.isChecked = !setting.isChecked;
+				this.settingList = this.settingList.concat([]);
+			},
+			requestsetting: function requestsetting() {
+				var s = this;
+				$.getJSON("./components/setting/list.json", function (data) {
+					if (data.getret === 0) {
+
+						s.settingList = data.list;
+						s.settingList.forEach(function (item) {
+							item.isChecked = false;
+						});
+
+						s.scroll = new IScroll(s.$refs['list']);
+
+						setTimeout(function () {
+							s.scroll.refresh();
+						}, 100);
+					}
+				});
+			}
+
+		},
+		mounted: function mounted() {}
+	};
+
+	// </script>
+	//
+	module.exports = exports['default'];
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(59);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(11)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(10)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {\r\n    background-color: #fff;\r\n    border-color: #bf1616;\r\n    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);\r\n}*/\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n.symbin-left {\n  float: left !important;\n}\n\n.symbin-right {\n  float: right !important;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.symbin-setting-ui {\n  overflow: hidden;\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 10;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-setting-ui .symbin-setting-main-content {\n  width: 600px;\n  position: relative;\n}\n\n.symbin-setting-ui .symbin-setting-main-content h2 {\n  position: absolute;\n  width: 100%;\n  z-index: 10;\n  left: 50%;\n  -webkit-transform: translate3d(-50%, 0, 0);\n  transform: translate3d(-50%, 0, 0);\n}\n\n.symbin-setting-ui .symbin-setting-main-content h2 span {\n  position: absolute;\n  right: 20px;\n  top: 26px;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main {\n  width: 96%;\n  height: 540px;\n  background: #d4ab6d;\n  border: 2px solid #b98a4c;\n  position: relative;\n  top: 80px;\n  border-radius: 10px;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main .symbin-setting-C {\n  color: #672b0d;\n  font-weight: bold;\n  width: 90%;\n  height: 80%;\n  background: #fee5b0;\n  position: relative;\n  left: 5%;\n  top: 15%;\n  border-radius: 20px;\n  border: 3px solid #b98a4c;\n  box-sizing: border-box;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main .symbin-setting-C > div {\n  width: 80%;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main .symbin-setting-C > div:nth-of-type(2) {\n  margin: 80px 0;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main .symbin-setting-C > div .symbin-auto-feed {\n  height: 100%;\n  line-height: 50px;\n  color: #0c630c;\n  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7dcd63), color-stop(100%, #42b248));\n  border-radius: 20px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  -webkit-box-pack: justify;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main .symbin-setting-C > div .symbin-auto-feed > div {\n  margin: 0 10px;\n}\n\n.symbin-setting-ui .symbin-setting-main-content .symbin-setting-main .symbin-setting-C > div > div {\n  width: 45%;\n  height: 50px;\n}\n\n.symbin-setting-ui .symbin-setting-send {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  margin: 20px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n\t<div class=\"symbin-setting-ui lt-full\" v-show='show'>\n\t\t<div class=\"symbin-setting-main-content\">\n\t\t\t<h2>\n\t\t\t\t<img :src=\"imgs.settingTitle\" alt=\"\">\n\t\t\t</h2>\n\t\t\t<div class=\"symbin-setting-main\">\n\t\t\t\t<div class=\"symbin-setting-C\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>自动喂食</div>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<div class=\"symbin-auto-feed\">\n\t\t\t\t\t\t\t\t<div>开启</div>\n\t\t\t\t\t\t\t\t<div>关闭</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>自动扣款</div>\n\t\t\t\t\t\t<div>自动扣款</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<div>提醒通知</div>\n\t\t\t\t\t\t<div>提醒通知</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n";
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n\t<div class=\"symbin-game-ui lt-full\" :style=\"{background:'url('+imgs.gameBg+') no-repeat center top',backgroundSize:'cover'}\">\n\t\t<div class=\"symbin-game-nav\">\n\t\t\t<div class=\"symbin-msg-ico\">\n\t\t\t\t<img :src=\"imgs.msgIco\" alt=\"\">\n\t\t\t</div>\n\t\t\t<div class=\"symbin-shop-ico\">\n\t\t\t\t<img :src=\"imgs.shopIco\" alt=\"\">\n\t\t\t</div>\n\t\t\t<div class=\"symbin-friend-ico\">\n\t\t\t\t<img :src=\"imgs.friendIco\" alt=\"\">\n\t\t\t</div>\n\t\t\t<div class=\"symbin-setting-ico\">\n\t\t\t\t<img :src=\"imgs.settingIco\" alt=\"\">\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"symbin-game-stage\">\n\t\t\t<img :src=\"imgs.gameStage\" alt=\"\">\n\t\t</div>\n\t\t<Toast :msg=\"toastMsg\"></Toast>\n\t\t<Setting></Setting>\n\t</div>\n";
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(63)
+	__vue_template__ = __webpack_require__(66)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "F:\\xuchang2018\\project\\farmapp\\components\\repertory\\index.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// <template>
+	// 	<div class="symbin-repertory-ui lt-full" v-show='show'>
+	// 		<div class="symbin-repertory-main-content">
+	// 			<h2>
+	// 				<img :src="imgs.repertoryTitle" alt="">
+	// 				<span v-tap='[closeRepertory]'>
+	// 					<img :src="imgs.shopClose" alt="">
+	// 				</span>
+	// 			</h2>
+	// 			<div class="symbin-repertory-main">
+	// 				<div class="symbin-repertory-list-C" ref='list'>
+	// 					<ul>
+	// 						<li :key="i" v-for='(repertory,i) in repertoryList' v-tap='[toggleChecked,repertory]'>
+	// 							<div>
+	// 								<img :src="repertory.img" alt="">
+	// 							</div>
+	// 							<div>{{repertory.name}}</div>
+	// 							<div :class="repertory.isChecked ? 'active' : ''">
+	// 								{{repertory.stock}} {{repertory.unit}}
+	// 							</div>
+	// 						</li>
+	// 					</ul>
+	// 				</div>
+	// 			</div>
+	// 			<div class="symbin-repertory-send">
+	// 				<img :src="imgs.repertorySend" alt="" />
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	__webpack_require__(64);
+
+	var _jquery = __webpack_require__(18);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _iscroll = __webpack_require__(19);
+
+	var _iscroll2 = _interopRequireDefault(_iscroll);
+
+	exports['default'] = {
+		props: ['obserable'],
+		name: 'zmitiindex',
+		data: function data() {
+			return {
+				viewW: window.innerWidth,
+				imgs: window.imgs,
+				show: true,
+				repertoryList: []
+			};
+		},
+		components: {},
+
+		methods: {
+			closeRepertory: function closeRepertory() {
+				this.show = false;
+			},
+			toggleChecked: function toggleChecked(repertory) {
+				repertory.isChecked = !repertory.isChecked;
+				this.repertoryList = this.repertoryList.concat([]);
+			},
+			requestRepertory: function requestRepertory() {
+				var s = this;
+				_jquery2['default'].getJSON("./components/repertory/list.json", function (data) {
+					if (data.getret === 0) {
+
+						s.repertoryList = data.list;
+						s.repertoryList.forEach(function (item) {
+							item.isChecked = false;
+						});
+
+						s.scroll = new _iscroll2['default'](s.$refs['list']);
+
+						setTimeout(function () {
+							s.scroll.refresh();
+						}, 100);
+					}
+				});
+			}
+
+		},
+		mounted: function mounted() {
+			this.requestRepertory();
+		}
+	};
+
+	// </script>
+	//
+	module.exports = exports['default'];
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(65);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(11)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../node_modules/css-loader/index.js!./index.css", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(10)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {\r\n    background-color: #fff;\r\n    border-color: #bf1616;\r\n    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);\r\n}*/\n.lt-full {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.zmiti-text-overflow {\n  overflow: hidden;\n  white-space: nowrap;\n  word-break: break-all;\n  text-overflow: ellipsis;\n  -webkit-text-overflow: ellipsis;\n}\n\n.zmiti-play {\n  width: .8rem;\n  height: .8rem;\n  border-radius: 50%;\n  position: fixed;\n  z-index: 1000;\n  right: .5rem;\n  top: .5rem;\n}\n\n.zmiti-play.rotate {\n  -webkit-animation: rotate 5s linear infinite;\n  animation: rotate 5s linear infinite;\n}\n\n.symbin-left {\n  float: left !important;\n}\n\n.symbin-right {\n  float: right !important;\n}\n\n@-webkit-keyframes rotate {\n  to {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.symbin-repertory-ui {\n  overflow: hidden;\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 10;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content {\n  width: 700px;\n  position: relative;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content h2 {\n  position: absolute;\n  z-index: 10;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content h2 span {\n  position: absolute;\n  right: 20px;\n  top: 26px;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main {\n  width: 94%;\n  height: 70vh;\n  margin: 50px auto 0;\n  background: #fee5b0;\n  position: relative;\n  border-radius: 20px;\n  border: 3px solid #d1a563;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main .symbin-repertory-list-C {\n  width: 90%;\n  position: absolute;\n  left: 5%;\n  top: 130px;\n  background: #492d0d;\n  height: 80%;\n  border-radius: 20px;\n  border: 3px solid #d4ab6d;\n  overflow: hidden;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main ul {\n  float: left;\n  padding: 20px 0;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li {\n  width: 180px;\n  float: left;\n  height: 240px;\n  background: #fee5b0;\n  border-radius: 10px;\n  position: relative;\n  font-size: 26px;\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: vertical;\n  margin-left: 13px;\n  margin-top: 13px;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(2) {\n  margin: 10px 0;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3) {\n  width: 80%;\n  color: #ffe267;\n  background: #a77234;\n  padding: 4px 0;\n  border-radius: 20px;\n  text-indent: 20px;\n  position: relative;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3).active:after {\n  background: #49d10c;\n  text-align: center;\n  text-indent: 0;\n  line-height: 40px;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3).active:before {\n  content: \"\";\n  width: 22px;\n  height: 12px;\n  border: 4px solid #fff;\n  position: absolute;\n  right: 6px;\n  top: 10px;\n  z-index: 10;\n  border-top: none;\n  border-right: none;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li > div:nth-of-type(3):after {\n  content: '';\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  background: #672b0d;\n  position: absolute;\n  right: -4px;\n  top: 0;\n  border: 3px solid #fee5b0;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li:before {\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  position: absolute;\n  border-radius: 10px;\n  box-shadow: 0 0 2px 1px #d4ab6d;\n}\n\n.symbin-repertory-ui .symbin-repertory-main-content .symbin-repertory-main li img {\n  width: 100px;\n}\n\n.symbin-repertory-ui .symbin-repertory-send {\n  display: -webkit-box;\n  -webkit-box-align: center;\n  -webkit-box-pack: center;\n  -webkit-box-orient: horizontal;\n  margin: 20px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n\t<div class=\"symbin-repertory-ui lt-full\" v-show='show'>\n\t\t<div class=\"symbin-repertory-main-content\">\n\t\t\t<h2>\n\t\t\t\t<img :src=\"imgs.repertoryTitle\" alt=\"\">\n\t\t\t\t<span v-tap='[closeRepertory]'>\n\t\t\t\t\t<img :src=\"imgs.shopClose\" alt=\"\">\n\t\t\t\t</span>\n\t\t\t</h2>\n\t\t\t<div class=\"symbin-repertory-main\">\n\t\t\t\t<div class=\"symbin-repertory-list-C\" ref='list'>\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li :key=\"i\" v-for='(repertory,i) in repertoryList' v-tap='[toggleChecked,repertory]'>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<img :src=\"repertory.img\" alt=\"\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>{{repertory.name}}</div>\n\t\t\t\t\t\t\t<div :class=\"repertory.isChecked ? 'active' : ''\">\n\t\t\t\t\t\t\t\t{{repertory.stock}} {{repertory.unit}}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"symbin-repertory-send\">\n\t\t\t\t<img :src=\"imgs.repertorySend\" alt=\"\" />\n\t\t\t</div>\n\t\t</div>\n\t</div>\n";
+
+/***/ }),
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -28085,13 +28852,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 48 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(49);
+	var content = __webpack_require__(69);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -28111,7 +28878,7 @@
 	}
 
 /***/ }),
-/* 49 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -28125,7 +28892,7 @@
 
 
 /***/ }),
-/* 50 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28240,7 +29007,7 @@
 	});
 
 /***/ }),
-/* 51 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
