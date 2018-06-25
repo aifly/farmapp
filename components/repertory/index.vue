@@ -4,8 +4,8 @@
 			<h2>
 				<img :src="imgs.repertoryTitle" alt="">
 				<span v-tap='[closeRepertory]'>
-					<img :src="imgs.shopClose" alt="">
-				</span>
+						<img :src="imgs.shopClose" alt="">
+					</span>
 			</h2>
 			<div class="symbin-repertory-main">
 				<div class="symbin-repertory-list-C" ref='list'>
@@ -34,50 +34,49 @@
 	import $ from 'jquery';
 	import IScroll from 'iscroll';
 	export default {
-		props:['obserable'],
-		name:'zmitiindex',
-		data(){
-			return{
-				viewW:window.innerWidth,
-				imgs:window.imgs,
-				show:true,
-				repertoryList:[
-
+		props: ['obserable'],
+		name: 'zmitiindex',
+		data() {
+			return {
+				viewW: window.innerWidth,
+				imgs: window.imgs,
+				show: true,
+				repertoryList: [
+	
 				]
 			}
 		},
-		components:{
-		},
-		
-		methods:{
-			closeRepertory(){
+		components: {},
+	
+		methods: {
+			closeRepertory() {
 				this.show = false;
 			},
-			toggleChecked(repertory){
+			toggleChecked(repertory) {
 				repertory.isChecked = !repertory.isChecked;
 				this.repertoryList = this.repertoryList.concat([]);
 			},
-			requestRepertory(){
+			requestRepertory() {
 				var s = this;
-				$.getJSON("./components/repertory/list.json",(data)=>{
-					if(data.getret === 0){
-
+				$.getJSON("./components/repertory/list.json", (data) => {
+					if (data.getret === 0) {
+	
 						s.repertoryList = data.list;
-						s.repertoryList.forEach(item=>{
+						s.repertoryList.forEach(item => {
 							item.isChecked = false;
 						})
-
+	
 						s.scroll = new IScroll(s.$refs['list']);
-
+	
 						setTimeout(() => {
 							s.scroll.refresh();
 						}, 100);
 					}
 				})
 			}
-
+	
 		},
-		mounted(){
+		mounted() {
 			this.requestRepertory();
 		}
 	}

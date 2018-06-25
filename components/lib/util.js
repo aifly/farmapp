@@ -53,6 +53,9 @@ var symbinUtil = {
 			if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
 		}
 		return "";
+	},
+	isLogin(){
+		return window.localStorage.getItem('access_token') && window.localStorage.getItem('mobile');
 	}
 
 

@@ -131,6 +131,7 @@
 			别扯了，就到这好么？
 		</div>
 		<Shop></Shop>
+		<Order></Order>
 	</div>
 </template>
 
@@ -140,6 +141,7 @@
 	import IScroll from 'iscroll';
 	import $ from 'jquery';
 	import Shop from '../commom/shop/index';
+	import Order from '../commom/order/index';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -163,7 +165,8 @@
 			}
 		},
 		components: {
-			Shop
+			Shop,
+			Order
 		},
 	
 		methods: {

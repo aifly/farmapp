@@ -52,7 +52,7 @@
 			</div>
 			<div class="symbin-shop-btns">
 				<div v-tap='[closeShop]'><img :src="imgs.shopCancel" alt=""></div>
-				<div><img :src="imgs.shopSure" alt=""></div>
+				<div v-tap='[entryCart]'><img :src="imgs.shopSure" alt=""></div>
 			</div>
 		</div>
 	</div>
@@ -85,6 +85,25 @@
 				var s = this;
 				s.index = index;
 				s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
+			},
+
+			entryCart(){
+				//判断用户是否登录
+				if(!symbinUtil.isLogin()){
+					window.location.hash = '/login';
+					return;
+				}
+				var {obserable} = Vue;
+				var cart =  this.goodsList[this.index];
+				cart.goodscount = this.buyCount;
+				obserable.trigger({
+					type:'showOrder',
+					data:{
+						goodsList:[
+							cart
+						]
+					}
+				})
 			},
 	
 			updateCount(flag) {
