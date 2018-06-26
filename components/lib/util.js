@@ -14,10 +14,19 @@ var symbinUtil = {
 	},
 	ajax(option){
 		var opt = option.data;
-		if(option.validate){
-			opt.adminusername = option.validate.adminusername;
-			opt.admintoken = option.validate.admintoken;
+		/* if(option.validate){
+			opt.usermobile = option.validate.adminusername;
+			opt.access_token = option.validate.admintoken;
+		} */
+		opt.usermobile = window.localStorage.getItem('mobile');
+		opt.access_token = window.localStorage.getItem('access_token');
+
+		if(!opt.usermobile && !opt.access_token){
+			window.location.hash = '/login';
+			return;
 		}
+		
+
 		$.ajax({
 			url:option.url,
 			type:option.type || 'post',

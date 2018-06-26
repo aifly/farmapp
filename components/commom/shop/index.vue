@@ -55,6 +55,7 @@
 				<div v-tap='[entryCart]'><img :src="imgs.shopSure" alt=""></div>
 			</div>
 		</div>
+		<Select></Select>
 	</div>
 </template>
 
@@ -62,6 +63,7 @@
 	import './index.css';
 	import symbinUtil from '../../lib/util';
 	import IScroll from 'iscroll';
+	import Select from '../select/index';
 	import Vue from 'vue';
 	export default {
 		props: ['obserable'],
@@ -77,7 +79,7 @@
 				goodsList: []
 			}
 		},
-		components: {},
+		components: {Select},
 	
 		methods: {
 
@@ -94,8 +96,25 @@
 					return;
 				}
 				var {obserable} = Vue;
+
+				symbinUtil.ajax({
+					url:window.config.baseUrl + '/userorder/getpaymentlist/',
+					data:{},
+					success(data){
+						console.log(data);
+					}
+				
+				})
+
+
+
+
+
 				var cart =  this.goodsList[this.index];
 				cart.goodscount = this.buyCount;
+
+
+
 				obserable.trigger({
 					type:'showOrder',
 					data:{
