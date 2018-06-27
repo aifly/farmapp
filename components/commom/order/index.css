@@ -104,9 +104,14 @@
   padding: 0 30px;
 }
 
+.symbin-order-main-ui .symbin-order-header .symbin-order-paylist > div {
+  -webkit-box-flex: 1;
+}
+
 .symbin-order-main-ui .symbin-order-header .symbin-order-paylist > div:nth-of-type(2) {
+  text-align: right;
   position: relative;
-  text-indent: -2em;
+  padding-right: 20px;
 }
 
 .symbin-order-main-ui .symbin-order-header .symbin-order-paylist > div:nth-of-type(2):before {

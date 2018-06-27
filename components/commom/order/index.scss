@@ -49,9 +49,12 @@ $color: #be0000;
             -webkit-box-pack:justify;
             padding: 0 30px;
             &>div{
+                -webkit-box-flex:1;
                 &:nth-of-type(2){
+                    text-align: right;
                     @include pos(r);
-                    text-indent: -2em;
+                    //text-indent: -2em;
+                    padding-right: 20px;
                     &:before{
                         content:'';
                         width: 20px;

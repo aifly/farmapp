@@ -55,7 +55,7 @@
 				<div v-tap='[entryCart]'><img :src="imgs.shopSure" alt=""></div>
 			</div>
 		</div>
-		<Select></Select>
+		
 	</div>
 </template>
 
@@ -63,7 +63,6 @@
 	import './index.css';
 	import symbinUtil from '../../lib/util';
 	import IScroll from 'iscroll';
-	import Select from '../select/index';
 	import Vue from 'vue';
 	export default {
 		props: ['obserable'],
@@ -76,10 +75,11 @@
 				allPrice: 0,
 				buyCount: 1,
 				show:true,
-				goodsList: []
+				goodsList: [],
+				paytypeList:[],
 			}
 		},
-		components: {Select},
+		components: {},
 	
 		methods: {
 
@@ -95,22 +95,14 @@
 					window.location.hash = '/login';
 					return;
 				}
+
+				var s = this;
 				var {obserable} = Vue;
 
-				symbinUtil.ajax({
-					url:window.config.baseUrl + '/userorder/getpaymentlist/',
-					data:{},
-					success(data){
-						console.log(data);
-					}
-				
-				})
-
-
-
-
-
 				var cart =  this.goodsList[this.index];
+				if(!cart){
+					return;
+				}
 				cart.goodscount = this.buyCount;
 
 

@@ -149,7 +149,7 @@
 			return {
 				imgs,
 				index: 0,
-				isSlider: true,
+				isSlider: false,
 				viewW: window.innerWidth,
 				notice: "元宵送鸡蛋,新用户在元宵节内可免费领取",
 				currentIndex: 0,
@@ -357,6 +357,7 @@
 								s.adList[1].href = s.adList[0].href;
 	
 							}
+							s.isSlider = true;
 						}
 					}
 				})
@@ -430,7 +431,6 @@
 				if (this.isSlider) {
 					this.initLeft();
 				}
-	
 			}, 3000);
 		}
 	}
