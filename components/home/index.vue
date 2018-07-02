@@ -10,6 +10,7 @@
 				</div>
 				<div class="symbin-msg">
 					<img :src="imgs.msg" alt="">
+					<span v-if='messageNum'>{{messageNum}}</span>
 				</div>
 				<div class="symbin-ad" v-swipeleft='initLeft' v-swiperight='initRight' @touchstart='endTimer' @touchend='startTimer'>
 					<div :key='ad.key' v-for='ad in adList' :style="{background: 'url('+ad.url+') no-repeat center center',backgroundSize:'cover'}" class="lt-full zmiti-ad-page" :class="ad.className">
@@ -132,6 +133,7 @@
 		</div>
 		<Shop></Shop>
 		<Order></Order>
+		<News :list='newsList'></News>
 	</div>
 </template>
 
@@ -142,6 +144,7 @@
 	import $ from 'jquery';
 	import Shop from '../commom/shop/index';
 	import Order from '../commom/order/index';
+	import News from '../commom/news/index';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -154,6 +157,8 @@
 				notice: "元宵送鸡蛋,新用户在元宵节内可免费领取",
 				currentIndex: 0,
 				allPrice:0,
+				messageNum:0,
+				newsList:[],
 				buyCount:1,
 				adList: [
 	
@@ -166,7 +171,8 @@
 		},
 		components: {
 			Shop,
-			Order
+			Order,
+			News
 		},
 	
 		methods: {
@@ -321,6 +327,21 @@
 					}
 				})
 			},
+			requestNews(){
+				var s = this;
+				symbinUtil.ajax({
+					url:window.config.baseUrl + '/usermessage/getmessagelist',
+					data:{},
+					success(data){
+						if(data.getret === 0){
+							data.total_num = 10
+							data.total_num = data.total_num >= 10 ? '9+':data.total_num;
+							s.messageNum = data.total_num;
+							s.newsList = data.list;
+						}
+					}
+				})
+			},
 			requestAd() {
 				var s = this;
 				symbinUtil.ajax({
@@ -424,6 +445,7 @@
 			this.requestAd();
 			this.requestNotice();
 			this.requestJishi();
+			this.requestNews();
 			//this.requestGoodsList();
 	
 	

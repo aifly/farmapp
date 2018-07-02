@@ -1,0 +1,55 @@
+﻿@import "../../css/base.scss";
+
+.symbin-news-main-ui{
+    z-index: 1000;
+    background:#fff;
+
+    ul{
+        width: 700px;
+        margin: 0 auto;
+        li{
+            @include displayBox(horizontal);
+            margin: 30px 0;
+            -webkit-box-pack: justify;
+            height: 100px;
+            box-sizing: border-box;
+            overflow: hidden;
+
+            @include transition(.5s);
+            &.active{
+                height: 100%;
+            }
+
+            &>div{
+                &:nth-of-type(1){
+                    @include br();
+                    background: #45c75c;
+                    overflow: hidden;
+                    width: 100px;
+                    height: 100px;
+                     
+                }
+                &:nth-of-type(2){
+                    -webkit-box-flex:1;
+                    margin-left: 20px;
+                    &>div{
+                        color:#83968d;
+                        font-size:28px;
+                        &:nth-of-type(1){
+                            @include displayBox(horizontal);
+                            -webkit-box-pack: justify;
+                            color:#8b7d59;
+                            font-size:32px;
+                            line-height: 56px;
+                            span{
+                                color:#a5a5a5;
+                                font-size:24px;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}

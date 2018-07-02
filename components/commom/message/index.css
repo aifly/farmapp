@@ -1,0 +1,89 @@
+/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {
+    background-color: #fff;
+    border-color: #bf1616;
+    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);
+}*/
+.lt-full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.zmiti-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+
+.zmiti-play {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1000;
+  right: .5rem;
+  top: .5rem;
+}
+
+.zmiti-play.rotate {
+  -webkit-animation: rotate 5s linear infinite;
+  animation: rotate 5s linear infinite;
+}
+
+.symbin-left {
+  float: left !important;
+}
+
+.symbin-right {
+  float: right !important;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.symbin-message-main-ui {
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+}
+
+.symbin-message-main-ui .symbin-message-main {
+  width: 700px;
+  min-height: 70vh;
+  background: #ecc68c;
+  position: relative;
+  border: 4px solid #c79455;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.symbin-message-main-ui .symbin-message-main > header {
+  position: absolute;
+  top: -20px;
+  width: 102%;
+}
+
+.symbin-message-main-ui .symbin-message-main .symbin-message-list {
+  border: 4px solid #c79455;
+  background: #fee5b0;
+  width: 660px;
+  left: 16px;
+  height: 80%;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 16px;
+  z-index: 10;
+  border-radius: 10px;
+  overflow: hidden;
+}

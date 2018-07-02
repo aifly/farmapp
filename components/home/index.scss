@@ -28,6 +28,19 @@ $color: #be0000;
 
         left: $size;
         top: $size;
+        span{
+            @include pos(a);
+            width: $size + 4;
+            height: $size + 4;
+            background: red;
+            color:#fff;
+            text-align: center;
+            line-height: $size  + 4;
+            @include br();
+            top: -$size /2;
+            left: 20px;
+            font-size:24px;
+        }
     }
 
     .symbin-msg {

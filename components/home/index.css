@@ -75,6 +75,21 @@
   top: 30px;
 }
 
+.symbin-home-ui .symbin-user span,
+.symbin-home-ui .symbin-msg span {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: red;
+  color: #fff;
+  text-align: center;
+  line-height: 34px;
+  border-radius: 50%;
+  top: -15px;
+  left: 20px;
+  font-size: 24px;
+}
+
 .symbin-home-ui .symbin-msg {
   left: auto;
   right: 30px;

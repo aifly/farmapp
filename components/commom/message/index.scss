@@ -1,0 +1,36 @@
+﻿@import "../../css/base.scss";
+
+.symbin-message-main-ui{
+    background: rgba(0,0,0,.5);
+    z-index: 1000;
+    @include displayBox(horizontal);
+    .symbin-message-main{
+        width: 700px;
+        min-height: 70vh;
+        background:#ecc68c;
+        @include pos(r);
+        $borderColor:#c79455;
+        border:4px solid $borderColor;
+        box-sizing: border-box;
+        @include br(10px);
+        &>header{
+            @include pos(a);
+            top: -20px;
+            width: 102%;
+        }
+
+        .symbin-message-list{
+            border:4px solid $borderColor;
+            background:#fee5b0;
+            width:660px;
+            left: 16px;
+            height: 80%;
+            box-sizing: border-box;
+            @include pos(a);
+            bottom: 16px;
+            z-index: 10;
+            @include br(10px);
+            overflow: hidden;
+        }
+    }
+}

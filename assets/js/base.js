@@ -50,7 +50,8 @@ var imgs = {
 	repertoryTitle: './assets/images/repertory-title.png',
 	repertorySend: './assets/images/repertory-send.png',
 
-	settingTitle:'./assets/images/setting-title.png'
+	settingTitle:'./assets/images/setting-title.png',
+	messageTitle:'./assets/images/message-title.png'
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

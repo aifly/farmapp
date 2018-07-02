@@ -1,61 +1,13 @@
 <template>
-	<div class='symbin-shop-main-ui lt-full' v-show='show'>
-		<div>
-			<h2>
-				<img :src="imgs.shopTitle" alt="">
-				<span v-tap='[closeShop]'>
-					<img :src="imgs.shopClose" alt="">
-				</span>
-			</h2>
-			<h1 style="height:120px"></h1>
-			<div class='symbin-shop-content'>
-				<aside>
-					<ul>
-						<li :class="{'active':i === index}" v-tap='[toggleSeeding,i]' v-for='(goods,i) in goodsList' :key="i">
-							<div class="symbin-shop-product">
-								<div>
-									<img :src="goods.imagepath" alt="">
-								</div>
-							</div>
-							<div class="symbin-shop-breedname">{{goods.goodsname}}</div>
-						</li>
-					</ul>
-				</aside>
-				<aside>
-					<div class="symbin-product-detail" v-if='goodsList[index]'>
-						<h3>{{ goodsList[index].goodsname}}</h3>
-						<div class="symbin-product-info">{{goodsList[index].goodsdesc}}</div>
-						<div class="symbin-product" v-if='goodsList[index]'>
-							<img :src='goodsList[index].imagepath' alt="">
-						</div>
-	
-						<div class='symbin-store'>
-							<div>库存：{{goodsList[index]?goodsList[index].goodsnumber:0}}</div>
-							<div>￥{{goodsList[index]?goodsList[index].goodsprice:0}}</div>
-						</div>
-					</div>
-					<div class="symbin-product-counter">
-						<div>
-							<img :src="imgs.shopBtnBg" alt="" v-tap='[updateCount,0]'>
-						</div>
-						<div>
-							{{buyCount}}
-						</div>
-						<div>
-							<img :src="imgs.shopBtnBg" alt="" v-tap='[updateCount,1]'>
-						</div>
-					</div>
-					<div class="symbin-all-price">
-						总计 <span>￥ {{allPrice}}</span>
-					</div>
-				</aside>
-			</div>
-			<div class="symbin-shop-btns">
-				<div v-tap='[closeShop]'><img :src="imgs.shopCancel" alt=""></div>
-				<div v-tap='[entryCart]'><img :src="imgs.shopSure" alt=""></div>
+	<div class='symbin-message-main-ui lt-full'>
+		<div class="symbin-message-main">
+			<header>
+				<img :src="imgs.messageTitle" alt="">
+			</header>
+			<div class="symbin-message-list">
+				
 			</div>
 		</div>
-		
 	</div>
 </template>
 
@@ -74,7 +26,7 @@
 				currentIndex: 0,
 				allPrice: 0,
 				buyCount: 1,
-				show:false,
+				show:true,
 				goodsList: [],
 				paytypeList:[],
 			}
