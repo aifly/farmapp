@@ -55,6 +55,8 @@
 				<div v-tap='[entryCart]'><img :src="imgs.shopSure" alt=""></div>
 			</div>
 		</div>
+
+		<Toast :msg='errorMsg'></Toast>
 		
 	</div>
 </template>
@@ -64,6 +66,7 @@
 	import symbinUtil from '../../lib/util';
 	import IScroll from 'iscroll';
 	import Vue from 'vue';
+	import Toast from '../../toast/toast';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -74,12 +77,15 @@
 				currentIndex: 0,
 				allPrice: 0,
 				buyCount: 1,
-				show:false,
+				show:true,
 				goodsList: [],
 				paytypeList:[],
+				errorMsg:''
 			}
 		},
-		components: {},
+		components: {
+			Toast
+		},
 	
 		methods: {
 
@@ -96,6 +102,8 @@
 					return;
 				}
 
+
+
 				var s = this;
 				var {obserable} = Vue;
 
@@ -103,18 +111,42 @@
 				if(!cart){
 					return;
 				}
+
+
 				cart.goodscount = this.buyCount;
 
-
-
-				obserable.trigger({
-					type:'showOrder',
+				symbinUtil.ajax({
+					url:window.config.baseUrl+'/userorder/createorder/',
 					data:{
-						goodsList:[
-							cart
-						]
+						goodsid:[cart.goodsid],
+						goodsnumber:[cart.goodscount],
+						ordersource:1,
+						total:cart.goodscount*cart.goodsprice
+					},
+					success(data){
+						console.log(data);
+						if(data.getret === 0){
+							obserable.trigger({
+								type:'showOrder',
+								data:{
+									goodsList:[
+										cart
+									]
+								}
+							})
+						}
+						else{
+							s.errorMsg = data.getmsg;
+							setTimeout(() => {
+								s.errorMsg = '';
+							}, 2000);
+						}
 					}
 				})
+
+
+
+				
 			},
 	
 			updateCount(flag) {

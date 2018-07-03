@@ -20,7 +20,7 @@
 <style>
 	.zmiti-toast-main-ui{
 		position: fixed;
-		background: rgba(0,0,0,.4);
+		background: rgba(0,0,0,.7);
 		color:#fff;
 		border-radius: 20px;
 		padding:20px 40px;

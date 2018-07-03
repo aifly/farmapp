@@ -133,7 +133,7 @@
 		</div>
 		<Shop></Shop>
 		<Order></Order>
-		<News :list='newsList'></News>
+		<News :list='newsList' v-if="false"></News>
 	</div>
 </template>
 
