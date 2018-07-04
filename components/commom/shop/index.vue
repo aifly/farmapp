@@ -126,6 +126,15 @@
 					success(data){
 						console.log(data);
 						if(data.getret === 0){
+
+
+							obserable.trigger({
+								type:'getOrderId',
+								data:{
+									orderid:data.orderid
+								}
+							})
+
 							obserable.trigger({
 								type:'showOrder',
 								data:{

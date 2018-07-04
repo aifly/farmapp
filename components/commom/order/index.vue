@@ -36,9 +36,10 @@
 		</div>
 		<div class="symbin-order-pay-bar">
 			<div>合计 ￥{{allPrice}}</div>
-			<div>立即支付</div>
+			<div v-tap='[payOrder]'>立即支付</div>
 		</div>
 		<Select :list='paytypeList'></Select>
+		<Toast :msg='errorMsg'></Toast>
 	</div>
 </template>
 
@@ -48,6 +49,7 @@
 	import IScroll from 'iscroll';
 	import Vue from 'vue';
 	import Select from '../select/index';
+	import Toast from '../../toast/toast';
 	export default {
 		props: ['obserable'],
 		name: 'zmitiindex',
@@ -58,13 +60,16 @@
 				allPrice:0,
 				paytypeList:[],
 				paytypename:'',
+				paytypeid:'',
+				errorMsg:'',
 				goodsList: [
 					
 				]
 			}
 		},
 		components: {
-			Select
+			Select,
+			Toast
 		},
 	
 		methods: {
@@ -73,12 +78,40 @@
 				Vue.obserable.trigger({
 					type:'showSelect',
 				})
+			},
+			payOrder(){
+
+				var s = this;
+				
+				symbinUtil.ajax({
+					url:window.config.baseUrl + '/userorder/createpayinfo/',
+					data:{
+						orderid:s.orderid,
+						paytypeid:s.paytypeid,
+					},
+					success(data){
+						if(data.getret === 0 ){
+							s.errorMsg = '支付成功';
+							
+						}else{
+							s.errorMsg = '支付失败';
+						}
+						setTimeout(() => {
+							s.errorMsg = '';
+						}, 2000);
+						console.log(data);
+					}
+				})
 			}
 		},
 		mounted() {
 		
 			var {obserable} = Vue;
 			var s  = this;
+
+			obserable.on('getOrderId',(data)=>{
+				this.orderid = data.orderid;
+			})
 
 			obserable.on('showOrder',(data)=>{
 				this.show = true;
@@ -111,7 +144,9 @@
 			});
 
 			obserable.on('fillPaytype',(data)=>{
-				this.paytypename = data.paytypename
+				this.paytypename = data.paytypename;
+				this.paytypeid = data.paytypeid;
+				
 			})
 		}
 	}

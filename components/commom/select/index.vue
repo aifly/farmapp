@@ -39,7 +39,8 @@
 				obserable.trigger({
 					type:'fillPaytype',
 					data:{
-						paytypename:this.list[index].paytypename
+						paytypename:this.list[index].paytypename,
+						paytypeid:item.paytypeid
 					}
 				})
 			}

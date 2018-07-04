@@ -19,9 +19,9 @@
 </script>
 <style>
 	.zmiti-toast-main-ui{
-		position: fixed;
-		background: rgba(0,0,0,.7);
-		color:#fff;
+		position: fixed !important;
+		background: rgba(0,0,0,.6);
+		color:#fff !important;
 		border-radius: 20px;
 		padding:20px 40px;
 		left: 50%;
