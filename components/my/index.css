@@ -1,0 +1,191 @@
+/*.ant-btn:focus, .ant-btn:hover,.ant-input:focus, .ant-input:hover {
+    background-color: #fff;
+    border-color: #bf1616;
+    box-shadow: 0 0 0 2px rgba(191, 22, 22, 0.1);
+}*/
+.lt-full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.zmiti-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+}
+
+.zmiti-play {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1000;
+  right: .5rem;
+  top: .5rem;
+}
+
+.zmiti-play.rotate {
+  -webkit-animation: rotate 5s linear infinite;
+  animation: rotate 5s linear infinite;
+}
+
+.symbin-left {
+  float: left !important;
+}
+
+.symbin-right {
+  float: right !important;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.symbin-my-main-ui {
+  background: #45c75d;
+  overflow: hidden;
+}
+
+.symbin-my-main-ui > header {
+  width: 680px;
+  margin: 0 auto;
+  height: 120px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: justify;
+}
+
+.symbin-my-main-ui .symbin-my-main-content {
+  width: 100%;
+  position: absolute;
+  height: 70vh;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+}
+
+.symbin-my-main-ui .symbin-my-main-content:before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  left: -10%;
+  height: 30vh;
+  background: #fff;
+  border-radius: 50%;
+  top: -20%;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-head {
+  width: 180px;
+  height: 180px;
+  background: #fff;
+  position: absolute;
+  top: -250px;
+  border-radius: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+  text-align: center;
+  font-size: 26px;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-head img {
+  border-radius: 50%;
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-goods,
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package {
+  position: relative;
+  z-index: 10;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  text-align: center;
+  font-size: 22px;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-goods > div,
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div {
+  -webkit-box-flex: 1;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-goods > div:nth-of-type(2),
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div:nth-of-type(2) {
+  position: relative;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-goods > div:nth-of-type(2):before, .symbin-my-main-ui .symbin-my-main-content .symbin-my-goods > div:nth-of-type(2):after,
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div:nth-of-type(2):before,
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div:nth-of-type(2):after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 90px;
+  background: #ccc;
+  left: 0;
+  top: 6px;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-goods > div:nth-of-type(2):after,
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div:nth-of-type(2):after {
+  left: auto;
+  right: 0;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-goods > div img,
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div img {
+  margin: 0 auto 10px;
+  width: 60px;
+  display: block;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-fill {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 40px;
+  background: #f5f5f5;
+  margin-top: 50px;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package {
+  margin-top: 50px;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div:before, .symbin-my-main-ui .symbin-my-main-content .symbin-my-package > div:after {
+  display: none;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-contact {
+  background: #f5f5f5;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 20vh;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  text-align: center;
+  color: #8d988b;
+}
+
+.symbin-my-main-ui .symbin-my-main-content .symbin-contact .symbin-tel {
+  font-weight: bold;
+  font-size: 34px;
+  color: #d5d5d5;
+}

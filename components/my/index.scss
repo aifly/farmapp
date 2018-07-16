@@ -1,0 +1,122 @@
+﻿@import "../css/base.scss";
+ 
+$viewW:750px;
+ $bgColor:#45c75d;
+
+.symbin-my-main-ui{
+	background: $bgColor;
+	overflow: hidden;
+	&>header{
+		width: 680px;
+		margin: 0 auto;
+		height: 120px;
+		@include displayBox(horizontal);
+		-webkit-box-pack: justify;
+	}
+
+	.symbin-my-main-content{
+		width:100%;
+		@include pos(a);
+		height: 70vh;
+		bottom: 0;
+		left: 0;
+		background: #fff;
+
+		&:before{
+			content:"";
+			@include pos(a);
+			width: 120%;
+			left: -10%;
+			height: 30vh;
+			background: #fff;
+			@include br();
+			top: -20%;
+		}
+
+		.symbin-my-head{
+			width: 180px;
+			height: 180px;
+			background:#fff;
+			@include pos(a);
+			top: -250px;
+			@include br();
+			left: 50%;
+			@include transform(translate3d(-50%,0,0));
+			text-align: center;
+			font-size:26px;
+			img{
+				@include br();
+				@include transform(scale(.9));
+
+			}
+		}
+
+		.symbin-my-goods,
+		.symbin-my-package {
+			@include pos(r);
+			z-index: 10;
+			@include displayBox(horizontal);
+			text-align: center;
+			font-size:22px;
+			&>div{
+				-webkit-box-flex:1;
+				&:nth-of-type(2){
+					@include pos(r);
+					&:before,&:after{
+						content:'';
+						@include pos(a);
+						width:2px;
+						height: 90px;
+						background: #ccc;
+						left: 0;
+						top: 6px;
+					}
+					&:after{
+						left: auto;
+						right: 0;
+					}
+				}
+				img{
+					margin:0 auto 10px;
+					width: 60px;
+					display: block;
+				}
+			}
+		}
+
+		.symbin-fill{
+			@include pos(r);
+			z-index: 10;
+			width: 100%;
+			height: 40px;
+			background: #f5f5f5;
+			margin-top: 50px;
+		}
+
+		.symbin-my-package{
+			margin-top: 50px;;
+			&>div{
+				&:before,&:after{
+					display: none;
+				}
+			}
+		}
+
+		.symbin-contact{
+			background:#f5f5f5;
+			width:100%;
+			@include pos(a);
+			left: 0;
+			bottom: 0;
+			height: 20vh;
+			@include displayBox(horizontal);
+			text-align: center;
+			color:#8d988b;
+			.symbin-tel{
+				font-weight: bold;
+				font-size:34px;
+				color:#d5d5d5;
+			}
+		}
+	}
+}

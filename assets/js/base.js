@@ -8,6 +8,7 @@ var imgs = {
 	infoBg:'./assets/images/info-bg.png',
 	line:'./assets/images/line.png',
 	logo:'./assets/images/logo.png',
+	logo1:'./assets/images/logo1.jpg',
 	help:'./assets/images/help.png',
 	help1:'./assets/images/help1.png',
 	notice:'./assets/images/notice.png',
@@ -51,7 +52,18 @@ var imgs = {
 	repertorySend: './assets/images/repertory-send.png',
 
 	settingTitle:'./assets/images/setting-title.png',
-	messageTitle:'./assets/images/message-title.png'
+	messageTitle:'./assets/images/message-title.png',
+	addressIco: './assets/images/address-ico.png',
+	fankui:'./assets/images/fankui.png',
+	fapiao:'./assets/images/fapiao.png',
+	kuaidiquan:'./assets/images/kuaidiquan.png',
+	youhuiquan:'./assets/images/youhuiquan.png',
+	lipinka:'./assets/images/lipinka.png',
+	tanwei:'./assets/images/tanwei.png',
+	myOrder:'./assets/images/my-order.png',
+	myStore:'./assets/images/my-store.png',
+	settingIco1:'./assets/images/setting-ico1.png',
+	homeIco1:'./assets/images/home-ico1.png'
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

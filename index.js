@@ -6,6 +6,7 @@ import Login from './components/login/index';
 import FError from './components/ferror/index';
 import Scan from './components/scan/index';
 import Game from './components/game/index';
+import My from './components/my/index';
 import Repertory from './components/repertory/index';
 
 import VueRouter from 'vue-router'
@@ -29,7 +30,13 @@ const router = new VueRouter({
     { path: '/login', name: 'Login', component: Login, props: true },
     { path: '/scan', name: 'Scan', component: Scan, props: true },
     { path: '/game', name: 'Game', component: Game, props: true },
-	  { path: '/repertory', name: 'repertory', component: Repertory, props: true },
+	{
+	path: '/my',
+	name: 'my',
+	component: My,
+	props: true
+	},
+	{ path: '/repertory', name: 'repertory', component: Repertory, props: true },
   ]
 });
 
