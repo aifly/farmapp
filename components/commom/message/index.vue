@@ -44,7 +44,7 @@
 			entryCart(){
 				//判断用户是否登录
 				if(!symbinUtil.isLogin()){
-					window.location.hash = '/login';
+					//window.location.hash = '/login';
 					return;
 				}
 

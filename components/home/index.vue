@@ -333,6 +333,7 @@
 					url:window.config.baseUrl + '/usermessage/getmessagelist',
 					data:{},
 					success(data){
+						console.log(data);
 						if(data.getret === 0){
 							data.total_num = 10
 							data.total_num = data.total_num >= 10 ? '9+':data.total_num;

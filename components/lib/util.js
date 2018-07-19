@@ -20,7 +20,7 @@ var symbinUtil = {
 		} */
 		opt.usermobile = window.localStorage.getItem('mobile');
 		opt.access_token = window.localStorage.getItem('access_token');
-
+	
 		if(!opt.usermobile && !opt.access_token){
 			window.location.hash = '/login';
 			return;
@@ -35,6 +35,7 @@ var symbinUtil = {
 				option.fnError && option.fnError();
 			}
 		}).done((dt)=>{
+			
 			if(dt.getret === 1300){
 				this.clearCookie('login');
 				window.location.hash = '/login';

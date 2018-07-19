@@ -8,7 +8,7 @@ import Scan from './components/scan/index';
 import Game from './components/game/index';
 import My from './components/my/index';
 import Repertory from './components/repertory/index';
-
+import Myaddress from './components/myaddress/index';
 import VueRouter from 'vue-router'
 import './components/css/index.css';
 import './components/lib/touch.js'
@@ -30,6 +30,7 @@ const router = new VueRouter({
     { path: '/login', name: 'Login', component: Login, props: true },
     { path: '/scan', name: 'Scan', component: Scan, props: true },
     { path: '/game', name: 'Game', component: Game, props: true },
+    { path: '/myaddress', name: 'myaddress', component: Myaddress, props: true },
 	{
 	path: '/my',
 	name: 'my',
