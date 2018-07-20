@@ -9,6 +9,7 @@ import Game from './components/game/index';
 import My from './components/my/index';
 import Repertory from './components/repertory/index';
 import Myaddress from './components/myaddress/index';
+import MyaddressAction from './components/myaddressaction/index';
 import VueRouter from 'vue-router'
 import './components/css/index.css';
 import './components/lib/touch.js'
@@ -31,6 +32,7 @@ const router = new VueRouter({
     { path: '/scan', name: 'Scan', component: Scan, props: true },
     { path: '/game', name: 'Game', component: Game, props: true },
     { path: '/myaddress', name: 'myaddress', component: Myaddress, props: true },
+    { path: '/myaddressaction/:id?', name: 'myaddressaction', component: MyaddressAction, props: true },
 	{
 	path: '/my',
 	name: 'my',

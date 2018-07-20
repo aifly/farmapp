@@ -104,3 +104,80 @@
   background: #f5f5f5;
   bottom: 0;
 }
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: justify;
+  width: 90%;
+  margin: 0 auto;
+  height: 120px;
+  border-bottom: 1px solid #999;
+  color: #796945;
+}
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li > div:nth-of-type(1) {
+  width: 70%;
+}
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li > div:nth-of-type(2) span {
+  margin-left: 20px;
+}
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li > div img {
+  width: 40px;
+}
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li .symbin-mobile {
+  font-size: 24px;
+}
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li .symbin-username {
+  font-size: 38px;
+}
+
+.symbin-myaddress-main-ui .symbin-myaddress-main-content li .symbin-detailaddress {
+  color: #a19e8f;
+  font-size: 28px;
+}
+
+.symbin-myaddress-main-ui .symbin-addmyaddress {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  height: 5vh;
+  text-align: center;
+  width: 100%;
+}
+
+.symbin-myaddress-main-ui .symbin-addmyaddress span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #f90;
+  vertical-align: middle;
+  margin-top: -10px;
+  position: relative;
+}
+
+.symbin-myaddress-main-ui .symbin-addmyaddress span:before, .symbin-myaddress-main-ui .symbin-addmyaddress span:after {
+  content: '';
+  width: 2px;
+  height: 30px;
+  position: absolute;
+  background: #f90;
+  top: 10px;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+}
+
+.symbin-myaddress-main-ui .symbin-addmyaddress span:after {
+  width: 30px;
+  height: 2px;
+  left: 50%;
+  top: 50%;
+}

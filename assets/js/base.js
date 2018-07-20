@@ -63,7 +63,9 @@ var imgs = {
 	myOrder:'./assets/images/my-order.png',
 	myStore:'./assets/images/my-store.png',
 	settingIco1:'./assets/images/setting-ico1.png',
-	homeIco1:'./assets/images/home-ico1.png'
+	homeIco1:'./assets/images/home-ico1.png',
+	delIco:'./assets/images/del-ico.png',
+	editIco:'./assets/images/edit-ico.png',
 }
 window.config = {
 	baseUrl:'https://api.symbin.cn/v1'

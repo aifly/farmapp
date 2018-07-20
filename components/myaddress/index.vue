@@ -6,7 +6,31 @@
 		</header>
 
 		<div class='symbin-myaddress-main-content'>
-
+			<ul>
+				<li v-for='(item,i) in myaddressList' :key="i">
+					<div>
+						<div>
+							<span class="symbin-username">{{item.username}}</span>
+							<span class="symbin-mobile">{{item.mobile}}</span>
+						</div>
+						<div class="symbin-detailaddress zmiti-text-overflow">
+							{{item.detailaddress}}
+						</div>
+					</div>
+					<div>
+						<span>
+							<img :src="imgs.editIco" alt="">
+						</span>
+						<span>
+							<img :src="imgs.delIco" alt="">
+						</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="symbin-addmyaddress">
+			<span></span>
+			新增收货地址
 		</div>
 	</div>
 </template>
@@ -27,11 +51,7 @@
 				imgs:window.imgs,
 				viewH:document.documentElement.clientHeight,
 				myaddressList:[
-					{
-						username:'',
-						mobile:'',
-						
-					}
+					
 				]
 			}
 		},
@@ -40,6 +60,7 @@
 		
 		methods:{
 			getMyAddress(){
+				var s = this;
 				symbinUtil.ajax({
 					url:window.config.baseUrl+"/user/getmypostaddress/",
 					data:{
@@ -47,6 +68,9 @@
 					},
 					success(data){
 						console.log(data);
+						if(data.getret === 0){
+							s.myaddressList = data.list;
+						}
 					}
 				})
 			}
