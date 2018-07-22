@@ -20,13 +20,11 @@ var symbinUtil = {
 		} */
 		opt.usermobile = window.localStorage.getItem('mobile');
 		opt.access_token = window.localStorage.getItem('access_token');
-	
-		if(!opt.usermobile && !opt.access_token){
+		var isNeedLogin = option.isNeedLogin === undefined? true:false;
+		if (!opt.usermobile && !opt.access_token && isNeedLogin ) {
 			window.location.hash = '/login';
 			return;
 		}
-		
-
 		$.ajax({
 			url:option.url,
 			type:option.type || 'post',

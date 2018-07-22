@@ -1,131 +1,136 @@
 <template>
 	<div  class="symbin-baseinfo-main-ui lt-full">
-		<Header></Header>
-		<section class="symbin-baseinfo-wrap" :style='{height: viewH-108 + "px"}' ref='page'>
-			<div>
-				<div class="symbin-main-title">
-					<div>
-						<img :src="imgs.demo" />
-					</div>
-					<div>
-						<div class="symbin-id">
-							{{baseInfo.Id}}
-						</div>
-						<img :src="imgs.cInfo" />
-						<div class="symbin-baseinfo-date">
-							<div class="symbin-birthday">
-								生于：{{baseInfo.birthday}}
-							</div>
-							<div class="symbin-dieday">
-								卒于：{{baseInfo.dieday}}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="symbin-grass">
-					<img :src="imgs.grass" />
-				</div>
-
-				<div class="symbin-baseinfo-main" :style="{background: ' url('+imgs.infoBg+') no-repeat center top',backgroundSize:'contain'}">
-					<div class="symbin-baseinfo-tag">
-						<img :src="imgs.cTag">
-						<span>
-							{{baseInfo.type === 1 ? '母鸡':'公鸡'}}
-						</span>
-					</div>
-					
-					<div class="symbin-allstep">
-						<h1>总步数</h1>
+		<div v-if='exists'>
+			<Header></Header>
+			<section class="symbin-baseinfo-wrap" :style='{height: viewH-108 + "px"}' ref='page'>
+				<div>
+					<div class="symbin-main-title">
 						<div>
-							{{format(baseInfo.totalstep)}}
-						</div>
-					</div>
-
-					<div class="symbin-c-info">
-						<div>
-							<div><span>{{baseInfo.mileage}}</span>km</div>
-							<div>总里程数</div>
+							<img :src="imgs.demo" />
 						</div>
 						<div>
-							<div><span>{{baseInfo.eggCount}}</span>枚/季度</div>
-							<div>平均产蛋数</div>
-						</div>
-						<div>
-							<div>不详</div>
-							<div>重量</div>
+							<div class="symbin-id">
+								{{baseInfo.Id}}
+							</div>
+							<img :src="imgs.cInfo" />
+							<div class="symbin-baseinfo-date">
+								<div class="symbin-birthday">
+									生于：{{baseInfo.birthday}}
+								</div>
+								<div class="symbin-dieday">
+									卒于：{{baseInfo.dieday}}
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="symbin-baseinfo-chart" :class='{"hide":!showCharts}'>
-						<div class="symbin-chart-tags">
-							<div>湿度</div>
-							<div>温度</div>
-							<div>步数</div>
-						</div>
 
-						<div class="symbin-baseinfo-date">
-							{{baseInfo.steps && baseInfo.steps[stepIndex].date}}
-						</div>
+					<div class="symbin-grass">
+						<img :src="imgs.grass" />
+					</div>
 
-						<div class="symbin-baseinfo-step" v-if='baseInfo.steps'>
-							{{format(baseInfo.steps[stepIndex].step)}} <span>步</span>
-							<label> <em>{{(baseInfo.steps[stepIndex].step*.001*(baseInfo.type ===0?.11:baseInfo.steps[stepIndex].status === 0 ? .05:.1)).toFixed(2)}}</em> km</label>
-						</div>
-
-						<div class="symbin-temp-humidity"  v-if='baseInfo.steps'>
-							<div>
-								<span>温度</span>
-								<img :src="imgs.temperature">
-								<span>{{baseInfo.steps[stepIndex].temperature}}℃</span>
-							</div>
-							<div>
-								<span>湿度</span>
-								<img :src="imgs.humidity">
-								<span>{{baseInfo.steps[stepIndex].humidity}}RH%</span>
-							</div>
+					<div class="symbin-baseinfo-main" :style="{background: ' url('+imgs.infoBg+') no-repeat center top',backgroundSize:'contain'}">
+						<div class="symbin-baseinfo-tag">
+							<img :src="imgs.cTag">
+							<span>
+								{{baseInfo.type === 1 ? '母鸡':'公鸡'}}
+							</span>
 						</div>
 						
-						<div class="symbin-chart">
+						<div class="symbin-allstep">
+							<h1>总步数</h1>
+							<div>
+								{{format(baseInfo.totalstep)}}
+							</div>
+						</div>
+
+						<div class="symbin-c-info">
+							<div>
+								<div><span>{{baseInfo.mileage}}</span>km</div>
+								<div>总里程数</div>
+							</div>
+							<div>
+								<div><span>{{baseInfo.eggCount}}</span>枚/季度</div>
+								<div>平均产蛋数</div>
+							</div>
+							<div>
+								<div>不详</div>
+								<div>重量</div>
+							</div>
+						</div>
+						<div class="symbin-baseinfo-chart" :class='{"hide":!showCharts}'>
+							<div class="symbin-chart-tags">
+								<div>湿度</div>
+								<div>温度</div>
+								<div>步数</div>
+							</div>
+
+							<div class="symbin-baseinfo-date">
+								{{baseInfo.steps && baseInfo.steps[stepIndex].date}}
+							</div>
+
+							<div class="symbin-baseinfo-step" v-if='baseInfo.steps'>
+								{{format(baseInfo.steps[stepIndex].step)}} <span>步</span>
+								<label> <em>{{(baseInfo.steps[stepIndex].step*.001*(baseInfo.type ===0?.11:baseInfo.steps[stepIndex].status === 0 ? .05:.1)).toFixed(2)}}</em> km</label>
+							</div>
+
+							<div class="symbin-temp-humidity"  v-if='baseInfo.steps'>
+								<div>
+									<span>温度</span>
+									<img :src="imgs.temperature">
+									<span>{{baseInfo.steps[stepIndex].temperature}}℃</span>
+								</div>
+								<div>
+									<span>湿度</span>
+									<img :src="imgs.humidity">
+									<span>{{baseInfo.steps[stepIndex].humidity}}RH%</span>
+								</div>
+							</div>
 							
-							<canvas @touchend='touchend($event)' @touchmove='touchmove($event)' @touchstart='touchstart($event)' ref='canvas' width="620" height="400"></canvas>
+							<div class="symbin-chart">
+								
+								<canvas @touchend='touchend($event)' @touchmove='touchmove($event)' @touchstart='touchstart($event)' ref='canvas' width="620" height="400"></canvas>
 
-							<div class="symbin-line">
-								<img :src="imgs.line">
+								<div class="symbin-line">
+									<img :src="imgs.line">
+								</div>
+
 							</div>
-
+							
 						</div>
-						
-					</div>
 
-					<div class="symbin-open" v-tap='[toggleCharts]'>
-						{{showCharts?'收起':'展开'}}
-					</div>
-
-					<div class="symbin-life-pic-title">
-						<img :src="imgs.lifePic" />
-						<span>更多</span>
-					</div>
-
-					<div class="symbin-life-pic-list">
-						<div :key='i' v-for='(pic,i) in baseInfo.lifepic' v-if='i<2' :style='{background: "url("+pic.url+") no-repeat center center",backgroundSize:"cover"}'>
-							<img :src='pic.url'/>
+						<div class="symbin-open" v-tap='[toggleCharts]'>
+							{{showCharts?'收起':'展开'}}
 						</div>
-					</div>
 
-					<div class="symbin-address">
-						<div>
-							<div>所属地</div>
-							<div>{{baseInfo.dependency}}</div>
+						<div class="symbin-life-pic-title">
+							<img :src="imgs.lifePic" />
+							<span>更多</span>
 						</div>
-						<div class="symbin-qrcode" v-if='baseInfo.qrcode'>
-							<img :src="baseInfo.qrcode">
+
+						<div class="symbin-life-pic-list">
+							<div :key='i' v-for='(pic,i) in baseInfo.lifepic' v-if='i<2' :style='{background: "url("+pic.url+") no-repeat center center",backgroundSize:"cover"}'>
+								<img :src='pic.url'/>
+							</div>
 						</div>
+
+						<div class="symbin-address">
+							<div>
+								<div>所属地</div>
+								<div>{{baseInfo.dependency}}</div>
+							</div>
+							<div class="symbin-qrcode" v-if='baseInfo.qrcode'>
+								<img :src="baseInfo.qrcode">
+							</div>
+						</div>
+
 					</div>
 
 				</div>
-
-			</div>
-		</section>
+			</section>
+		</div>
+		<div v-else>
+			当前计步器无效
+		</div>
 
 	</div>
 </template>
@@ -149,6 +154,7 @@
 				viewH:document.documentElement.clientHeight,
 				stepIndex:0,
 				transX:0,
+				exists:true,
 				translateX:0,
 				showCharts:true,
 				baseInfo:{
@@ -176,6 +182,7 @@
 				symbinUtil.ajax({
 					url:'./assets/js/data.json',
 					url:window.config.baseUrl+'/user/getstepdetail',
+					isNeedLogin:false,
 					data:{
 						farmproduceid:id
 					},
@@ -206,6 +213,9 @@
 							s.baseInfo.allCount = allCount;
 	
 							s.initCanvas();
+						}
+						else if(data.getret === 1000 ){
+							s.exists = false;
 						}
 					}
 				});

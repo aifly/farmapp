@@ -53,9 +53,9 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	__webpack_require__(68);
+	__webpack_require__(98);
 
-	var _componentsScanIndex = __webpack_require__(47);
+	var _componentsScanIndex = __webpack_require__(62);
 
 	var _componentsScanIndex2 = _interopRequireDefault(_componentsScanIndex);
 
@@ -71,7 +71,7 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _vueJsTap = __webpack_require__(71);
+	var _vueJsTap = __webpack_require__(101);
 
 	var _vueJsTap2 = _interopRequireDefault(_vueJsTap);
 
@@ -11794,10 +11794,17 @@
 		ajax: function ajax(option) {
 			var _this = this;
 
-			var opt = option.data;
-			if (option.validate) {
-				opt.adminusername = option.validate.adminusername;
-				opt.admintoken = option.validate.admintoken;
+			var opt = option.data || {};
+			/* if(option.validate){
+	  	opt.usermobile = option.validate.adminusername;
+	  	opt.access_token = option.validate.admintoken;
+	  } */
+			opt.usermobile = window.localStorage.getItem('mobile');
+			opt.access_token = window.localStorage.getItem('access_token');
+			var isNeedLogin = option.isNeedLogin === undefined ? true : false;
+			if (!opt.usermobile && !opt.access_token && isNeedLogin) {
+				window.location.hash = '/login';
+				return;
 			}
 			_jquery2["default"].ajax({
 				url: option.url,
@@ -11807,6 +11814,7 @@
 					option.fnError && option.fnError();
 				}
 			}).done(function (dt) {
+
 				if (dt.getret === 1300) {
 					_this.clearCookie('login');
 					window.location.hash = '/login';
@@ -11833,6 +11841,9 @@
 				if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
 			}
 			return "";
+		},
+		isLogin: function isLogin() {
+			return window.localStorage.getItem('access_token') && window.localStorage.getItem('mobile');
 		}
 
 	};
@@ -21662,12 +21673,12 @@
 
 /***/ }),
 
-/***/ 47:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(48)
-	__vue_template__ = __webpack_require__(51)
+	__vue_script__ = __webpack_require__(63)
+	__vue_template__ = __webpack_require__(66)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -21685,7 +21696,7 @@
 
 /***/ }),
 
-/***/ 48:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// <template>
@@ -21736,7 +21747,7 @@
 		value: true
 	});
 
-	__webpack_require__(49);
+	__webpack_require__(64);
 
 	exports['default'] = {
 		props: ['obserable'],
@@ -21780,13 +21791,13 @@
 
 /***/ }),
 
-/***/ 49:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(50);
+	var content = __webpack_require__(65);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -21807,7 +21818,7 @@
 
 /***/ }),
 
-/***/ 50:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -21822,20 +21833,20 @@
 
 /***/ }),
 
-/***/ 51:
+/***/ 66:
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<div class=\"symbin-scan-ui lt-full\">\n\t\t<div class=\"symbin-scan-search-C\">\n\t\t\t<div><input type=\"text\" name=\"\" placeholder=\"请输入查询编码\" /></div>\n\t\t\t<div>查询</div>\n\t\t</div>\n\t\t<div class=\"symbin-scan-main\">\n\t\t\t<div>\n\t\t\t\t<div class=\"symbin-logo\">\n\t\t\t\t\t<img :src=\"imgs.logo\">\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-text\">\n\t\t\t\t\t<div>二维码查询</div>\n\t\t\t\t\t<div>请对准鸡脚环上的二维码进行识别</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\n\t\t\t<div class=\"symbin-scan-C\">\n\t\t\t\t<div class=\"symbin-scan-btn\">\n\t\t\t\t\t<img :src=\"imgs.scanBtn\">\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t\t<span class=\"lt-full\"></span>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-copyright\">\n\t\t\t\t\t&copy; 小彬科技有限公司\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"symbin-help\">\n\t\t\t\t\t<img :src=\"imgs.help\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<canvas :width='viewW' height=\"250\" ref='canvas' class=\"symbin-canvas\"></canvas>\n\t</div>\n";
 
 /***/ }),
 
-/***/ 68:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(69);
+	var content = __webpack_require__(99);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -21856,7 +21867,7 @@
 
 /***/ }),
 
-/***/ 69:
+/***/ 99:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(10)();
@@ -21871,7 +21882,7 @@
 
 /***/ }),
 
-/***/ 71:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!

@@ -31,6 +31,7 @@
 	import './index.css';
 	import symbinUtil from '../lib/util';
 	import Toast from '../toast/toast';
+	import $ from 'jquery';
 	export default {
 		props: ['obserable'],
 		data() {
@@ -76,7 +77,23 @@
 						this.seconds = 60;
 					}
 				},1000);
-				
+				 
+				$.ajax({
+					url:window.config.baseUrl+'/user/send_mobilecode/',
+					type:'post',
+					isNeedLogin:false,
+					data:{
+						setmobile:mobile,
+						usertype:1,//用户注册类型：1, 注册地主,2: 注册农夫
+						smstype:1 //短信类型：1,注册；2,登陆；
+					},
+					success(data){
+						console.log(data);
+					}
+				})
+
+
+				/* return;
 
 				symbinUtil.ajax({
 					url:window.config.baseUrl+'/user/send_mobilecode/',
@@ -90,7 +107,7 @@
 						if(data.getret === 0){
 						}
 					}
-				})
+				}) */
 
 			},
 			login(){
