@@ -13,7 +13,7 @@ var symbinUtil = {
 		return url.match(pattern) ? url.replace(eval('/(' + arg + '=)([^&]*)/gi'), replaceText) : (url.match('[\?]') ? url + '&' + replaceText : url + '?' + replaceText);
 	},
 	ajax(option){
-		var opt = option.data;
+		var opt = option.data || {};
 		/* if(option.validate){
 			opt.usermobile = option.validate.adminusername;
 			opt.access_token = option.validate.admintoken;

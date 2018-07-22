@@ -38,13 +38,13 @@
 					<div class="symbin-allstep">
 						<h1>总步数</h1>
 						<div>
-							{{format(baseInfo.allCount)}}
+							{{format(baseInfo.totalstep)}}
 						</div>
 					</div>
 
 					<div class="symbin-c-info">
 						<div>
-							<div><span>12</span>km</div>
+							<div><span>{{baseInfo.mileage}}</span>km</div>
 							<div>总里程数</div>
 						</div>
 						<div>
@@ -107,7 +107,7 @@
 					</div>
 
 					<div class="symbin-life-pic-list">
-						<div v-for='(pic,i) in baseInfo.lifepic' v-if='i<2' :style='{background: "url("+pic.url+") no-repeat center center",backgroundSize:"cover"}'>
+						<div :key='i' v-for='(pic,i) in baseInfo.lifepic' v-if='i<2' :style='{background: "url("+pic.url+") no-repeat center center",backgroundSize:"cover"}'>
 							<img :src='pic.url'/>
 						</div>
 					</div>
@@ -171,26 +171,42 @@
 
 			loadInfoById(id){
 				var s = this;
+
+
 				symbinUtil.ajax({
 					url:'./assets/js/data.json',
+					url:window.config.baseUrl+'/user/getstepdetail',
+					data:{
+						farmproduceid:id
+					},
 					type:'get',
-					fn(data){
-						var allCount =  0;
-						var steps = [];
-						
-						if(data.steps.length<14){
-							s.translateX =  620 / 2;
+					type:'post',
+					success(data){
+						console.log(data);
+						if(data.getret === 0){
+
+							var allCount =  0;
+							var steps = [];
+
+
+	
+							var dt = data.detail;
+							
+							
+							if(dt.steps.length<14){
+								s.translateX =  620 / 2;
+							}
+							dt.steps.map((s,i)=>{
+								allCount+=s.step
+								steps.push(s.step);
+							})
+	
+							s.baseInfo = dt;
+							s.baseInfo.maxStep = Math.max.apply(Array,steps);
+							s.baseInfo.allCount = allCount;
+	
+							s.initCanvas();
 						}
-						data.steps.map((s,i)=>{
-							allCount+=s.step
-							steps.push(s.step);
-						})
-
-						s.baseInfo = data;
-						s.baseInfo.maxStep = Math.max.apply(Array,steps);
-						s.baseInfo.allCount = allCount;
-
-						s.initCanvas();
 					}
 				});
 			},
@@ -222,8 +238,6 @@
 					
 					
 				});
-
-
 
 				context.fillStyle = '#45c75d';
 				this.baseInfo.steps.forEach((step,i)=>{
@@ -359,7 +373,8 @@
 		},
 		mounted(){
 
-			this.loadInfoById();
+			var id = this.$route.params.id;
+			this.loadInfoById(id);
 
 
 
