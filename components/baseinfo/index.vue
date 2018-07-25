@@ -32,7 +32,7 @@
 						<div class="symbin-baseinfo-tag">
 							<img :src="imgs.cTag">
 							<span>
-								{{baseInfo.type === 1 ? '母鸡':'公鸡'}}
+								{{baseInfo.type}}
 							</span>
 						</div>
 						
@@ -183,11 +183,11 @@
 					url:'./assets/js/data.json',
 					url:window.config.baseUrl+'/user/getstepdetail',
 					isNeedLogin:false,
+					type:"post",
 					data:{
 						farmproduceid:id
 					},
 					type:'get',
-					type:'post',
 					success(data){
 						console.log(data);
 						if(data.getret === 0){
