@@ -10,8 +10,8 @@
 		</header>
 		<section class="symbin-my-main-content">
 			<div class="symbin-my-head">
-				<div><img :src="imgs.logo1" alt=""></div>
-				<div>慕容农场</div>
+				<div><img :src="userinfo.headimage || imgs.logo1" alt=""></div>
+				<div>{{userinfo.nick}}</div>
 			</div>
 
 			<div class="symbin-my-goods">
@@ -98,6 +98,8 @@
 				transX:0,
 				translateX:0,
 				showCharts:true,
+				userinfo:{},
+				farm:{},
 				baseInfo:{
 
 				}
@@ -107,8 +109,35 @@
 		},
 		
 		methods:{
+			getInfo(){
+				var s = this;
+				symbinUtil.ajax({
+					url:window.config.baseUrl+'/user/getinfo',
+					data:{},
+					success(data){
+						if(data.getret === 0){
+							s.farm = data.farm;
+							s.userinfo = data.info;	
+						}
+					}
+				})
+
+				symbinUtil.ajax({
+					url:window.config.baseUrl+'/user/getwarehouselist',
+					data:{},
+					success(data){
+						console.log(data);
+						if(data.getret === 0){
+							
+						}
+					}
+				})
+
+
+			}
 		},
 		mounted(){
+			this.getInfo();
 		}
 	}
 </script>

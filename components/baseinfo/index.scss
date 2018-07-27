@@ -4,7 +4,21 @@ $viewW:750px;
  $bgColor:#45c75d;
 .symbin-baseinfo-main-ui{
 	background: $bgColor;
+	
 
+	.symbin-test{
+		@include pos(a);
+		width: 200px;
+		height:60px;
+		z-index: 100;
+		background: #f6c109;
+		left: 255px;
+		bottom: 10px;
+		text-align: center;
+		line-height: 60px;;
+
+		@include br(10px);
+	}
 
 	.symbin-baseinfo-wrap{
 		overflow: hidden;

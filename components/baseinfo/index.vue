@@ -2,6 +2,10 @@
 	<div  class="symbin-baseinfo-main-ui lt-full">
 		<div v-if='exists'>
 			<Header></Header>
+
+			<div class='symbin-test' v-tap='[refresh]'>
+				刷新
+			</div>
 			<section class="symbin-baseinfo-wrap" :style='{height: viewH-108 + "px"}' ref='page'>
 				<div>
 					<div class="symbin-main-title">
@@ -175,6 +179,11 @@
 				},700);
 			},
 
+			refresh(){
+				var id = this.$route.params.id;
+				this.loadInfoById(id);
+			},
+
 			loadInfoById(id){
 				var s = this;
 
@@ -237,6 +246,7 @@
 					maxX = 0,
 					maxWidth = this.baseInfo.steps.length * 24 -4;
 				this.maxWidth = maxWidth;
+				context.clearRect(0,0,canvas.width,canvas.height);
 				this.drawTemperature();
 				this.baseInfo.steps.forEach((step,i)=>{
 					if(i === this.baseInfo.steps.length -1){

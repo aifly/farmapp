@@ -9,14 +9,16 @@
   height: 100%;
   position: absolute;
   left: 0;
-  top: 0; }
+  top: 0;
+}
 
 .zmiti-text-overflow {
   overflow: hidden;
   white-space: nowrap;
   word-break: break-all;
   text-overflow: ellipsis;
-  -webkit-text-overflow: ellipsis; }
+  -webkit-text-overflow: ellipsis;
+}
 
 .zmiti-play {
   width: .8rem;
@@ -25,345 +27,497 @@
   position: fixed;
   z-index: 1000;
   right: .5rem;
-  top: .5rem; }
-  .zmiti-play.rotate {
-    -webkit-animation: rotate 5s linear infinite;
-    animation: rotate 5s linear infinite; }
+  top: .5rem;
+}
+
+.zmiti-play.rotate {
+  -webkit-animation: rotate 5s linear infinite;
+  animation: rotate 5s linear infinite;
+}
 
 .symbin-left {
-  float: left !important; }
+  float: left !important;
+}
 
 .symbin-right {
-  float: right !important; }
+  float: right !important;
+}
 
 @-webkit-keyframes rotate {
   to {
     -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-.symbin-baseinfo-main-ui {
-  background: #45c75d; }
-  .symbin-baseinfo-main-ui .symbin-baseinfo-wrap {
-    overflow: hidden;
-    width: 750px;
-    position: relative; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-wrap > div {
-      background: #45c75d;
-      padding-bottom: 30px; }
-  .symbin-baseinfo-main-ui .symbin-main-title {
-    position: relative;
-    z-index: 2;
-    width: 700px;
-    display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -webkit-box-orient: horizontal;
-    margin: 20px auto 0;
-    color: #fff; }
-    .symbin-baseinfo-main-ui .symbin-main-title > div {
-      margin: 0 10px;
-      position: relative; }
-    .symbin-baseinfo-main-ui .symbin-main-title .symbin-id {
-      position: absolute;
-      right: 0;
-      font-weight: bold;
-      font-size: 44px;
-      width: 230px;
-      margin-top: -4px; }
-    .symbin-baseinfo-main-ui .symbin-main-title .symbin-baseinfo-date {
-      font-size: 26px;
-      position: absolute; }
-  .symbin-baseinfo-main-ui .symbin-grass {
-    position: absolute;
-    top: -38px;
-    z-index: 1; }
-  .symbin-baseinfo-main-ui .symbin-baseinfo-main {
-    min-height: 700px;
-    position: relative;
-    top: -20px;
-    z-index: 2;
-    color: #604b19;
-    width: 700px;
-    border: 1px solid transparent;
-    margin: 0 auto; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-main:before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 90%;
-      bottom: 0;
-      background: #fcfbe4;
-      z-index: -1;
-      border-radius: 10px; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-baseinfo-tag {
-      position: absolute;
-      width: 100px;
-      left: -10px;
-      top: 60px; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-baseinfo-tag span {
-        position: absolute;
-        top: 0;
-        color: #fff;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        top: 5px; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep {
-      width: 620px;
-      padding-top: 120px;
-      margin: 0 auto; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep h1 {
-        text-indent: 2em;
-        font-size: 30px;
-        font-weight: normal; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep > div {
-        font-weight: bold;
-        text-align: center;
-        position: relative;
-        top: 20px;
-        height: 80px;
-        line-height: 80px;
-        color: #f6c309;
-        font-size: 60px;
-        border-radius: 40px; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep > div:before {
-          content: '';
-          position: absolute;
-          border-radius: 40px;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-          background: -webkit-linear-gradient(top, #fbf9ca, #fef39d);
-          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info {
-      width: 620px;
-      margin: 40px auto 0;
-      text-align: center;
-      display: -webkit-box;
-      -webkit-box-align: center;
-      -webkit-box-pack: center;
-      -webkit-box-orient: horizontal; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div {
-        -webkit-box-flex: 1;
-        font-size: 24px;
-        font-weight: bold; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div span {
-          font-size: 36px; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2) {
-          position: relative; }
-          .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2):before, .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2):after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 1px;
-            height: 100%;
-            background: -webkit-gradient(linear, left top, left bottom, from(rgba(204, 204, 204, 0.2)), color-stop(0.5, #cccccc), to(rgba(204, 204, 204, 0.2)));
-            background: -moz-linear-gradient(top, rgba(204, 204, 204, 0.2), #cccccc 50%, rgba(204, 204, 204, 0.2));
-            background: -ms-linear-gradient(top, rgba(204, 204, 204, 0.2), #cccccc 50%, rgba(204, 204, 204, 0.2)); }
-          .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2):after {
-            right: 0;
-            left: auto; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div > div:nth-of-type(2) {
-          font-weight: normal;
-          color: #c7c6ba;
-          margin-top: 20px; }
-  .symbin-baseinfo-main-ui .symbin-baseinfo-chart {
-    height: 740px;
-    width: 620px;
-    margin: 30px auto;
-    position: relative;
-    -webkit-transition: 0.6s;
-    transition: 0.6s;
-    overflow: hidden; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart.hide {
-      height: 0; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart:before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 80px;
-      background: -webkit-linear-gradient(top, rgba(67, 198, 91, 0.22), #fcfbe4); }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags {
-      position: absolute;
-      top: 60px; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div {
-        width: 150px;
-        text-align: right;
-        position: relative;
-        color: #ccc; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div:before {
-          content: "";
-          width: 50px;
-          top: 15px;
-          border: 2px dashed #3eb1f3;
-          position: absolute;
-          left: 0; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div:nth-of-type(2):before {
-          border: 2px solid #f6c109; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div:nth-of-type(3):before {
-          height: 10px;
-          background: #45c75d;
-          border: 2px solid #45c75d; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-date {
-      width: 100%;
-      padding-top: 120px;
-      text-align: center; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step {
-      width: 270px;
-      height: 80px;
-      line-height: 80px;
-      text-align: center;
-      color: #f6c309;
-      font-size: 50px;
-      border-radius: 40px;
-      margin: 20px auto;
-      position: relative; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step:before {
-        content: '';
-        position: absolute;
-        border-radius: 40px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: -webkit-linear-gradient(top, #fbf9ca, #fef39d);
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step span {
-        font-size: 30px;
-        color: #ddd;
-        position: absolute;
-        right: 10px; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step label {
-        color: #604b19;
-        position: absolute;
-        left: 100%;
-        font-size: 28px;
-        width: 200px; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step label:before {
-          content: '约';
-          position: absolute;
-          left: 10px;
-          color: #ddd; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step label em {
-          margin-left: 20px;
-          font-style: normal;
-          font-family: Georgia;
-          font-size: 36px; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart {
-      margin-top: 20px;
-      box-sizing: border-box;
-      position: relative;
-      width: 620px;
-      height: 400px;
-      overflow: hidden; }
-      .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart > .symbin-line {
-        z-index: 0;
-        position: absolute;
-        width: 80px;
-        text-align: center;
-        left: 50%;
-        margin-left: -30px; }
-        .symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart > .symbin-line img {
-          width: 40px; }
-    .symbin-baseinfo-main-ui .symbin-baseinfo-chart canvas {
-      position: absolute;
-      z-index: 1;
-      bottom: 0; }
-  .symbin-baseinfo-main-ui .symbin-open {
-    background: #47d10d;
-    border-radius: 14px;
-    width: 100px;
-    height: 60px;
-    text-align: center;
-    line-height: 60px;
-    color: #fff;
-    margin: 50px auto 30px; }
-  .symbin-baseinfo-main-ui .symbin-life-pic-title {
-    width: 620px;
-    margin: 0 auto 20px;
-    text-align: center;
-    position: relative; }
-    .symbin-baseinfo-main-ui .symbin-life-pic-title img {
-      width: 240px; }
-    .symbin-baseinfo-main-ui .symbin-life-pic-title span {
-      position: absolute;
-      right: 0; }
-  .symbin-baseinfo-main-ui .symbin-life-pic-list {
-    width: 620px;
-    margin: 0 auto;
-    display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -webkit-box-orient: horizontal; }
-    .symbin-baseinfo-main-ui .symbin-life-pic-list > div {
-      position: relative;
-      text-align: center;
-      width: 288px;
-      height: 160px; }
-      .symbin-baseinfo-main-ui .symbin-life-pic-list > div img {
-        opacity: 0; }
-      .symbin-baseinfo-main-ui .symbin-life-pic-list > div:before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        box-shadow: 0 0 20px #f1ebcb, 0 0 40px #e5e3b5; }
-      .symbin-baseinfo-main-ui .symbin-life-pic-list > div:nth-of-type(1) {
-        margin-right: 20px; }
-      .symbin-baseinfo-main-ui .symbin-life-pic-list > div:nth-of-type(2) {
-        margin-left: 20px; }
-  .symbin-baseinfo-main-ui .symbin-address {
-    width: 620px;
-    margin: 30px auto;
-    height: 200px;
-    display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -webkit-box-orient: horizontal; }
-    .symbin-baseinfo-main-ui .symbin-address div {
-      background: #f0efce;
-      border-radius: 10px; }
-    .symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) {
-      -webkit-box-flex: 1;
-      text-align: center;
-      margin-right: 10px;
-      height: 200px; }
-      .symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) > div {
-        font-weight: bold; }
-        .symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) > div:nth-of-type(1) {
-          margin-top: 30px;
-          color: #c5c49e; }
-        .symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) > div:nth-of-type(2) {
-          margin-top: 10px;
-          color: #604b19; }
-    .symbin-baseinfo-main-ui .symbin-address .symbin-qrcode {
-      width: 200px; }
-      .symbin-baseinfo-main-ui .symbin-address .symbin-qrcode img {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9); }
-  .symbin-baseinfo-main-ui .symbin-temp-humidity {
-    display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -webkit-box-orient: horizontal;
-    -webkit-box-align: end; }
-    .symbin-baseinfo-main-ui .symbin-temp-humidity > div {
-      margin: 0 30px; }
-      .symbin-baseinfo-main-ui .symbin-temp-humidity > div:nth-of-type(1) {
-        color: #f6c109; }
-      .symbin-baseinfo-main-ui .symbin-temp-humidity > div:nth-of-type(2) {
-        color: #2baaf0; }
-      .symbin-baseinfo-main-ui .symbin-temp-humidity > div > span:nth-of-type(1) {
-        color: #999; }
-      .symbin-baseinfo-main-ui .symbin-temp-humidity > div > span:nth-of-type(2) {
-        font-weight: bold; }
-    .symbin-baseinfo-main-ui .symbin-temp-humidity img {
-      width: 30px;
-      vertical-align: bottom; }
+    transform: rotate(360deg);
+  }
+}
 
-/*# sourceMappingURL=index.css.map */
+.symbin-baseinfo-main-ui {
+  background: #45c75d;
+}
+
+.symbin-baseinfo-main-ui .symbin-test {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  z-index: 100;
+  background: #f6c109;
+  left: 255px;
+  bottom: 10px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 10px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-wrap {
+  overflow: hidden;
+  width: 750px;
+  position: relative;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-wrap > div {
+  background: #45c75d;
+  padding-bottom: 30px;
+}
+
+.symbin-baseinfo-main-ui .symbin-main-title {
+  position: relative;
+  z-index: 2;
+  width: 700px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  margin: 20px auto 0;
+  color: #fff;
+}
+
+.symbin-baseinfo-main-ui .symbin-main-title > div {
+  margin: 0 10px;
+  position: relative;
+}
+
+.symbin-baseinfo-main-ui .symbin-main-title .symbin-id {
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+  font-size: 44px;
+  width: 230px;
+  margin-top: -4px;
+}
+
+.symbin-baseinfo-main-ui .symbin-main-title .symbin-baseinfo-date {
+  font-size: 26px;
+  position: absolute;
+}
+
+.symbin-baseinfo-main-ui .symbin-grass {
+  position: absolute;
+  top: -38px;
+  z-index: 1;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main {
+  min-height: 700px;
+  position: relative;
+  top: -20px;
+  z-index: 2;
+  color: #604b19;
+  width: 700px;
+  border: 1px solid transparent;
+  margin: 0 auto;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  bottom: 0;
+  background: #fcfbe4;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-baseinfo-tag {
+  position: absolute;
+  width: 100px;
+  left: -10px;
+  top: 60px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-baseinfo-tag span {
+  position: absolute;
+  top: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 5px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep {
+  width: 620px;
+  padding-top: 120px;
+  margin: 0 auto;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep h1 {
+  text-indent: 2em;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep > div {
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: 20px;
+  height: 80px;
+  line-height: 80px;
+  color: #f6c309;
+  font-size: 60px;
+  border-radius: 40px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-allstep > div:before {
+  content: '';
+  position: absolute;
+  border-radius: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: -webkit-linear-gradient(top, #fbf9ca, #fef39d);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info {
+  width: 620px;
+  margin: 40px auto 0;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div {
+  -webkit-box-flex: 1;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div span {
+  font-size: 36px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2) {
+  position: relative;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2):before, .symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2):after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(204, 204, 204, 0.2)), color-stop(0.5, #cccccc), to(rgba(204, 204, 204, 0.2)));
+  background: -moz-linear-gradient(top, rgba(204, 204, 204, 0.2), #cccccc 50%, rgba(204, 204, 204, 0.2));
+  background: -ms-linear-gradient(top, rgba(204, 204, 204, 0.2), #cccccc 50%, rgba(204, 204, 204, 0.2));
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div:nth-of-type(2):after {
+  right: 0;
+  left: auto;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-main .symbin-c-info > div > div:nth-of-type(2) {
+  font-weight: normal;
+  color: #c7c6ba;
+  margin-top: 20px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart {
+  height: 740px;
+  width: 620px;
+  margin: 30px auto;
+  position: relative;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  overflow: hidden;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart.hide {
+  height: 0;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  background: -webkit-linear-gradient(top, rgba(67, 198, 91, 0.22), #fcfbe4);
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags {
+  position: absolute;
+  top: 60px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div {
+  width: 150px;
+  text-align: right;
+  position: relative;
+  color: #ccc;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div:before {
+  content: "";
+  width: 50px;
+  top: 15px;
+  border: 2px dashed #3eb1f3;
+  position: absolute;
+  left: 0;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div:nth-of-type(2):before {
+  border: 2px solid #f6c109;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart-tags > div:nth-of-type(3):before {
+  height: 10px;
+  background: #45c75d;
+  border: 2px solid #45c75d;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-date {
+  width: 100%;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step {
+  width: 270px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  color: #f6c309;
+  font-size: 50px;
+  border-radius: 40px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step:before {
+  content: '';
+  position: absolute;
+  border-radius: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: -webkit-linear-gradient(top, #fbf9ca, #fef39d);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step span {
+  font-size: 30px;
+  color: #ddd;
+  position: absolute;
+  right: 10px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step label {
+  color: #604b19;
+  position: absolute;
+  left: 100%;
+  font-size: 28px;
+  width: 200px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step label:before {
+  content: '约';
+  position: absolute;
+  left: 10px;
+  color: #ddd;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-baseinfo-step label em {
+  margin-left: 20px;
+  font-style: normal;
+  font-family: Georgia;
+  font-size: 36px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart {
+  margin-top: 20px;
+  box-sizing: border-box;
+  position: relative;
+  width: 620px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart > .symbin-line {
+  z-index: 0;
+  position: absolute;
+  width: 80px;
+  text-align: center;
+  left: 50%;
+  margin-left: -30px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart .symbin-chart > .symbin-line img {
+  width: 40px;
+}
+
+.symbin-baseinfo-main-ui .symbin-baseinfo-chart canvas {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+}
+
+.symbin-baseinfo-main-ui .symbin-open {
+  background: #47d10d;
+  border-radius: 14px;
+  width: 100px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+  margin: 50px auto 30px;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-title {
+  width: 620px;
+  margin: 0 auto 20px;
+  text-align: center;
+  position: relative;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-title img {
+  width: 240px;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-title span {
+  position: absolute;
+  right: 0;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-list {
+  width: 620px;
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-list > div {
+  position: relative;
+  text-align: center;
+  width: 288px;
+  height: 160px;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-list > div img {
+  opacity: 0;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-list > div:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 20px #f1ebcb, 0 0 40px #e5e3b5;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-list > div:nth-of-type(1) {
+  margin-right: 20px;
+}
+
+.symbin-baseinfo-main-ui .symbin-life-pic-list > div:nth-of-type(2) {
+  margin-left: 20px;
+}
+
+.symbin-baseinfo-main-ui .symbin-address {
+  width: 620px;
+  margin: 30px auto;
+  height: 200px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+}
+
+.symbin-baseinfo-main-ui .symbin-address div {
+  background: #f0efce;
+  border-radius: 10px;
+}
+
+.symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) {
+  -webkit-box-flex: 1;
+  text-align: center;
+  margin-right: 10px;
+  height: 200px;
+}
+
+.symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) > div {
+  font-weight: bold;
+}
+
+.symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) > div:nth-of-type(1) {
+  margin-top: 30px;
+  color: #c5c49e;
+}
+
+.symbin-baseinfo-main-ui .symbin-address > div:nth-of-type(1) > div:nth-of-type(2) {
+  margin-top: 10px;
+  color: #604b19;
+}
+
+.symbin-baseinfo-main-ui .symbin-address .symbin-qrcode {
+  width: 200px;
+}
+
+.symbin-baseinfo-main-ui .symbin-address .symbin-qrcode img {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: end;
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity > div {
+  margin: 0 30px;
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity > div:nth-of-type(1) {
+  color: #f6c109;
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity > div:nth-of-type(2) {
+  color: #2baaf0;
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity > div > span:nth-of-type(1) {
+  color: #999;
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity > div > span:nth-of-type(2) {
+  font-weight: bold;
+}
+
+.symbin-baseinfo-main-ui .symbin-temp-humidity img {
+  width: 30px;
+  vertical-align: bottom;
+}
