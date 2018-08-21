@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=750,user-scalable=no" />
+	<title></title>
+	<style>
+		html,body{
+		    font-size: 100%;
+		    height: 100%;
+		    padding: 0;margin: 0;
+		}
+		
+	</style>
+	<script>
+		window.protocol = location.protocol;
+		window.PointerEvent = undefined;
+	</script>
+	<style>
+		*{
+            margin: 0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+        }
+        body{
+            font-size:32px;
+        }
+        ul{
+            width:100%;
+            
+        }
+        li{
+            width: 100%;
+            position: relative;
+            height: 80px;
+            line-height: 80px;
+            border-top:1px solid #ccc;
+        }
+        span{
+            //display:inline-block;
+            width:28%;   
+            text-align: center;
+            float: left;
+            box-sizing:border-box;
+        }
+        li span:nth-of-type(2){ width:20%; }
+
+        li span:nth-of-type(3){
+            width:50%;
+        }
+
+        button{
+            font-size:32px;
+            margin: 10px;
+            padding:6px 40px;
+            background:#f90;
+            color:#fff;
+            border:1px solid #f90;
+            border-radius: 10px;
+            outline: none;
+            position: fixed;
+            z-index:100;
+            bottom: 0;
+
+        }
+	</style>
+</head>
+<body>
+	<div id="app">
+
+
+        <button>刷新</button>
+       
+		<ul>
+            <li>
+                <span>编号</span>
+                <span>步数</span>
+                <span>时间</span>
+            </li>
+        </ul>
+        <ul id='ul'>
+            
+        </ul>
+	</div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(function(){
+
+
+            function loadData(){
+                var html = '';
+                $.ajax({
+                    url:"http://api.symbin.cn/v1/share/getallstepcount",
+                    data:{},
+                    success:function(data){
+                        if(data.getret === 0){
+                            var list = data.list;
+                            list.forEach(function(ls){
+                                html+= "<li><span>"+ls.farmproduceid+"</span><span>"+ls.stepnumber+"</span><span>"+ls.createtime+"</span></li>"
+                            })
+                            $('#ul').html(html);
+                        }
+                    }
+                })
+            }
+            loadData();
+
+            $('button').on('click',function(){
+                loadData();
+            });
+            setInterval(function(){
+                loadData();
+            },10000)
+        })
+    </script>
+
+</body>
+</html>
