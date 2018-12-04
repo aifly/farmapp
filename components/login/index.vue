@@ -125,7 +125,10 @@
 					this.toast('请先同意云耕农夫协议');
 					return;
 				}
-				symbinUtil.ajax({
+
+
+				$.ajax({
+					type:'post',
 					url:window.config.baseUrl+'/user/login/',
 					data:{
 						usermobile:mobile,
@@ -143,7 +146,9 @@
 							toast('登录失败');
 						}
 					}
-				})
+				});
+				
+				 
 			},
 			isPoneAvailable() {
 				var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;

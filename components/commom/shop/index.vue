@@ -181,7 +181,7 @@
 					url:window.config.baseUrl +'/user/getgoodslist/',
 					data:{},
 					success(data){
-						console.log(data);
+						console.log(data,'-----');
 						if(data.getret === 0){
 							s.goodsList = data.list;
 							s.allPrice = s.goodsList[s.index].goodsprice * s.buyCount;
